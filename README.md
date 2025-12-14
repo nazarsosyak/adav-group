@@ -15,8 +15,8 @@ Our objective is simple:
 
 > **Find the patient zero.  
 > Identify the spreading patterns.  
-> Reconstruct the outbreak,
-> then politely ask the culprit to explain themselves in court. **
+> Reconstruct the outbreak.
+> Politely ask the culprit to explain themselves in court. **
 
 Using a large stock-level dataset, we reconstruct the outbreak step by step. Each post in this blog is a **case file**: documenting signals, transmission paths, and moments where the market’s immune system failed.
 
