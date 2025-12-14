@@ -43,7 +43,7 @@ The goal is not prediction, but **forensic understanding**.
 
 ### The investigation workflow
 
-This investigation is deliberately staged — like a real outbreak response:
+This investigation is staged like a real outbreak response:
 
 1. **Market segmentation**  
    We first scan the full timeline to detect **critical periods** where an outbreak is suspected.
