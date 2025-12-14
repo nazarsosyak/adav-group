@@ -3,23 +3,29 @@
 
 @import "{{ site.theme }}";
 
-/* Replace Cayman header gradient with image */
-.page-header {
-  background-image: url("{{ site.baseurl }}/assets/images/market-lab.png");
+/* Header image */
+.page-header{
+  position: relative;      /* ✅ anchor ::before to the header */
+  overflow: hidden;        /* ✅ prevent spill */
+  background-image: url("{{ site.baseurl }}/assets/images/market-lab.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Optional: dark overlay for readability */
-.page-header::before {
+/* Dark overlay ONLY over the header */
+.page-header::before{
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
 }
 
-/* Ensure text stays above overlay */
-.page-header * {
+/* Put header text/buttons above overlay */
+.page-header .project-name,
+.page-header .project-tagline,
+.page-header .btn{
   position: relative;
+  z-index: 1;
 }
