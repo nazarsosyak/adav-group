@@ -41,15 +41,27 @@ The goal is not prediction, but **forensic understanding**.
 
 ---
 
-### The investigation
+### The investigation workflow
 
-This site is structured as an ongoing investigation.  
-Posts follow the logic of an epidemiological inquiry:
+This investigation is deliberately staged — like a real outbreak response:
 
-- **Symptoms** — volatility spikes and abnormal correlations  
-- **Transmission** — how shocks spread through the network  
-- **Case Zero** — identifying the first infected stock  
-- **Verdict** — assessing responsibility and systemic impact  
+1. **Market segmentation**  
+   We first scan the full timeline to detect **critical periods** where an outbreak is suspected.
+
+2. **Zoom-in on a selected outbreak window**  
+   Once a period is flagged, we isolate it and treat it as a **contained outbreak**.
+
+3. **Network analysis**  
+   Inside the outbreak window, we build a network of interactions to identify:
+   - probable patient zero 
+   - super-spreaders 
+   - propagation paths
+
+4. **Sector analysis**  
+   Finally, we map the outbreak onto sectors to detect:
+   - critical sectors that amplify contagion  
+   - sector-to-sector transmission patterns  
+   - whether the outbreak is localized or system-wide
 
 ---
 
