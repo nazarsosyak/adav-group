@@ -1,3 +1,10 @@
+---
+title: "The Story"
+permalink: /story/
+layout: default
+---
+
+
 ## The Story — Part I: Market Segmentation
 
 Before we accuse a stock, we need a crime scene.
