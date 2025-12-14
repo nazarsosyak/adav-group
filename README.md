@@ -1,17 +1,56 @@
-**Ever wondered which stock took your wallet down the drain?**
-**Want someone to blame for losing your life savings?**
+## Who Infected the Market?
 
-Some stocks show symptoms early.  
-Some amplify the shock.  
-Others silently transmit risk across the network.
+**Ever wondered which stock took your wallet down the drain?**  
+**Looking for someone to blame for your life savings disappearing?**
 
-Our objective is simple:
+We can help with that.
+
+---
+
+### The idea
+
+Markets don’t collapse all at once.  
+They spread.
+
+A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies — infecting stocks that were never directly exposed to the original event.
+
+This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network.
+
+---
+
+### Our objective
 
 > **Find the patient zero.  
 > Identify the spreading patterns.  
-> Reconstruct the outbreak.
-> Politely ask the culprit to explain themselves in court.**
+> Reconstruct the outbreak —  
+> then politely ask the culprit to explain themselves in court.**
 
-Using a large stock-level dataset, we reconstruct the outbreak step by step. Each post in this blog is a **case file**: documenting signals, transmission paths, and moments where the market’s immune system failed.
+---
 
-Welcome to the investigation.
+### How it works
+
+Using a large stock-level dataset, we reconstruct financial outbreaks step by step.  
+Each post in this blog is a **case file**, documenting:
+
+- early warning signals  
+- transmission paths across stocks and sectors  
+- super-spreader behavior  
+- moments where the market’s immune system failed  
+
+The goal is not prediction, but **forensic understanding**.
+
+---
+
+### The investigation
+
+This site is structured as an ongoing investigation.  
+Posts follow the logic of an epidemiological inquiry:
+
+- **Symptoms** — volatility spikes and abnormal correlations  
+- **Transmission** — how shocks spread through the network  
+- **Case Zero** — identifying the first infected stock  
+- **Verdict** — assessing responsibility and systemic impact  
+
+---
+
+**Welcome to the investigation.**
