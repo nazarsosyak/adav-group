@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Example"
-permalink: /example/
+title: "The Story"
+permalink: /story/
 ---
 
 
