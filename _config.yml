@@ -2,8 +2,7 @@ remote_theme: pages-themes/midnight@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 title: Who infected the market?
-description: Markets don’t fail alone — they infect each other.
-Who Infected the Market? is a data-driven investigation that treats financial contagion like an epidemic, searching for patient zero and super-spreader stocks through network and time-series analysis.
+description: Markets don’t fail alone — they infect each other. Who Infected the Market? is a data-driven investigation that treats financial contagion like an epidemic, searching for patient zero and super-spreader stocks through network and time-series analysis.
 show_downloads: True
 navigation:
   - title: Home
