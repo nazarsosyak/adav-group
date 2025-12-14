@@ -3,7 +3,23 @@
 
 @import "{{ site.theme }}";
 
-:root {
-  --header-bg-color: #1b4332;
-  --header-bg-color-secondary: #40916c;
+/* Replace Cayman header gradient with image */
+.page-header {
+  background-image: url("{{ site.baseurl }}/assets/images/market-lab.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Optional: dark overlay for readability */
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Ensure text stays above overlay */
+.page-header * {
+  position: relative;
 }
