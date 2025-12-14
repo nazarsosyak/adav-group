@@ -1,4 +1,4 @@
-# **Ever wondered which stock took your wallet down the drain?**
+**Ever wondered which stock took your wallet down the drain?**
 
 Markets do not collapse all at once.  
 They spread.
