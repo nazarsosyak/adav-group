@@ -5,9 +5,9 @@
 
 /* Header image */
 .page-header{
-  position: relative;      /* ✅ anchor ::before to the header */
-  overflow: hidden;        /* ✅ prevent spill */
-  background-image: url("{{ site.baseurl }}/assets/images/market-lab.jpg");
+  position: relative;      
+  overflow: hidden;        
+  background-image: url("{{ site.baseurl }}/assets/images/market-lab.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
