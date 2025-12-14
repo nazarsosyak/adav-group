@@ -1,11 +1,5 @@
 **Ever wondered which stock took your wallet down the drain?**
-
-Markets do not collapse all at once.  
-They spread.
-
-A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies, infecting stocks that were never directly exposed to the original event.
-
-This project treats the stock market as a **living system**.
+**Want someone to blame for losing your life savings?**
 
 Some stocks show symptoms early.  
 Some amplify the shock.  
