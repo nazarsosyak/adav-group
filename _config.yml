@@ -14,8 +14,9 @@ show_downloads: true
 navigation:
   - title: Home
     url: /
-  - title: Example
-    url: /example/
+  - title: The Story
+    url: /story/
+
 
 defaults:
   - scope:
