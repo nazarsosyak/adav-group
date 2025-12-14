@@ -47,3 +47,27 @@
   opacity: 1;
 }
 
+/* Header buttons styling */
+.page-header .btn {
+  color: #ffffff;                        /* white text */
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);    /* semi-transparent box */
+  backdrop-filter: blur(6px);            /* modern glass effect */
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0.75rem 1.5rem;               /* bigger buttons */
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: 
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.page-header .btn:hover {
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.08);               /* slightly bigger */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  text-decoration: none;
+}
+
