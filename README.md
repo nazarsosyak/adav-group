@@ -12,7 +12,7 @@ We can help with that.
 Markets don’t collapse all at once.  
 They spread.
 
-A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies — infecting stocks that were never directly exposed to the original event.
+A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies, infecting stocks that were never directly exposed to the original event.
 
 This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network.
 
@@ -22,8 +22,8 @@ This project treats financial markets as a **living system**, where shocks behav
 
 > **Find the patient zero.  
 > Identify the spreading patterns.  
-> Reconstruct the outbreak —  
-> then politely ask the culprit to explain themselves in court.**
+> Reconstruct the outbreak.  
+> Then politely ask the culprit to explain themselves in court.**
 
 ---
 
