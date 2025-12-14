@@ -1,73 +1,115 @@
 ---
 ---
-
+/* Load Cayman theme */
 @import "{{ site.theme }}";
 
-/* Header image */
-.page-header{
-  position: relative;      
-  overflow: hidden;        
-  background-image: url("{{ site.baseurl }}/assets/images/market-lab.png");
+/* =========================
+   HEADER BACKGROUND IMAGE
+   ========================= */
+
+.page-header {
+  position: relative;
+  overflow: hidden;
+
+  background-image: url("{{ '/assets/images/market-lab.png' | relative_url }}");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Dark overlay ONLY over the header */
-.page-header::before{
+/* Dark overlay (visual only, no interaction) */
+.page-header::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 0;
+  pointer-events: none; /* ✅ prevents hover/click glitch */
 }
 
-/* Put header text/buttons above overlay */
+/* Ensure header content stays above overlay */
 .page-header .project-name,
 .page-header .project-tagline,
-.page-header .btn{
+.page-header .btn,
+.page-header .site-nav {
   position: relative;
   z-index: 1;
 }
 
+/* =========================
+   NAVIGATION LINKS
+   ========================= */
+
 .site-nav {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
 
 .site-nav a {
   display: inline-block;
-  margin-right: 1rem;
+  margin-right: 1.2rem;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  opacity: 0.9;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
 
 .site-nav a:hover {
-  text-decoration: underline;
   opacity: 1;
+  text-decoration: underline;
 }
 
-/* Header buttons styling */
+/* =========================
+   HEADER BUTTONS (Cayman)
+   ========================= */
+
 .page-header .btn {
-  color: #ffffff;                        /* white text */
-  border: 1px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.08);    /* semi-transparent box */
-  backdrop-filter: blur(6px);            /* modern glass effect */
+  display: inline-block;              /* needed for transform */
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+
+  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  padding: 0.75rem 1.5rem;               /* bigger buttons */
+
+  padding: 0.75rem 1.6rem;
+  margin: 0.3rem 0.4rem;
+
   font-size: 1rem;
   font-weight: 600;
   border-radius: 10px;
-  transition: 
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
+/* Hover: grow + glow */
 .page-header .btn:hover {
-  background: rgba(255,255,255,0.18);
-  transform: scale(1.08);               /* slightly bigger */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   text-decoration: none;
 }
 
+/* =========================
+   OPTIONAL: TIGHTER HERO
+   ========================= */
+
+.page-header {
+  padding: 3.5rem 1rem;
+}
+
+/* =========================
+   OPTIONAL: MAIN TITLE STYLE
+   ========================= */
+
+.project-name {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
