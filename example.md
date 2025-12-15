@@ -32,7 +32,7 @@ From that full timeline, **four regimes stand out** as unusually violent, meanin
 
 ---
 
-### Choose a case file
+### **Choose a case file**
 
 Pick one regime below.  
 When you click a card, you access the **case study content** of this very period.  
