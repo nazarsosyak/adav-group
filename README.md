@@ -23,13 +23,17 @@ This project treats financial markets as a **living system**, where shocks behav
 This investigation is guided the following research questions:
 
 > **How do market shocks propagate?**
-Through which channels do shocks spread, and how do individual stocks and sectors react as the disturbance unfolds?
+> Through which channels do shocks spread, and how do individual stocks and sectors react as the disturbance unfolds?
+
 > **Can we identify a patient zero?**
-Is it possible to trace major market events back to an initial source, and distinguish between early carriers, super-spreaders, and secondary infections?
+> Is it possible to trace major market events back to an initial source, and distinguish between early carriers, super-spreaders, and secondary infections?
+
 > **What are the dynamics of financial contagion?**
-How fast does risk propagate, how concentrated is the spread, and when does it become systemic?
+> How fast does risk propagate, how concentrated is the spread, and when does it become systemic?
+
 > **Does the market have an immune system?**
-How does the market absorb, dampen or amplify shocks, and under what conditions does this defense mechanism fail?
+> How does the market absorb, dampen or amplify shocks, and under what conditions does this defense mechanism fail?
+
 
 ---
 
