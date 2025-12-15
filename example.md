@@ -40,45 +40,34 @@ When you click a card, you access the **case study content** of this very period
 <div class="segment-row">
 
   <button class="segment-card is-active"
-          data-target="panel-ussr"
-          data-bg="#fce6e6"
-          data-accent="#c93e3e"
-          type="button"
-          aria-controls="panel-ussr"
-          aria-selected="true">
+        data-target="panel-ussr"
+        data-bg="#FFF5F6"
+        data-accent="#8C1D2C"
+        aria-selected="true">
     <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </button>
 
   <button class="segment-card"
-          data-target="panel-dotcom"
-          data-bg="#e6eafc"
-          data-accent="#3e5ac9"
-          type="button"
-          aria-controls="panel-dotcom"
-          aria-selected="false">
+        data-target="panel-dotcom"
+        data-bg="#F5F6FC"
+        data-accent="#2E357A">
     <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dot-com Bubble">
     <div class="segment-title">Dot-com Bubble</div>
   </button>
 
   <button class="segment-card"
-          data-target="panel-subprime"
-          data-bg="#eefced"
-          data-accent="#2d632c"
-          type="button"
-          aria-controls="panel-subprime"
-          aria-selected="false">
+        data-target="panel-subprime"
+        data-bg="#F4FBF6"
+        data-accent="#1F6B3A">
     <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </button>
 
   <button class="segment-card"
-          data-target="panel-covid"
-          data-bg="#f6e6fc"
-          data-accent="#542c63"
-          type="button"
-          aria-controls="panel-covid"
-          aria-selected="false">
+        data-target="panel-covid"
+        data-bg="#FBFAF2"
+        data-accent="#6A5F12">
     <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="COVID Outbreak">
     <div class="segment-title">COVID Outbreak</div>
   </button>
@@ -138,8 +127,8 @@ When you click a card, you access the **case study content** of this very period
 
 <script>
 (function () {
-  const cards  = Array.from(document.querySelectorAll(".segment-card"));
-  const panels = Array.from(document.querySelectorAll(".case-panel"));
+  const cards  = [...document.querySelectorAll(".segment-card")];
+  const panels = [...document.querySelectorAll(".case-panel")];
 
   function setTheme(bg, accent) {
     const body = document.querySelector("body.site-body");
@@ -147,7 +136,7 @@ When you click a card, you access the **case study content** of this very period
 
     requestAnimationFrame(() => {
       body.style.setProperty("--page-bg", bg || "#ffffff");
-      body.style.setProperty("--accent", accent || "#222222");
+      body.style.setProperty("--content-accent", accent || "#2aa36b");
     });
   }
 
@@ -156,40 +145,27 @@ When you click a card, you access the **case study content** of this very period
     const next = document.getElementById(id);
     if (!next || current === next) return;
 
-    // hide current smoothly
     if (current) {
       current.classList.remove("is-visible");
-      setTimeout(() => {
-        current.hidden = true;
-      }, 220);
+      setTimeout(() => current.hidden = true, 220);
     }
 
-    // show next smoothly
     next.hidden = false;
-    requestAnimationFrame(() => {
-      next.classList.add("is-visible");
-    });
+    requestAnimationFrame(() => next.classList.add("is-visible"));
   }
 
   cards.forEach(card => {
     card.addEventListener("click", () => {
-      // active card style
-      cards.forEach(c => {
-        c.classList.remove("is-active");
-        c.setAttribute("aria-selected", "false");
-      });
+      cards.forEach(c => c.classList.remove("is-active"));
       card.classList.add("is-active");
-      card.setAttribute("aria-selected", "true");
 
-      // theme + panel swap
       setTheme(card.dataset.bg, card.dataset.accent);
       showPanel(card.dataset.target);
     });
   });
 
-  // set initial theme based on the initially active card (or first card)
   const active = document.querySelector(".segment-card.is-active") || cards[0];
   if (active) setTheme(active.dataset.bg, active.dataset.accent);
-
 })();
 </script>
+
