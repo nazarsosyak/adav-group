@@ -50,7 +50,7 @@ After thorough investigation, 4 key periods can be picked out:
     <h3>Collapse of the USSR — regime change shock</h3>
     <p>We start here: the market shifts tone, volatility rises, and correlations begin to rewire.</p>
     <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/seg_ussr.html' | relative_url }}" loading="lazy"></iframe>
+      <iframe src="{{ '/assets/plots/daily_mean_return_1991.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -58,7 +58,7 @@ After thorough investigation, 4 key periods can be picked out:
     <h3>Dot-com bubble — fever in tech</h3>
     <p>Speculation peaks, then immunity fails: tech drags everything down through network links.</p>
     <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/seg_dotcom.html' | relative_url }}" loading="lazy"></iframe>
+      <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -66,7 +66,7 @@ After thorough investigation, 4 key periods can be picked out:
     <h3>Subprime — systemic infection</h3>
     <p>Credit stress spreads across sectors. This is where “local symptoms” become systemic.</p>
     <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/seg_subprime.html' | relative_url }}" loading="lazy"></iframe>
+      <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -74,7 +74,7 @@ After thorough investigation, 4 key periods can be picked out:
     <h3>COVID — synchronized shock</h3>
     <p>A fast global transmission: sudden drawdowns and extreme co-movement.</p>
     <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/seg_covid.html' | relative_url }}" loading="lazy"></iframe>
+      <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
