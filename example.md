@@ -27,8 +27,8 @@ After thorough investigation, 4 key periods can be picked out:
   </button>
 
   <button class="segment-card" data-target="panel-dotcom" type="button">
-    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Burst of the Internet Bubble">
-    <div class="segment-title">Burst of the Internet Bubble</div>
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dotcom Bubble">
+    <div class="segment-title">Dotcom Bubble</div>
   </button>
 
   <button class="segment-card" data-target="panel-subprime" type="button">
