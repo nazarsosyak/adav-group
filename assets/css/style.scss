@@ -12,6 +12,31 @@
   transition: background-color 700ms ease;
 }
 
+/* HEADER THEMING */
+.page-header,
+.page-header a,
+.project-name,
+.project-tagline,
+.site-nav a {
+  color: var(--accent, #222222);
+  transition: color 400ms ease;
+}
+
+/* optional: slightly stronger nav hover */
+.site-nav a:hover {
+  opacity: 0.8;
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .site-body,
+  .page-header,
+  .page-header a {
+    transition: none;
+  }
+}
+
+
 /* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .site-body { transition: none; }
