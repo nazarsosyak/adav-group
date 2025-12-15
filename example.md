@@ -19,14 +19,14 @@ So we start with the only thing the market can’t hide: the timeline.
 
 <div class="segment-row">
 
-  <div class="segment-card" data-tip="Regime shift + geopolitical shock. A first disturbance that ripples into tech + industry." >
+  <div class="segment-card" data-tip="Regime shift and geopolitical shock. A first disturbance that ripples into tech and industry." >
     <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </div>
 
   <div class="segment-card" data-tip="Liquidity party ends. Correlations spike, tech gets feverish, and the market starts coughing." >
     <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Burst of the Internet Bubble">
-    <div class="segment-title">Burst of the Internet Bubble</div>
+    <div class="segment-title">Dotcom Bubble</div>
   </div>
 
   <div class="segment-card" data-tip="The pathogen goes systemic. Credit freezes, contagion spreads across sectors, immune system fails." >
