@@ -1,6 +1,9 @@
 ---
 ---
-/* Load Cayman theme */
+/* =========================
+   LOAD THEME + FONT
+   ========================= */
+
 @import "{{ site.theme }}";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
@@ -15,6 +18,7 @@ body {
 .page-header {
   position: relative;
   overflow: hidden;
+  padding: 3.5rem 1rem;
 
   background-image: url("{{ '/assets/images/market-lab.png' | relative_url }}");
   background-size: cover;
@@ -22,17 +26,17 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Dark overlay (visual only, no interaction) */
+/* Dark overlay (visual only) */
 .page-header::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 0;
-  pointer-events: none; /* ✅ prevents hover/click glitch */
+  pointer-events: none;
 }
 
-/* Ensure header content stays above overlay */
+/* Keep content above overlay */
 .page-header .project-name,
 .page-header .project-tagline,
 .page-header .btn,
@@ -42,7 +46,7 @@ body {
 }
 
 /* =========================
-   NAVIGATION LINKS
+   NAVIGATION
    ========================= */
 
 .site-nav {
@@ -53,8 +57,8 @@ body {
   display: inline-block;
   margin-right: 1.2rem;
   color: #ffffff;
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
   opacity: 0.85;
   transition: opacity 0.2s ease;
 }
@@ -65,18 +69,17 @@ body {
 }
 
 /* =========================
-   HEADER BUTTONS (Cayman)
+   HEADER BUTTONS
    ========================= */
 
 .page-header .btn {
-  display: inline-block;              /* needed for transform */
+  display: inline-block;
   cursor: pointer;
   user-select: none;
-  -webkit-user-select: none;
 
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255,255,255,0.6) !important;
+  background: rgba(255,255,255,0.08) !important;
 
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -94,30 +97,25 @@ body {
     box-shadow 0.22s ease;
 }
 
-/* Hover: grow + glow */
 .page-header .btn:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255,255,255,0.18) !important;
   transform: scale(1.08);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   text-decoration: none;
 }
 
 /* =========================
-   OPTIONAL: TIGHTER HERO
-   ========================= */
-
-.page-header {
-  padding: 3.5rem 1rem;
-}
-
-/* =========================
-   OPTIONAL: MAIN TITLE STYLE
+   TITLE STYLE
    ========================= */
 
 .project-name {
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+
+/* =========================
+   FULL-WIDTH PLOT
+   ========================= */
 
 .full-width-plot {
   position: relative;
@@ -133,25 +131,33 @@ body {
   border-radius: 12px;
 }
 
-/* Row of 4 square clickable cards */
-.segment-row{
+/* =========================
+   SEGMENT CARDS
+   ========================= */
+
+.segment-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
   margin: 2rem 0;
 }
 
-.segment-card{
+.segment-card {
   background: transparent;
   border: 0;
   padding: 0;
   text-align: center;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease,
+    filter 0.25s ease;
 }
 
-.segment-card img{
+.segment-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -159,55 +165,84 @@ body {
   display: block;
 }
 
-.segment-title{
+.segment-title {
   margin-top: 0.75rem;
   font-weight: 650;
   opacity: 0.9;
 }
 
-.segment-card:hover{
+/* Hover */
+.segment-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
 }
 
-.segment-card.is-active img{
-  outline: 2px solid rgba(255,255,255,0.55);
-  outline-offset: 3px;
+/* Inactive cards */
+.segment-card:not(.is-active) {
+  opacity: 0.65;
+  filter: grayscale(10%);
 }
 
-/* Panels: fade swap */
-.case-panels{
+/* Active card */
+.segment-card.is-active {
+  opacity: 1;
+  filter: none;
+  transform: translateY(-8px) scale(1.05);
+}
+
+.segment-card.is-active img {
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    0 0 0 2px rgba(255,255,255,0.6);
+}
+
+.segment-card.is-active .segment-title {
+  font-weight: 700;
+  opacity: 1;
+}
+
+/* =========================
+   CASE PANELS (PLOTS)
+   ========================= */
+
+.case-panels {
   margin-top: 1.5rem;
 }
 
-.case-panel{
+.case-panel {
   display: none;
   opacity: 0;
   transform: translateY(8px);
 }
 
-.case-panel.is-visible{
+.case-panel.is-visible {
   display: block;
   animation: fadeInUp 260ms ease forwards;
 }
 
-@keyframes fadeInUp{
+@keyframes fadeInUp {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.plot-frame iframe{
+.plot-frame iframe {
   width: 100%;
-  height: 420px;  /* adjust */
+  height: 420px;
   border: 0;
   border-radius: 12px;
 }
 
-/* Responsive */
-@media (max-width: 900px){
-  .segment-row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .segment-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-@media (max-width: 520px){
-  .segment-row{ grid-template-columns: 1fr; }
+@media (max-width: 520px) {
+  .segment-row {
+    grid-template-columns: 1fr;
+  }
 }
