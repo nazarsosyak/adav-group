@@ -20,23 +20,23 @@ So we start with the only thing the market can’t hide: the timeline.
 <div class="segment-grid">
 
   <div class="segment-card" onclick="openModal('seg35')">
-    <img src="{{ '/assets/images/seg35.png' | relative_url }}" alt="Segment 35">
-    <div class="segment-title">Segment 35</div>
+    <img src="{{ '/assets/images/ussr.png' | relative_url }}" alt="Segment 35">
+    <div class="segment-title">Collapse of the USSR</div>
   </div>
 
   <div class="segment-card" onclick="openModal('seg46')">
-    <img src="{{ '/assets/images/seg46.png' | relative_url }}" alt="Segment 46">
-    <div class="segment-title">Segment 46</div>
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Segment 46">
+    <div class="segment-title">Burst of the Internet Bubble</div>
   </div>
 
   <div class="segment-card" onclick="openModal('seg7')">
-    <img src="{{ '/assets/images/seg7.png' | relative_url }}" alt="Segment 7">
-    <div class="segment-title">Segment 7</div>
+    <img src="{{ '/assets/images/subprime.png' | relative_url }}" alt="Segment 7">
+    <div class="segment-title">Subprime Crisis</div>
   </div>
 
   <div class="segment-card" onclick="openModal('seg23')">
-    <img src="{{ '/assets/images/seg23.png' | relative_url }}" alt="Segment 23">
-    <div class="segment-title">Segment 23</div>
+    <img src="{{ '/assets/images/covid.png' | relative_url }}" alt="Segment 23">
+    <div class="segment-title">Covid Outbreak</div>
   </div>
 
 </div>
