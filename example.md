@@ -25,7 +25,7 @@ So we start with the only thing the market can’t hide: the timeline.
   </div>
 
   <div class="segment-card" data-tip="Liquidity party ends. Correlations spike, tech gets feverish, and the market starts coughing." >
-    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Burst of the Internet Bubble">
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dotcom Bubble">
     <div class="segment-title">Dotcom Bubble</div>
   </div>
 
