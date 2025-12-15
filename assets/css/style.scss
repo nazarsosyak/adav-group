@@ -7,6 +7,17 @@
 @import "{{ site.theme }}";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
+.site-body {
+  background-color: var(--page-bg, #ffffff);
+  transition: background-color 700ms ease;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .site-body { transition: none; }
+}
+
+
 body {
   font-family: "Inter", sans-serif;
 }
