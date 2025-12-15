@@ -17,6 +17,8 @@ So we start with the only thing the market can’t hide: the timeline.
     loading="lazy"></iframe>
 </div>
 
+After thorough investigation, 4 key periods can be investigated:
+
 <div class="segment-row">
 
   <div class="segment-card" data-tip="Regime shift and geopolitical shock. A first disturbance that ripples into tech and industry." >
