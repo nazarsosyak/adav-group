@@ -39,22 +39,46 @@ When you click a card, you access the **case study content** of this very period
 
 <div class="segment-row">
 
-  <button class="segment-card is-active" data-target="panel-ussr" data-bg="#fc9aa4" type="button" aria-controls="panel-ussr" aria-selected="true">
+  <button class="segment-card is-active"
+          data-target="panel-ussr"
+          data-bg="#fce6e6"
+          data-accent="#c93e3e"
+          type="button"
+          aria-controls="panel-ussr"
+          aria-selected="true">
     <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </button>
 
-  <button class="segment-card" data-target="panel-dotcom" data-bg="#979bc9" type="button" aria-controls="panel-dotcom" aria-selected="false">
+  <button class="segment-card"
+          data-target="panel-dotcom"
+          data-bg="#e6eafc"
+          data-accent="#3e5ac9"
+          type="button"
+          aria-controls="panel-dotcom"
+          aria-selected="false">
     <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dot-com Bubble">
     <div class="segment-title">Dot-com Bubble</div>
   </button>
 
-  <button class="segment-card" data-target="panel-subprime" data-bg="#b6dbbe" type="button" aria-controls="panel-subprime" aria-selected="false">
+  <button class="segment-card"
+          data-target="panel-subprime"
+          data-bg="#eefced"
+          data-accent="#2d632c"
+          type="button"
+          aria-controls="panel-subprime"
+          aria-selected="false">
     <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </button>
 
-  <button class="segment-card" data-target="panel-covid" data-bg="#dbd9b6" type="button" aria-controls="panel-covid" aria-selected="false">
+  <button class="segment-card"
+          data-target="panel-covid"
+          data-bg="#f6e6fc"
+          data-accent="#542c63"
+          type="button"
+          aria-controls="panel-covid"
+          aria-selected="false">
     <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="COVID Outbreak">
     <div class="segment-title">COVID Outbreak</div>
   </button>
@@ -117,12 +141,13 @@ When you click a card, you access the **case study content** of this very period
   const cards  = Array.from(document.querySelectorAll(".segment-card"));
   const panels = Array.from(document.querySelectorAll(".case-panel"));
 
-  function setBackground(hex) {
+  function setTheme(bg, accent) {
     const body = document.querySelector("body.site-body");
     if (!body) return;
-    const target = hex || "#ffffff";
+
     requestAnimationFrame(() => {
-      body.style.setProperty("--page-bg", target);
+      body.style.setProperty("--page-bg", bg || "#ffffff");
+      body.style.setProperty("--accent", accent || "#222222");
     });
   }
 
@@ -156,16 +181,15 @@ When you click a card, you access the **case study content** of this very period
       card.classList.add("is-active");
       card.setAttribute("aria-selected", "true");
 
-      // background + panel swap
-      setBackground(card.dataset.bg);
+      // theme + panel swap
+      setTheme(card.dataset.bg, card.dataset.accent);
       showPanel(card.dataset.target);
     });
   });
 
-  // set initial background based on the initially active card (or first card)
+  // set initial theme based on the initially active card (or first card)
   const active = document.querySelector(".segment-card.is-active") || cards[0];
-  if (active) setBackground(active.dataset.bg);
+  if (active) setTheme(active.dataset.bg, active.dataset.accent);
 
 })();
 </script>
-
