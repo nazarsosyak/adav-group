@@ -133,4 +133,105 @@ body {
   border-radius: 12px;
 }
 
+/* 4 images in a horizontal row */
+.segment-row{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 3rem;
+}
+
+/* Card */
+.segment-card{
+  position: relative;
+  cursor: default;
+  text-align: center;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.segment-card img{
+  width: 100%;
+  aspect-ratio: 1 / 1;       /* perfect square */
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.segment-title{
+  margin-top: 0.75rem;
+  font-weight: 650;
+  opacity: 0.9;
+}
+
+/* Hover lift */
+.segment-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+}
+
+/* Tooltip bubble (hidden by default) */
+.segment-card::after{
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 18px);  /* bubble above the card */
+  transform: translateX(-50%);
+  width: min(320px, 85vw);
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(15, 15, 18, 0.92);
+  color: rgba(255,255,255,0.95);
+  font-size: 0.95rem;
+  line-height: 1.25rem;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 20;
+}
+
+/* Arrow pointing upward (toward the plot) */
+.segment-card::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid rgba(15, 15, 18, 0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 21;
+}
+
+/* Show tooltip on hover */
+.segment-card:hover::after,
+.segment-card:hover::before{
+  opacity: 1;
+}
+
+.segment-card:hover::after{
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px){
+  .segment-row{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px){
+  .segment-row{
+    grid-template-columns: 1fr;
+  }
+}
+
 
