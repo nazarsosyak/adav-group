@@ -80,9 +80,9 @@ When you click a card, you access the **case study content** of this very period
   <section id="panel-ussr" class="case-panel is-visible">
     <h3>Case File: USSR collapse — regime change shock</h3>
     <p>
-      This is our first “clean” anomaly: the market tone shifts quickly, volatility rises,
-      and the return distribution stops behaving like the previous regime.
-      Think of it as a sudden mutation in the environment.
+      This episode is not a crisis. 
+      The collapse of the Soviet Union marks a geopolitical transition that reduces systemic risk and expands the global reach of U.S. firms.
+      Markets briefly adjust to the new information, but the return distribution shifts upward, reflecting improved growth expectations.
     </p>
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_1991.html' | relative_url }}" loading="lazy"></iframe>
@@ -92,8 +92,8 @@ When you click a card, you access the **case study content** of this very period
   <section id="panel-dotcom" class="case-panel" hidden>
     <h3>Case File: Dot-com burst — fever in tech</h3>
     <p>
-      Speculation peaks, then confidence collapses. This is a classic “contagion amplifier” period:
-      one sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
+      Speculation peaks, then confidence collapses.
+      One sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
     </p>
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
@@ -105,7 +105,7 @@ When you click a card, you access the **case study content** of this very period
     <p>
       Credit stress doesn’t stay local. This regime is short but brutal:
       shocks propagate through financial exposure and sector links,
-      turning “symptoms” into a system-wide condition.
+      turning symptoms into a system-wide condition.
     </p>
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
