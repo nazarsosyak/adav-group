@@ -78,7 +78,7 @@ When you click a card, you access the **case study content** of this very period
 <div class="case-panels" id="case-files" aria-live="polite">
 
   <section id="panel-ussr" class="case-panel is-visible">
-    <h3>Case File: USSR collapse — regime change shock</h3>
+    <h3>Case File: USSR collapse</h3>
     <p>
       This episode is not a crisis. 
       The collapse of the Soviet Union marks a geopolitical transition that reduces systemic risk and expands the global reach of U.S. firms.
@@ -90,7 +90,7 @@ When you click a card, you access the **case study content** of this very period
   </section>
 
   <section id="panel-dotcom" class="case-panel" hidden>
-    <h3>Case File: Dot-com burst — fever in tech</h3>
+    <h3>Case File: Dot-com burst</h3>
     <p>
       Speculation peaks, then confidence collapses.
       One sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
@@ -101,7 +101,7 @@ When you click a card, you access the **case study content** of this very period
   </section>
 
   <section id="panel-subprime" class="case-panel" hidden>
-    <h3>Case File: Subprime — systemic infection</h3>
+    <h3>Case File: Subprime Crisis</h3>
     <p>
       Credit stress doesn’t stay local. This regime is short but brutal:
       shocks propagate through financial exposure and sector links,
@@ -113,7 +113,7 @@ When you click a card, you access the **case study content** of this very period
   </section>
 
   <section id="panel-covid" class="case-panel" hidden>
-    <h3>Case File: COVID — synchronized shock</h3>
+    <h3>Case File: COVID</h3>
     <p>
       A fast global transmission: abrupt drawdowns, violent reversals, and extreme co-movement.
       If the market had an immune system, this is the moment it got overwhelmed.
