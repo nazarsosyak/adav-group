@@ -5,7 +5,7 @@ layout: default
 ---
 
 
-## The Story — Part I: Market Segmentation
+## Part I: Market Segmentation
 
 Before we accuse a stock, we need a crime scene.
 
