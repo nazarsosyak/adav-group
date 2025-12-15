@@ -17,7 +17,7 @@ So we start with the only thing the market can’t hide: the timeline.
     loading="lazy"></iframe>
 </div>
 
-After thorough investigation, 4 key periods can be investigated:
+After thorough investigation, 4 key periods can be picked out:
 
 <div class="segment-row">
 
