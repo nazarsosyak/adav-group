@@ -19,6 +19,14 @@ So we start with the only thing the market can’t hide: the timeline.
 
 After thorough investigation, 4 key periods can be picked out:
 
+| Period name                     | Start date   | End date     | Cumulative return |
+|--------------------------------|--------------|--------------|-------------------|
+| Collapse of the USSR            | 1991-12-20   | 1992-01-10   | **+17.16%**       |
+| Dot-com bubble burst            | 2000-09-08   | 2000-10-13   | **−19.49%**       |
+| Subprime financial crisis       | 2008-10-03   | 2008-10-17   | **−22.02%**       |
+| COVID-19 market shock           | 2020-02-21   | 2020-04-03   | **−22.90%**       |
+
+
 <div class="segment-row">
 
   <button class="segment-card is-active" data-target="panel-ussr" type="button">
