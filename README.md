@@ -1,4 +1,4 @@
-## Who Infected the Market?
+## **Who Infected the Market?**
 
 **Ever wondered which stock took your wallet down the drain?**  
 **Looking for someone to blame for your life savings disappearing?**
@@ -7,7 +7,7 @@ We can help with that.
 
 ---
 
-### The idea
+### **The idea**
 
 Markets don’t collapse all at once.  
 They spread.
@@ -18,7 +18,22 @@ This project treats financial markets as a **living system**, where shocks behav
 
 ---
 
-### Our objective
+### **Research questions**
+
+This investigation is guided the following research questions:
+
+> **How do market shocks propagate?**
+Through which channels do shocks spread, and how do individual stocks and sectors react as the disturbance unfolds?
+> **Can we identify a patient zero?**
+Is it possible to trace major market events back to an initial source, and distinguish between early carriers, super-spreaders, and secondary infections?
+> **What are the dynamics of financial contagion?**
+How fast does risk propagate, how concentrated is the spread, and when does it become systemic?
+> **Does the market have an immune system?**
+How does the market absorb, dampen or amplify shocks, and under what conditions does this defense mechanism fail?
+
+---
+
+### **Our objective**
 
 > **Find the patient zero.  
 > Identify the spreading patterns.  
@@ -27,7 +42,7 @@ This project treats financial markets as a **living system**, where shocks behav
 
 ---
 
-### How it works
+### **How it works**
 
 Using a large stock-level dataset, we reconstruct financial outbreaks step by step.  
 Each post in this blog is a **case file**, documenting:
@@ -41,7 +56,7 @@ The goal is not prediction, but **forensic understanding**.
 
 ---
 
-### The investigation workflow
+### **The investigation workflow**
 
 This investigation is staged like a real outbreak response:
 
