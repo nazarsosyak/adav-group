@@ -17,28 +17,29 @@ So we start with the only thing the market can’t hide: the timeline.
     loading="lazy"></iframe>
 </div>
 
-<div class="segment-grid">
+<div class="segment-row">
 
-  <div class="segment-card" onclick="openModal('seg35')">
-    <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Segment 35">
+  <div class="segment-card" data-tip="Regime shift + geopolitical shock. A first disturbance that ripples into tech + industry." >
+    <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </div>
 
-  <div class="segment-card" onclick="openModal('seg46')">
-    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Segment 46">
+  <div class="segment-card" data-tip="Liquidity party ends. Correlations spike, tech gets feverish, and the market starts coughing." >
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Burst of the Internet Bubble">
     <div class="segment-title">Burst of the Internet Bubble</div>
   </div>
 
-  <div class="segment-card" onclick="openModal('seg7')">
-    <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Segment 7">
+  <div class="segment-card" data-tip="The pathogen goes systemic. Credit freezes, contagion spreads across sectors, immune system fails." >
+    <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </div>
 
-  <div class="segment-card" onclick="openModal('seg23')">
-    <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="Segment 23">
+  <div class="segment-card" data-tip="Sudden global shock. Fast transmission, synchronized drawdowns, and extreme volatility." >
+    <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="Covid Outbreak">
     <div class="segment-title">Covid Outbreak</div>
   </div>
 
 </div>
+
 
 
