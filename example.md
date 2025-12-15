@@ -21,27 +21,86 @@ After thorough investigation, 4 key periods can be picked out:
 
 <div class="segment-row">
 
-  <div class="segment-card" data-tip="Regime shift and geopolitical shock. A first disturbance that ripples into tech and industry." >
+  <button class="segment-card is-active" data-target="panel-ussr" type="button">
     <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
-  </div>
+  </button>
 
-  <div class="segment-card" data-tip="Liquidity party ends. Correlations spike, tech gets feverish, and the market starts coughing." >
-    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dotcom Bubble">
-    <div class="segment-title">Dotcom Bubble</div>
-  </div>
+  <button class="segment-card" data-target="panel-dotcom" type="button">
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Burst of the Internet Bubble">
+    <div class="segment-title">Burst of the Internet Bubble</div>
+  </button>
 
-  <div class="segment-card" data-tip="The pathogen goes systemic. Credit freezes, contagion spreads across sectors, immune system fails." >
+  <button class="segment-card" data-target="panel-subprime" type="button">
     <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
-  </div>
+  </button>
 
-  <div class="segment-card" data-tip="Sudden global shock. Fast transmission, synchronized drawdowns, and extreme volatility." >
+  <button class="segment-card" data-target="panel-covid" type="button">
     <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="Covid Outbreak">
     <div class="segment-title">Covid Outbreak</div>
-  </div>
+  </button>
 
 </div>
 
+<!-- Panels (only one is visible at a time) -->
+<div class="case-panels">
 
+  <section id="panel-ussr" class="case-panel is-visible">
+    <h3>Collapse of the USSR — regime change shock</h3>
+    <p>We start here: the market shifts tone, volatility rises, and correlations begin to rewire.</p>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/seg_ussr.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+  </section>
 
+  <section id="panel-dotcom" class="case-panel">
+    <h3>Dot-com bubble — fever in tech</h3>
+    <p>Speculation peaks, then immunity fails: tech drags everything down through network links.</p>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/seg_dotcom.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="panel-subprime" class="case-panel">
+    <h3>Subprime — systemic infection</h3>
+    <p>Credit stress spreads across sectors. This is where “local symptoms” become systemic.</p>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/seg_subprime.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="panel-covid" class="case-panel">
+    <h3>COVID — synchronized shock</h3>
+    <p>A fast global transmission: sudden drawdowns and extreme co-movement.</p>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/seg_covid.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  const cards = document.querySelectorAll(".segment-card");
+  const panels = document.querySelectorAll(".case-panel");
+
+  function showPanel(id) {
+    panels.forEach(p => {
+      if (p.id === id) {
+        p.classList.add("is-visible");
+      } else {
+        p.classList.remove("is-visible");
+      }
+    });
+  }
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      cards.forEach(c => c.classList.remove("is-active"));
+      card.classList.add("is-active");
+      showPanel(card.dataset.target);
+    });
+  });
+})();
+</script>
