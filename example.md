@@ -17,14 +17,15 @@ So we start with the only thing the market can’t hide: the timeline.
     loading="lazy"></iframe>
 </div>
 
-After thorough investigation, 4 key periods can be picked out:
+After thorough investigation, 4 key periods stand out and will be analyzed:
 
-| Period name                     | Start date   | End date     | Cumulative return |
-|--------------------------------|--------------|--------------|-------------------|
-| Collapse of the USSR            | 1991-12-20   | 1992-01-10   | **+17.16%**       |
-| Dot-com bubble burst            | 2000-09-08   | 2000-10-13   | **−19.49%**       |
-| Subprime financial crisis       | 2008-10-03   | 2008-10-17   | **−22.02%**       |
-| COVID-19 market shock           | 2020-02-21   | 2020-04-03   | **−22.90%**       |
+| Period name               | Start date   | End date     | Duration (weeks) | Cumulative return |
+|--------------------------|--------------|--------------|------------------|-------------------|
+| Collapse of the USSR     | 1991-12-20   | 1992-01-10   | 4                | **+17.16%**       |
+| Dot-com bubble burst     | 2000-09-08   | 2000-10-13   | 6                | **−19.49%**       |
+| Subprime financial crisis| 2008-10-03   | 2008-10-17   | 3                | **−22.02%**       |
+| COVID-19 market shock    | 2020-02-21   | 2020-04-03   | 7                | **−22.90%**       |
+
 
 
 <div class="segment-row">
