@@ -44,7 +44,7 @@ When you click a card, you access the **case study content** of this very period
         data-bg="#FFF5F6"
         data-accent="#8C1D2C"
         aria-selected="true">
-    <img src="{{ '/assets/images/ussr.jpg' | relative_url }}" alt="Collapse of the USSR">
+    <img src="{{ '/assets/images/ussr.png' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </button>
 
@@ -60,15 +60,15 @@ When you click a card, you access the **case study content** of this very period
         data-target="panel-subprime"
         data-bg="#F4FBF6"
         data-accent="#1F6B3A">
-    <img src="{{ '/assets/images/subprime.jpg' | relative_url }}" alt="Subprime Crisis">
+    <img src="{{ '/assets/images/subprime.png' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </button>
 
   <button class="segment-card"
         data-target="panel-covid"
-        data-bg="#FBFAF2"
+        data-bg="#FDFDF8"
         data-accent="#6A5F12">
-    <img src="{{ '/assets/images/covid.jpg' | relative_url }}" alt="COVID Outbreak">
+    <img src="{{ '/assets/images/covid.png' | relative_url }}" alt="COVID Outbreak">
     <div class="segment-title">COVID Outbreak</div>
   </button>
 
