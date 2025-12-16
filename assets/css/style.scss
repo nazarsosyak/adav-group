@@ -1,5 +1,6 @@
 ---
 ---
+
 /* =========================
    LOAD THEME + FONT
    ========================= */
@@ -11,10 +12,19 @@
    GLOBAL THEME VARIABLES
    ========================= */
 
+:root{
+  --page-bg: #ffffff;
+  --header-fg: #ffffff;
+  --content-accent: #2aa36b;
+}
+
 .site-body {
   background-color: var(--page-bg, #ffffff);
   transition: background-color 700ms ease;
 }
+
+/* Always respect HTML hidden attribute (theme-safe) */
+[hidden] { display: none !important; }
 
 /* =========================
    TOP HEADER (STAYS WHITE)
@@ -78,7 +88,7 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Dark overlay */
+/* Dark overlay (header only) */
 .page-header::before {
   content: "";
   position: absolute;
@@ -160,6 +170,7 @@ body {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 12px;
+  display: block;
 }
 
 .segment-title {
@@ -194,13 +205,13 @@ body {
 /* =========================
    CASE PANELS
    ========================= */
+
 .plot-frame iframe {
   width: 100%;
   height: 420px;
   border: 0;
   border-radius: 12px;
 }
-
 
 .case-panel {
   display: none;
@@ -229,6 +240,10 @@ body {
 @media (max-width: 520px) {
   .segment-row { grid-template-columns: 1fr; }
 }
+
+/* =========================
+   IMAGE SLIDERS
+   ========================= */
 
 .img-slider {
   margin: 1rem 0 1.5rem;
@@ -260,9 +275,9 @@ body {
   display: block;
 }
 
-/* ---------------------------
-   Run analysis UX
---------------------------- */
+/* =========================
+   RUN ANALYSIS UX
+   ========================= */
 
 .run-analysis-bar{
   display:flex;
@@ -315,6 +330,12 @@ body {
   place-items: center;
 }
 
+/* extra safety: never block clicks when hidden */
+.analysis-overlay[hidden]{
+  display: none !important;
+  pointer-events: none;
+}
+
 .analysis-modal{
   width: min(520px, 92vw);
   padding: 1.4rem 1.25rem;
@@ -354,6 +375,7 @@ body {
 @media (prefers-reduced-motion: reduce){
   .spinner{ animation: none; }
 }
+
 /* =========================
    PNG RUN ANALYSIS BUTTON
    ========================= */
@@ -367,7 +389,7 @@ body {
 
 .img-button img {
   display: block;
-  max-width: 220px;        /* universal size */
+  max-width: 220px;
   height: auto;
   margin: 0.4rem 0;
 
@@ -377,22 +399,17 @@ body {
     box-shadow 0.22s ease;
 }
 
-/* Hover = more presence */
 .img-button:hover img {
   transform: scale(1.06);
   filter: brightness(1.08);
   box-shadow: 0 18px 45px rgba(160, 0, 0, 0.35);
 }
 
-/* Click */
 .img-button:active img {
   transform: scale(0.97);
 }
 
-/* Disabled state */
 .img-button:disabled img {
   filter: grayscale(70%) opacity(0.6);
   box-shadow: none;
 }
-
-
