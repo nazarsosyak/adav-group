@@ -418,10 +418,9 @@ body {
   box-shadow: none;
 }
 
-.main-content p {
-  margin: 1.1rem 0;
-  line-height: 1.6;
+.text-accent{
+  color: var(--content-accent);
+  font-weight: 600;
 }
-
 
 
