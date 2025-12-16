@@ -73,12 +73,19 @@ When you click a card, you access the **case study content** of this very period
   <!-- DOTCOM (visible by default) -->
   <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com burst</h3>
+
+    <!-- 1) Daily returns plot -->
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+
+    <!-- 2) Text -->
     <p>
       Speculation peaks, then confidence collapses.
       One sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
     </p>
 
-    <!-- Dot-com slider -->
+    <!-- 3) Timeline slider -->
     <div class="img-slider"
          data-folder="{{ '/assets/internet' | relative_url }}"
          data-prefix="timeline_"
@@ -92,21 +99,43 @@ When you click a card, you access the **case study content** of this very period
       <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
     </div>
 
-    <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
+    <!-- 4) Text -->
+    <p>
+      The timeline view shows how quickly the shock intensifies and how persistent it becomes across consecutive days.
+    </p>
+
+    <!-- 5) Network slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/internet' | relative_url }}"
+         data-prefix="network_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="Dot-com network frame" loading="lazy">
     </div>
   </section>
 
   <!-- SUBPRIME -->
   <section id="panel-subprime" class="case-panel" hidden>
     <h3>Case File: Subprime Crisis</h3>
+
+    <!-- 1) Daily returns plot -->
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+
+    <!-- 2) Text -->
     <p>
       Credit stress doesn’t stay local. This regime is short but brutal:
       shocks propagate through financial exposure and sector links,
       turning symptoms into a system-wide condition.
     </p>
 
-    <!-- Subprime slider -->
+    <!-- 3) Timeline slider -->
     <div class="img-slider"
          data-folder="{{ '/assets/subprime' | relative_url }}"
          data-prefix="timeline_"
@@ -120,20 +149,42 @@ When you click a card, you access the **case study content** of this very period
       <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
     </div>
 
-    <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
+    <!-- 4) Text -->
+    <p>
+      Sliding through the timeline reveals how the set of “infected” assets expands day by day, even when the trigger remains concentrated.
+    </p>
+
+    <!-- 5) Network slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/subprime' | relative_url }}"
+         data-prefix="network_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="Subprime network frame" loading="lazy">
     </div>
   </section>
 
   <!-- COVID -->
   <section id="panel-covid" class="case-panel" hidden>
     <h3>Case File: COVID</h3>
+
+    <!-- 1) Daily returns plot -->
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
+    </div>
+
+    <!-- 2) Text -->
     <p>
       A fast global transmission: abrupt drawdowns, violent reversals, and extreme co-movement.
       If the market had an immune system, this is the moment it got overwhelmed.
     </p>
 
-    <!-- COVID slider -->
+    <!-- 3) Timeline slider -->
     <div class="img-slider"
          data-folder="{{ '/assets/covid' | relative_url }}"
          data-prefix="timeline_"
@@ -147,8 +198,23 @@ When you click a card, you access the **case study content** of this very period
       <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
     </div>
 
-    <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
+    <!-- 4) Text -->
+    <p>
+      The timeline captures the synchronized nature of the shock: many assets move together, leaving fewer “safe” pockets.
+    </p>
+
+    <!-- 5) Network slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/covid' | relative_url }}"
+         data-prefix="network_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="COVID network frame" loading="lazy">
     </div>
   </section>
 
@@ -214,7 +280,6 @@ When you click a card, you access the **case study content** of this very period
     rangeEl.addEventListener("input", () => render(parseInt(rangeEl.value, 10)));
   }
 
-  // Init all sliders once
   document.querySelectorAll(".img-slider").forEach(slider => {
     initOneSlider(slider);
   });
