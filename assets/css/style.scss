@@ -427,41 +427,4 @@ body {
   color: var(--content-accent);
   font-weight: 600;
    }
-/* =========================
-   STORY SCOPE (SECTION COLORING)
-   ========================= */
-
-#story-scope{
-  background: var(--page-bg, #ffffff);
-  transition: background-color 700ms ease;
-  border-radius: 16px;
-  padding: 1.25rem 1.25rem;
-}
-
-/* Optional: let it breathe horizontally like plots */
-@media (min-width: 900px){
-  #story-scope{
-    width: 120%;
-    margin-left: -10%;
-  }
-}
-
-/* =========================
-   STORY BACKGROUND (SAFE)
-   ========================= */
-
-.main-content{
-  background: var(--page-bg, #ffffff);
-  transition: background-color 700ms ease;
-  border-radius: 16px;
-  padding: 1.25rem 1.25rem;
-}
-
-/* Optional: give it the same wide feel as plots */
-@media (min-width: 900px){
-  .main-content{
-    width: 120%;
-    margin-left: -10%;
-  }
-}
 
