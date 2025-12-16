@@ -525,3 +525,33 @@ Within this network framework, we aim to identify:
 - the **probable patient zero**, i.e. the entity that first exhibits abnormal stress,
 - **super-spreaders**, which amplify contagion through strong connectivity,
 - and the main **propagation paths** through which market stress spreads.
+
+### Methodology — Reconstructing the outbreak
+
+Within each outbreak window, we reinterpret the market as a living system.
+Individual stocks are treated as entities, and their interactions form a
+dynamic network through which financial stress can propagate.
+
+Our investigation follows three successive steps.
+
+1. **Reconstructing the interaction network**  
+   We first map the web of interactions between assets by measuring
+   statistical dependencies in their returns. Pairwise correlations and
+   causal exposure measures define weighted connections between entities.
+   As market conditions evolve, these connections are updated over time,
+   allowing the network structure to change throughout the outbreak.
+
+2. **Labeling infection states**  
+   Each entity is then assigned a health status based on its return dynamics.
+   An entity becomes *infected* when its daily return crosses a −5% threshold
+   and is classified as *sick* if its cumulative return over the outbreak
+   falls below −20%. Entities that maintain strong connections to sick nodes
+   are labeled *at risk*. Over time, entities may recover, while others remain
+   unaffected.
+
+3. **Identifying key transmission roles**  
+   Finally, we combine temporal information with network centrality to
+   identify the most probable patient zero, detect super-spreaders that
+   amplify contagion, and trace the dominant paths through which stress
+   propagates across the market.
+
