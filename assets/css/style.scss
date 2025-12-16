@@ -153,14 +153,15 @@ body {
 
 .segment-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 260px));
+  justify-content: center;
   gap: 1.25rem;
   margin: 2rem 0;
 
-  /* ensure nothing sits on top of buttons */
   position: relative;
   z-index: 5;
 }
+
 
 .segment-card {
   background: transparent;
