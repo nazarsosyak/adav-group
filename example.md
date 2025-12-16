@@ -109,7 +109,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
       </p>
 
       <p>
-        <span class="text-accent">Ross Stores is an american company specializing in hard-discount hypermarket.</span>
+        <span class="text-accent">Ross Stores is an american company specializing in hard-discount hypermarkets.</span>
       </p>
 
       <div class="img-slider"
