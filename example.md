@@ -549,7 +549,25 @@ Our investigation follows three successive steps.
    are labeled *at risk*. Over time, entities may recover, while others remain
    unaffected.
 
-3. **Identifying key transmission roles**  
+### Network structure at the onset of the outbreak
+
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/network_snapshot_early.html' | relative_url }}"
+    loading="lazy"
+    title="Network snapshot at outbreak onset">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure 5 — Network structure at the onset of the outbreak.</strong><br>
+  Nodes represent individual assets and edges capture statistical dependencies
+  between their returns. Early-stage infections remain localized, allowing
+  identification of the initial source of contagion.
+</p>
+
+
+4. **Identifying key transmission roles**  
    Finally, we combine temporal information with network centrality to
    identify the most probable patient zero, detect super-spreaders that
    amplify contagion, and trace the dominant paths through which stress
