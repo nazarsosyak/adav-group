@@ -176,6 +176,80 @@ When you click a card, you access the **case study content** of this very period
 
 <script>
 (function () {
+
+  // --- helper: pad frame number like 3 -> "0003"
+  function padNum(n, width) {
+    const s = String(n);
+    return s.length >= width ? s : ("0".repeat(width - s.length) + s);
+  }
+
+  // --- helper: check if an image exists (loads fast, cached by browser)
+  function imageExists(url) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  }
+
+  async function initOneSlider(root) {
+    const folder = root.dataset.folder;
+    const prefix = root.dataset.prefix || "";
+    const ext    = root.dataset.ext || "png";
+    const pad    = parseInt(root.dataset.pad || "4", 10);
+    const start  = parseInt(root.dataset.start || "0", 10);
+
+    const rangeEl = root.querySelector(".img-slider-range");
+    const imgEl   = root.querySelector(".img-slider-img");
+    const idxEl   = root.querySelector(".img-slider-idx");
+
+    function urlFor(i){
+      return `${folder}/${prefix}${padNum(i, pad)}.${ext}`;
+    }
+
+    // Find last existing frame by probing sequentially (simple + robust).
+    let last = start;
+
+    // If start doesn't exist, bail gracefully
+    if (!(await imageExists(urlFor(start)))) {
+      root.style.display = "none";
+      return;
+    }
+
+    // Walk forward until the first missing image
+    while (await imageExists(urlFor(last + 1))) {
+      last += 1;
+      // safety cap to avoid infinite loops if naming isn't sequential
+      if (last - start > 2000) break;
+    }
+
+    // Setup slider bounds
+    rangeEl.min = String(start);
+    rangeEl.max = String(last);
+    rangeEl.value = String(start);
+
+    function render(i){
+      imgEl.src = urlFor(i);
+      idxEl.textContent = String(i);
+    }
+
+    // initial render
+    render(start);
+
+    // update on input (smooth drag)
+    rangeEl.addEventListener("input", () => {
+      render(parseInt(rangeEl.value, 10));
+    });
+  }
+
+  // init all sliders on the page
+  document.querySelectorAll(".img-slider").forEach(slider => {
+    initOneSlider(slider);
+  });
+
+})();
+(function () {
   const cards  = [...document.querySelectorAll(".segment-card")];
   const panels = [...document.querySelectorAll(".case-panel")];
 
