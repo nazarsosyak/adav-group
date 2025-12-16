@@ -246,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return String(n).padStart(pad, "0");
   }
 
-  // probes: folder/prefix0001.png, 0002.png ... until one fails
   async function detectMaxFrame(folder, prefix, pad) {
     const tryLoad = (src) =>
       new Promise((resolve) => {
@@ -278,7 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!folder) return;
     el.dataset.ready = "true";
 
-    // build UI
     const top = document.createElement("div");
     top.className = "img-slider-top";
 
@@ -374,11 +372,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!out || !overlay) return;
 
-      // button feedback
       btn.classList.add("is-pressed", "is-rippling");
       setTimeout(() => btn.classList.remove("is-rippling"), 600);
 
-      overlay.hidden = false;
+      overlay.classList.add("is-open");
       overlay.style.setProperty("--prog", "0");
 
       const statusEl = overlay.querySelector(".analysis-status");
@@ -395,41 +392,39 @@ document.addEventListener("DOMContentLoaded", () => {
       if (statusEl) statusEl.textContent = steps[i].txt;
       overlay.style.setProperty("--prog", String(steps[i].p));
 
-      const timer = setInterval(async () => {
+      const tick = () => {
         i += 1;
 
         if (i < steps.length) {
           if (statusEl) statusEl.textContent = steps[i].txt;
           overlay.style.setProperty("--prog", String(steps[i].p));
+          setTimeout(tick, 520);
           return;
         }
 
-        clearInterval(timer);
-
-        overlay.hidden = true;
+        overlay.classList.remove("is-open");
 
         out.classList.remove("is-locked");
         out.style.display = "block";
 
-        // build sliders (your function)
-        await initSliders(out);
-
-        // make injected images "pop" when loaded
-        out.querySelectorAll(".img-slider-img").forEach((img) => {
-          if (img.complete) img.classList.add("is-loaded");
-          else img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
+        initSliders(out).then(() => {
+          out.querySelectorAll(".img-slider-img").forEach((img) => {
+            if (img.complete) img.classList.add("is-loaded");
+            else img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
+          });
         });
 
-        // finish button feedback
         btn.classList.remove("is-pressed");
         btn.disabled = true;
+      };
 
-      }, 520);
+      setTimeout(tick, 520);
     });
   });
 
-  // ALSO build sliders immediately (so you can see them even before clicking Run)
+  // ALSO build sliders immediately
   initSliders();
 
 });
 </script>
+
