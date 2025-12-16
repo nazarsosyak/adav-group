@@ -287,6 +287,9 @@ body {
 }
 
 .run-analysis-btn{
+  display: block;
+  width: fit-content;
+  margin: 1rem auto;
   border: 1px solid rgba(0,0,0,0.15);
   background: rgba(255,255,255,0.7);
   padding: 0.65rem 1rem;
@@ -414,3 +417,5 @@ body {
   filter: grayscale(70%) opacity(0.6);
   box-shadow: none;
 }
+
+
