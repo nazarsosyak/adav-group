@@ -18,14 +18,14 @@ So we start with the only thing the market can’t hide: the timeline.
 
 ### What we did
 
-We segmented the market timeline into consecutive regimes using dynamic programming.  
+We segmented the market timeline into consecutive regimes using dynamic programming.
 Periods are grouped by **similar average returns**, revealing structural regime changes.
 
-| Period name                | Start date   | End date     | Duration (weeks) | Cumulative return |
-|---------------------------|--------------|--------------|------------------|-------------------|
-| Dot-com bubble burst      | 2000-09-08   | 2000-10-20   | 6                | **−19.49%**       |
-| Subprime financial crisis | 2008-10-03   | 2008-10-24   | 3                | **−22.02%**       |
-| COVID-19 market shock     | 2020-02-21   | 2020-04-10   | 7                | **−22.90%**       |
+| Period name               | Start date | End date   | Duration (weeks) | Cumulative return |
+| ------------------------- | ---------- | ---------- | ---------------- | ----------------- |
+| Dot-com bubble burst      | 2000-09-08 | 2000-10-20 | 6                | **−19.49%**       |
+| Subprime financial crisis | 2008-10-03 | 2008-10-24 | 3                | **−22.02%**       |
+| COVID-19 market shock     | 2020-02-21 | 2020-04-10 | 7                | **−22.90%**       |
 
 ---
 
@@ -34,29 +34,32 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 <div class="segment-row">
 
   <button class="segment-card is-active"
-        data-target="panel-dotcom"
-        data-bg="#F5F6FC"
-        data-accent="#2E357A"
-        aria-selected="true">
-    <img src="{{ '/assets/images/internet.png' | relative_url }}">
+       type="button"
+       data-target="panel-dotcom"
+       data-bg="#F5F6FC"
+       data-accent="#2E357A"
+       aria-selected="true">
+    <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dot-com Bubble">
     <div class="segment-title">Dot-com Bubble</div>
   </button>
 
   <button class="segment-card"
-        data-target="panel-subprime"
-        data-bg="#F4FBF6"
-        data-accent="#1F6B3A"
-        aria-selected="false">
-    <img src="{{ '/assets/images/subprime.png' | relative_url }}">
+       type="button"
+       data-target="panel-subprime"
+       data-bg="#F4FBF6"
+       data-accent="#1F6B3A"
+       aria-selected="false">
+    <img src="{{ '/assets/images/subprime.png' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </button>
 
   <button class="segment-card"
-        data-target="panel-covid"
-        data-bg="#FDFDF8"
-        data-accent="#6A5F12"
-        aria-selected="false">
-    <img src="{{ '/assets/images/covid.png' | relative_url }}">
+       type="button"
+       data-target="panel-covid"
+       data-bg="#FDFDF8"
+       data-accent="#6A5F12"
+       aria-selected="false">
+    <img src="{{ '/assets/images/covid.png' | relative_url }}" alt="COVID Outbreak">
     <div class="segment-title">COVID Outbreak</div>
   </button>
 
@@ -66,178 +69,219 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
 <div class="case-panels">
 
-<!-- ===================================================== -->
-<!-- DOTCOM -->
-<!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!-- DOTCOM -->
+  <!-- ===================================================== -->
 
-<section id="panel-dotcom" class="case-panel is-visible">
+  <section id="panel-dotcom" class="case-panel is-visible">
+    <h3>Case File: Dot-com Bubble</h3>
 
-<h3>Case File: Dot-com Bubble</h3>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
+    </div>
 
-<div class="plot-frame">
-  <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
-</div>
+    <!-- Button directly under the first plot -->
+    <button class="run-analysis-btn img-button"
+         type="button"
+         data-run="#dotcom-output"
+         data-overlay="#dotcom-overlay">
+      <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
+    </button>
 
-<p>
-Speculation peaks, then confidence collapses.  
-Technology firms are hit first, before correlations spike and drag the rest of the market with them.
-</p>
+    <p>
+      Speculation peaks, then confidence collapses.  
+      Technology firms are hit first, before correlations spike and drag the rest of the market with them.
+    </p>
 
-<button class="run-analysis-btn img-button"
-        data-run="#dotcom-output"
-        data-overlay="#dotcom-overlay">
-  <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
-</button>
+    <div id="dotcom-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
+      </div>
+    </div>
 
-<div id="dotcom-overlay" class="analysis-overlay" hidden>
-  <div class="analysis-modal">
-    <div class="spinner"></div>
-    <div class="analysis-title">Running outbreak analysis…</div>
-    <div class="analysis-status">Initializing…</div>
-  </div>
-</div>
+    <div id="dotcom-output" class="analysis-output is-locked">
 
-<div id="dotcom-output" class="analysis-output is-locked">
+      <p>
+        The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
+      </p>
 
-<p>
-The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
-</p>
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/internet' | relative_url }}"
-     data-prefix="timeline_"
-     data-pad="4">
-</div>
+      <p>
+        Network reconstruction reveals super-spreaders that amplify contagion through correlation.
+      </p>
 
-<p>
-Network reconstruction reveals super-spreaders that amplify contagion through correlation.
-</p>
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/internet' | relative_url }}"
-     data-prefix="network_"
-     data-pad="4">
-</div>
+    </div>
+  </section>
 
-</div>
-</section>
+  <!-- ===================================================== -->
+  <!-- SUBPRIME -->
+  <!-- ===================================================== -->
 
-<!-- ===================================================== -->
-<!-- SUBPRIME -->
-<!-- ===================================================== -->
+  <section id="panel-subprime" class="case-panel">
+    <h3>Case File: Subprime Crisis</h3>
 
-<section id="panel-subprime" class="case-panel" hidden>
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
+    </div>
 
-<h3>Case File: Subprime Crisis</h3>
+    <!-- Button directly under the first plot -->
+    <button class="run-analysis-btn img-button"
+         type="button"
+         data-run="#subprime-output"
+         data-overlay="#subprime-overlay">
+      <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
+    </button>
 
-<div class="plot-frame">
-  <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
-</div>
+    <p>
+      Credit stress does not stay local.  
+      This regime is short but brutal, propagating through financial exposure.
+    </p>
 
-<p>
-Credit stress does not stay local.  
-This regime is short but brutal, propagating through financial exposure.
-</p>
+    <div id="subprime-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
+      </div>
+    </div>
 
-<button class="run-analysis-btn img-button"
-        data-run="#subprime-output"
-        data-overlay="#subprime-overlay">
-  <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
-</button>
+    <div id="subprime-output" class="analysis-output is-locked">
 
-<div id="subprime-overlay" class="analysis-overlay" hidden>
-  <div class="analysis-modal">
-    <div class="spinner"></div>
-    <div class="analysis-title">Running outbreak analysis…</div>
-    <div class="analysis-status">Initializing…</div>
-  </div>
-</div>
+      <p>
+        Losses propagate through tightly coupled financial institutions.
+      </p>
 
-<div id="subprime-output" class="analysis-output is-locked">
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
 
-<p>
-Losses propagate through tightly coupled financial institutions.
-</p>
+      <p>
+        The network exposes institutions acting as systemic amplifiers.
+      </p>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/subprime' | relative_url }}"
-     data-prefix="timeline_"
-     data-pad="4">
-</div>
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
 
-<p>
-The network exposes institutions acting as systemic amplifiers.
-</p>
+    </div>
+  </section>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/subprime' | relative_url }}"
-     data-prefix="network_"
-     data-pad="4">
-</div>
+  <!-- ===================================================== -->
+  <!-- COVID -->
+  <!-- ===================================================== -->
 
-</div>
-</section>
+  <section id="panel-covid" class="case-panel">
+    <h3>Case File: COVID-19</h3>
 
-<!-- ===================================================== -->
-<!-- COVID -->
-<!-- ===================================================== -->
+    <div class="plot-frame">
+      <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
+    </div>
 
-<section id="panel-covid" class="case-panel" hidden>
+    <!-- Button directly under the first plot -->
+    <button class="run-analysis-btn img-button"
+         type="button"
+         data-run="#covid-output"
+         data-overlay="#covid-overlay">
+      <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
+    </button>
 
-<h3>Case File: COVID-19</h3>
+    <p>
+      A fast global transmission with extreme co-movement.
+    </p>
 
-<div class="plot-frame">
-  <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
-</div>
+    <div id="covid-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
+      </div>
+    </div>
 
-<p>
-A fast global transmission with extreme co-movement.
-</p>
+    <div id="covid-output" class="analysis-output is-locked">
 
-<button class="run-analysis-btn img-button"
-        data-run="#covid-output"
-        data-overlay="#covid-overlay">
-  <img src="{{ '/assets/images/redbutton.png' | relative_url }}" alt="Run analysis">
-</button>
+      <p>
+        The timeline shows synchronized global drawdowns.
+      </p>
 
-<div id="covid-overlay" class="analysis-overlay" hidden>
-  <div class="analysis-modal">
-    <div class="spinner"></div>
-    <div class="analysis-title">Running outbreak analysis…</div>
-    <div class="analysis-status">Initializing…</div>
-  </div>
-</div>
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
 
-<div id="covid-output" class="analysis-output is-locked">
+      <p>
+        The network confirms market-wide immune system failure.
+      </p>
 
-<p>
-The timeline shows synchronized global drawdowns.
-</p>
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/covid' | relative_url }}"
-     data-prefix="timeline_"
-     data-pad="4">
-</div>
-
-<p>
-The network confirms market-wide immune system failure.
-</p>
-
-<div class="img-slider"
-     data-folder="{{ '/assets/covid' | relative_url }}"
-     data-prefix="network_"
-     data-pad="4">
-</div>
-
-</div>
-</section>
+    </div>
+  </section>
 
 </div>
 
 <script>
 (() => {
+  /* =========================
+     PANEL SWITCHING (SEGMENT CARDS)
+     ========================= */
+  const body = document.documentElement; // easier for CSS vars
+  const cards = Array.from(document.querySelectorAll(".segment-card"));
+  const panels = Array.from(document.querySelectorAll(".case-panel"));
 
+  function showPanel(targetId, bg, accent) {
+    // theme variables
+    if (bg) body.style.setProperty("--page-bg", bg);
+    if (accent) body.style.setProperty("--content-accent", accent);
+
+    // panels
+    panels.forEach(p => {
+      const isTarget = p.id === targetId;
+      p.classList.toggle("is-visible", isTarget);
+    });
+
+    // cards
+    cards.forEach(c => {
+      const isTarget = c.dataset.target === targetId;
+      c.classList.toggle("is-active", isTarget);
+      c.setAttribute("aria-selected", isTarget ? "true" : "false");
+    });
+  }
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      showPanel(card.dataset.target, card.dataset.bg, card.dataset.accent);
+    });
+  });
+
+  /* Ensure initial theme matches active card (on page load) */
+  const initial = cards.find(c => c.classList.contains("is-active")) || cards[0];
+  if (initial) showPanel(initial.dataset.target, initial.dataset.bg, initial.dataset.accent);
+
+  /* =========================
+     RUN ANALYSIS BUTTON (REVEAL LOCKED OUTPUT)
+     ========================= */
   const statusTexts = [
     "Finding patient zero…",
     "Tracing contagion links…",
@@ -248,7 +292,6 @@ The network confirms market-wide immune system failure.
 
   document.querySelectorAll(".run-analysis-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-
       const output  = document.querySelector(btn.dataset.run);
       const overlay = document.querySelector(btn.dataset.overlay);
       const status  = overlay.querySelector(".analysis-status");
@@ -269,6 +312,5 @@ The network confirms market-wide immune system failure.
       }, 4200);
     });
   });
-
 })();
 </script>
