@@ -38,7 +38,7 @@ Pick one regime below.
 When you click a card, you access the **case study content** of this very period.  
 
 <div class="segment-row">
-
+<!---
   <button class="segment-card is-active"
         data-target="panel-ussr"
         data-bg="#FFF5F6"
@@ -47,8 +47,9 @@ When you click a card, you access the **case study content** of this very period
     <img src="{{ '/assets/images/ussr.png' | relative_url }}" alt="Collapse of the USSR">
     <div class="segment-title">Collapse of the USSR</div>
   </button>
+-->
 
-  <button class="segment-card"
+  <button class="segment-card is-active"
         data-target="panel-dotcom"
         data-bg="#F5F6FC"
         data-accent="#2E357A">
