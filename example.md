@@ -36,14 +36,26 @@ to study how financial contagion emerges, propagates, and eventually dissipates.
 
 ### What we did
 
-We segmented the market timeline into consecutive regimes using dynamic programming.
-Periods are grouped by **similar average returns**, revealing structural regime changes.
+We segmented the market timeline into consecutive regimes using **dynamic programming**.
+The segmentation groups periods with **similar average market returns**, allowing us
+to detect **structural changes in market behavior** without relying on predefined crisis dates.
+
+**Table 1 — Major crisis periods identified by market segmentation.**
 
 | Period name               | Start date | End date   | Duration (weeks) | Cumulative return |
 | ------------------------- | ---------- | ---------- | ---------------- | ----------------- |
 | Dot-com bubble burst      | 2000-09-08 | 2000-10-20 | 6                | **−19.49%**       |
 | Subprime financial crisis | 2008-10-03 | 2008-10-24 | 3                | **−22.02%**       |
 | COVID-19 market shock     | 2020-02-21 | 2020-04-10 | 7                | **−22.90%**       |
+
+These regimes correspond to well-known systemic crises and validate the segmentation approach.
+Despite differences in duration, all three periods exhibit sharp cumulative losses,
+highlighting moments of extreme market stress.
+
+In the remainder of this project, we focus on these segments as **financial outbreak windows**,
+within which we study contagion dynamics, transmission pathways, and network-level amplification effects.
+
+All identified crisis periods exhibit cumulative losses exceeding 19%, confirming their systemic nature.
 
 ---
 
