@@ -76,6 +76,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com Bubble</h3>
 
+    <div class="panel-intro">
+      <img src="{{ '/assets/images/internetintro.png' | relative_url }}" alt="Dot-com Bubble intro">
+    </div>
+
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
     </div>
@@ -137,6 +142,10 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <section id="panel-subprime" class="case-panel">
     <h3>Case File: Subprime Crisis</h3>
 
+    <div class="panel-intro">
+      <img src="{{ '/assets/images/subprimeintro.png' | relative_url }}" alt="Subprime Crisis intro">
+    </div>
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
     </div>
@@ -191,6 +200,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <section id="panel-covid" class="case-panel">
     <h3>Case File: COVID-19</h3>
 
+    <div class="panel-intro">
+      <img src="{{ '/assets/images/covidintro.png' | relative_url }}" alt="COVID-19 intro">
+    </div>
+
+    
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
     </div>
