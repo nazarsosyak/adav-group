@@ -12,11 +12,26 @@ identify *when* the market itself entered abnormal regimes.
 We therefore begin with the only element the market cannot conceal:  
 **the aggregate return timeline**, segmented into statistically homogeneous periods.
 
-<div class="full-width-plot">
+<div class="plot-container">
   <iframe
     src="{{ '/assets/plots/segmentation.html' | relative_url }}"
-    loading="lazy"></iframe>
+    loading="lazy"
+    style="width:100%; height:480px; border:none;">
+  </iframe>
+  <p class="plot-caption">
+    <strong>Figure 1 — Market return segmentation over time.</strong><br>
+    Weekly mean market log-returns with detected regime segments shown as background shading.
+    Each colored region corresponds to a period of statistically similar market behavior.
+  </p>
 </div>
+This segmentation reveals several extended periods of abnormal market dynamics,
+characterized by persistently negative returns and increased volatility.
+Notably, the most severe segments coincide with well-known systemic crises,
+including the dot-com bubble burst, the 2008 financial crisis, and the COVID-19 shock.
+
+These periods serve as our **outbreak windows** in the subsequent analysis.
+Rather than analyzing the full timeline uniformly, we focus on these segments
+to study how financial contagion emerges, propagates, and eventually dissipates.
 
 ### What we did
 
