@@ -377,3 +377,138 @@ body {
 .case-panel {
   overflow: visible;
 }
+
+/* =========================
+   EXTRA INTERACTIONS (RED BUTTON)
+   ========================= */
+
+/* subtle idle pulse so it invites clicking */
+.run-analysis-btn.img-button img{
+  transform-origin: center;
+  animation: btnIdlePulse 2.6s ease-in-out infinite;
+}
+
+@keyframes btnIdlePulse{
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.03); filter: brightness(1.06); }
+}
+
+/* press feedback */
+.run-analysis-btn.img-button.is-pressed img{
+  animation: none; /* stop idle pulse while pressed */
+  transform: scale(0.92);
+  filter: brightness(0.95);
+}
+
+/* ripple burst (uses ::after on the button) */
+.run-analysis-btn.img-button{
+  position: relative;
+  overflow: visible;
+}
+
+.run-analysis-btn.img-button::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  transform: translate(-50%,-50%) scale(0);
+  opacity: 0;
+  pointer-events:none;
+  background: radial-gradient(circle, rgba(220,40,40,0.45) 0%, rgba(220,40,40,0.0) 70%);
+}
+
+.run-analysis-btn.img-button.is-rippling::after{
+  animation: rippleOut 520ms ease-out forwards;
+}
+
+@keyframes rippleOut{
+  0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.9; }
+  100% { transform: translate(-50%,-50%) scale(26); opacity: 0; }
+}
+
+/* =========================
+   OVERLAY ANIMATIONS
+   ========================= */
+
+.analysis-overlay{
+  animation: overlayIn 200ms ease-out forwards;
+}
+
+@keyframes overlayIn{
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.analysis-modal{
+  animation: modalPop 240ms ease-out forwards;
+}
+
+@keyframes modalPop{
+  from { transform: translateY(10px) scale(0.98); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* progress bar under status */
+.analysis-status{
+  position: relative;
+  padding-bottom: 0.9rem;
+}
+
+.analysis-status::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.analysis-status::before{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height: 6px;
+  width: 0%;
+  border-radius: 999px;
+  background: rgba(220,40,40,0.55);
+  transition: width 420ms ease;
+}
+
+/* JS will set --prog (0..100) on the overlay */
+.analysis-overlay{
+  --prog: 0;
+}
+.analysis-overlay .analysis-status::before{
+  width: calc(var(--prog) * 1%);
+}
+
+/* =========================
+   OUTPUT REVEAL
+   ========================= */
+
+.analysis-output{
+  animation: outputReveal 360ms ease-out forwards;
+}
+
+@keyframes outputReveal{
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* pop first slider image when it loads */
+.img-slider-img{
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.img-slider-img.is-loaded{
+  opacity: 1;
+  transform: translateY(0);
+}
