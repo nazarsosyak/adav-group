@@ -70,7 +70,9 @@ When you click a card, you access the **case study content** of this very period
 <!-- Case file container -->
 <div class="case-panels" id="case-files" aria-live="polite">
 
-  <!-- DOTCOM (visible by default) -->
+  <!-- =========================
+       DOTCOM (visible by default)
+       ========================= -->
   <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com burst</h3>
 
@@ -79,47 +81,75 @@ When you click a card, you access the **case study content** of this very period
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
     </div>
 
-    <!-- 2) Text -->
+    <!-- 2) Intro text -->
     <p>
       Speculation peaks, then confidence collapses.
       One sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
     </p>
 
-    <!-- 3) Timeline slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/internet' | relative_url }}"
-         data-prefix="timeline_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-      </div>
-      <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
+    <!-- 3) Run analysis button -->
+    <div class="run-analysis-bar">
+      <button class="run-analysis-btn" type="button" data-run="#dotcom-output" data-overlay="#dotcom-overlay">
+        Run analysis
+      </button>
+      <span class="run-analysis-hint">Press to generate the case file outputs.</span>
     </div>
 
-    <!-- 4) Text -->
-    <p>
-      The timeline view shows how quickly the shock intensifies and how persistent it becomes across consecutive days.
-    </p>
-
-    <!-- 5) Network slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/internet' | relative_url }}"
-         data-prefix="network_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+    <!-- Overlay (per case) -->
+    <div id="dotcom-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
       </div>
-      <img class="img-slider-img" alt="Dot-com network frame" loading="lazy">
+    </div>
+
+    <!-- Outputs (locked until run) -->
+    <div id="dotcom-output" class="analysis-output is-locked">
+
+      <p>
+        The timeline view shows how quickly the shock intensifies and how persistent it becomes across consecutive days.
+      </p>
+
+      <!-- Timeline slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet' | relative_url }}"
+           data-prefix="timeline_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
+      </div>
+
+      <p>
+        The network view shows how correlations/links tighten and which names become central “spreaders” as the period unfolds.
+      </p>
+
+      <!-- Network slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet' | relative_url }}"
+           data-prefix="network_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="Dot-com network frame" loading="lazy">
+      </div>
+
     </div>
   </section>
 
-  <!-- SUBPRIME -->
+
+  <!-- =========================
+       SUBPRIME
+       ========================= -->
   <section id="panel-subprime" class="case-panel" hidden>
     <h3>Case File: Subprime Crisis</h3>
 
@@ -128,48 +158,76 @@ When you click a card, you access the **case study content** of this very period
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
     </div>
 
-    <!-- 2) Text -->
+    <!-- 2) Intro text -->
     <p>
       Credit stress doesn’t stay local. This regime is short but brutal:
       shocks propagate through financial exposure and sector links,
       turning symptoms into a system-wide condition.
     </p>
 
-    <!-- 3) Timeline slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/subprime' | relative_url }}"
-         data-prefix="timeline_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-      </div>
-      <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
+    <!-- 3) Run analysis button -->
+    <div class="run-analysis-bar">
+      <button class="run-analysis-btn" type="button" data-run="#subprime-output" data-overlay="#subprime-overlay">
+        Run analysis
+      </button>
+      <span class="run-analysis-hint">Press to generate the case file outputs.</span>
     </div>
 
-    <!-- 4) Text -->
-    <p>
-      Sliding through the timeline reveals how the set of “infected” assets expands day by day, even when the trigger remains concentrated.
-    </p>
-
-    <!-- 5) Network slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/subprime' | relative_url }}"
-         data-prefix="network_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+    <!-- Overlay (per case) -->
+    <div id="subprime-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
       </div>
-      <img class="img-slider-img" alt="Subprime network frame" loading="lazy">
+    </div>
+
+    <!-- Outputs (locked until run) -->
+    <div id="subprime-output" class="analysis-output is-locked">
+
+      <p>
+        Sliding through the timeline reveals how the set of “infected” assets expands day by day, even when the trigger remains concentrated.
+      </p>
+
+      <!-- Timeline slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime' | relative_url }}"
+           data-prefix="timeline_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
+      </div>
+
+      <p>
+        The network frames show the contagion structure: who gets hit directly vs who follows through connections.
+      </p>
+
+      <!-- Network slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime' | relative_url }}"
+           data-prefix="network_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="Subprime network frame" loading="lazy">
+      </div>
+
     </div>
   </section>
 
-  <!-- COVID -->
+
+  <!-- =========================
+       COVID
+       ========================= -->
   <section id="panel-covid" class="case-panel" hidden>
     <h3>Case File: COVID</h3>
 
@@ -177,52 +235,72 @@ When you click a card, you access the **case study content** of this very period
     <p>
       Let's first zoom-in on the timeline and have a glance at the daily return of the market:
     </p>
-    
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
     </div>
 
+    <!-- 2) Intro text -->
     <p>
-      The market yields negative daily returns approximately 57% of the time... In order to have a cumulative return of -22.90% over the whole period the negative returns would have to carry a stronger weight compared to the positive returns. Let's try to understand what is happening behind the scenes. We have to put our immunoligical tool to the test for this one. It should be able to identify who the patient-zero is, meaning which is the first entity that contracted the so-called "virus" and that sparked the flame of this epidemic. The algorithm should also be able to pick out the super-spreaders, in other words the entities that, once contaminated, have an abnormally high transmission rate, as well as "sick" or "at risk" of getting stick entities. An entity is called "sick" if its daily returns cross the -5% threshold and if their cumulative return over the entire period is below -20%. The ones "at risk" of getting sick are the ones that have strong connections, be it strong correlation or causal link with "sick" entities. In the end, entities can recover from the virus and are labelled "recovered". The unaffected entities are labelled "healthy". You can press the big red button below to start the analysis.
+      The market yields negative daily returns approximately 57% of the time... In order to have a cumulative return of -22.90% over the whole period the negative returns would have to carry a stronger weight compared to the positive returns. Let's try to understand what is happening behind the scenes. We have to put our immunoligical tool to the test for this one. It should be able to identify who the patient-zero is, meaning which is the first entity that contracted the so-called "virus" and that sparked the flame of this epidemic. The algorithm should also be able to pick out the super-spreaders, in other words the entities that, once contaminated, have an abnormally high transmission rate, as well as "sick" or "at risk" of getting stick entities. An entity is called "sick" if its daily returns cross the -5% threshold and if their cumulative return over the entire period is below -20%. The ones "at risk" of getting sick are the ones that have strong connections, be it strong correlation or causal link with "sick" entities. In the end, entities can recover from the virus and are labelled "recovered". The unaffected entities are labelled "healthy". You can press the button below to start the analysis.
     </p>
 
-    <!-- 2) Text -->
-    <p>
-      A fast global transmission: abrupt drawdowns, violent reversals, and extreme co-movement.
-      If the market had an immune system, this is the moment it got overwhelmed.
-    </p>
-
-    <!-- 3) Timeline slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/covid' | relative_url }}"
-         data-prefix="timeline_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-      </div>
-      <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
+    <!-- 3) Run analysis button -->
+    <div class="run-analysis-bar">
+      <button class="run-analysis-btn" type="button" data-run="#covid-output" data-overlay="#covid-overlay">
+        Run analysis
+      </button>
+      <span class="run-analysis-hint">Press to generate the case file outputs.</span>
     </div>
 
-    <!-- 4) Text -->
-    <p>
-      The timeline captures the synchronized nature of the shock: many assets move together, leaving fewer “safe” pockets.
-    </p>
-
-    <!-- 5) Network slider -->
-    <div class="img-slider"
-         data-folder="{{ '/assets/covid' | relative_url }}"
-         data-prefix="network_"
-         data-ext="png"
-         data-pad="4"
-         data-start="0">
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+    <!-- Overlay (per case) -->
+    <div id="covid-overlay" class="analysis-overlay" hidden>
+      <div class="analysis-modal">
+        <div class="spinner"></div>
+        <div class="analysis-title">Running outbreak analysis…</div>
+        <div class="analysis-status">Initializing…</div>
       </div>
-      <img class="img-slider-img" alt="COVID network frame" loading="lazy">
+    </div>
+
+    <!-- Outputs (locked until run) -->
+    <div id="covid-output" class="analysis-output is-locked">
+
+      <p>
+        The timeline captures the synchronized nature of the shock: many assets move together, leaving fewer “safe” pockets.
+      </p>
+
+      <!-- Timeline slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid' | relative_url }}"
+           data-prefix="timeline_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
+      </div>
+
+      <p>
+        The network view reveals who becomes central in transmission and how the structure tightens during the stress window.
+      </p>
+
+      <!-- Network slider -->
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid' | relative_url }}"
+           data-prefix="network_"
+           data-ext="png"
+           data-pad="4"
+           data-start="0">
+        <div class="img-slider-top">
+          <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+          <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+        </div>
+        <img class="img-slider-img" alt="COVID network frame" loading="lazy">
+      </div>
+
     </div>
   </section>
 
@@ -288,8 +366,49 @@ When you click a card, you access the **case study content** of this very period
     rangeEl.addEventListener("input", () => render(parseInt(rangeEl.value, 10)));
   }
 
+  // Init all sliders once
   document.querySelectorAll(".img-slider").forEach(slider => {
     initOneSlider(slider);
+  });
+
+  // ---------------------------
+  // Per-case "Run analysis"
+  // ---------------------------
+  const steps = [
+    "Finding patient zero…",
+    "Estimating infection thresholds…",
+    "Creating contagion links…",
+    "Ranking super-spreaders…",
+    "Reconstructing outbreak timeline…",
+    "Final checks…",
+    "Analysis finished."
+  ];
+
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function runForCase(btn){
+    const outSel = btn.getAttribute("data-run");
+    const ovSel  = btn.getAttribute("data-overlay");
+    const outEl  = document.querySelector(outSel);
+    const ovEl   = document.querySelector(ovSel);
+    if (!outEl || !ovEl) return;
+
+    const statusEl = ovEl.querySelector(".analysis-status");
+
+    btn.disabled = true;
+    ovEl.hidden = false;
+
+    for (let i = 0; i < steps.length; i++){
+      if (statusEl) statusEl.textContent = steps[i];
+      await sleep(i === steps.length - 1 ? 650 : 900 + Math.random()*600);
+    }
+
+    ovEl.hidden = true;
+    outEl.classList.remove("is-locked");
+  }
+
+  document.querySelectorAll(".run-analysis-btn").forEach(btn => {
+    btn.addEventListener("click", () => runForCase(btn));
   });
 
   // ---------------------------
