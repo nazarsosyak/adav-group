@@ -243,6 +243,92 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
 <script>
 (() => {
+
+  /* =========================
+     IMAGE SLIDER (BUILD + INIT)
+     ========================= */
+
+  function padNum(n, width) {
+    const s = String(n);
+    return s.length >= width ? s : ("0".repeat(width - s.length) + s);
+  }
+
+  function imageExists(url) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  }
+
+  function ensureSliderSkeleton(root) {
+    // If the slider div is empty, build the UI inside it.
+    if (root.querySelector(".img-slider-range")) return;
+
+    root.innerHTML = `
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="Slider frame" loading="lazy">
+    `;
+  }
+
+  async function initOneSlider(root) {
+    ensureSliderSkeleton(root);
+
+    const folder = root.dataset.folder;
+    const prefix = root.dataset.prefix || "";
+    const ext    = root.dataset.ext || "png";
+    const pad    = parseInt(root.dataset.pad || "4", 10);
+    const start  = parseInt(root.dataset.start || "0", 10);
+
+    const rangeEl = root.querySelector(".img-slider-range");
+    const imgEl   = root.querySelector(".img-slider-img");
+    const idxEl   = root.querySelector(".img-slider-idx");
+
+    function urlFor(i){
+      return `${folder}/${prefix}${padNum(i, pad)}.${ext}`;
+    }
+
+    // probe frames to find last
+    let last = start;
+
+    if (!(await imageExists(urlFor(start)))) {
+      // hide slider if folder/prefix doesn't exist
+      root.style.display = "none";
+      return;
+    }
+
+    while (await imageExists(urlFor(last + 1))) {
+      last += 1;
+      if (last - start > 2000) break;
+    }
+
+    rangeEl.min = String(start);
+    rangeEl.max = String(last);
+    rangeEl.value = String(start);
+
+    function render(i){
+      imgEl.src = urlFor(i);
+      idxEl.textContent = String(i);
+    }
+
+    render(start);
+    rangeEl.addEventListener("input", () => render(parseInt(rangeEl.value, 10)));
+  }
+
+  function initSlidersWithin(scopeEl) {
+    const nodes = scopeEl.querySelectorAll(".img-slider");
+    nodes.forEach(slider => {
+      if (!slider.dataset._inited) {
+        slider.dataset._inited = "1";
+        initOneSlider(slider);
+      }
+    });
+  }
+
   /* =========================
      PANEL SWITCHING (SEGMENT CARDS)
      ========================= */
@@ -309,8 +395,13 @@ Periods are grouped by **similar average returns**, revealing structural regime 
         clearInterval(interval);
         overlay.hidden = true;
         output.classList.remove("is-locked");
+
+        // IMPORTANT: now that output is visible, build+init sliders inside it
+        initSlidersWithin(output);
+
       }, 4200);
     });
   });
+
 })();
 </script>
