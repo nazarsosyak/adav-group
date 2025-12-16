@@ -104,7 +104,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
 
     <div id="dotcom-output" class="analysis-output is-locked">
-
       <p>
         The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
       </p>
@@ -124,7 +123,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
            data-prefix="network_"
            data-pad="4">
       </div>
-
     </div>
   </section>
 
@@ -160,7 +158,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
 
     <div id="subprime-output" class="analysis-output is-locked">
-
       <p>
         Losses propagate through tightly coupled financial institutions.
       </p>
@@ -180,7 +177,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
            data-prefix="network_"
            data-pad="4">
       </div>
-
     </div>
   </section>
 
@@ -215,7 +211,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
 
     <div id="covid-output" class="analysis-output is-locked">
-
       <p>
         The timeline shows synchronized global drawdowns.
       </p>
@@ -235,16 +230,102 @@ Periods are grouped by **similar average returns**, revealing structural regime 
            data-prefix="network_"
            data-pad="4">
       </div>
-
     </div>
   </section>
 
 </div>
 
 <script>
-/* Panel switching + per-panel theming (bg + accent)
-   + Run analysis button logic */
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================
+     IMAGE SLIDER BUILDER
+     ========================= */
+
+  function padNum(n, pad) {
+    return String(n).padStart(pad, "0");
+  }
+
+  // probes: folder/prefix0001.png, 0002.png ... until one fails
+  async function detectMaxFrame(folder, prefix, pad) {
+    const tryLoad = (src) =>
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
+
+    let i = 1;
+    const CAP = 500;
+
+    while (i <= CAP) {
+      const src = `${folder}/${prefix}${padNum(i, pad)}.png`;
+      const ok = await tryLoad(src);
+      if (!ok) return Math.max(1, i - 1);
+      i += 1;
+    }
+    return CAP;
+  }
+
+  async function initOneSlider(el) {
+    if (el.dataset.ready === "true") return;
+
+    const folder = el.getAttribute("data-folder");
+    const prefix = el.getAttribute("data-prefix") || "";
+    const pad = parseInt(el.getAttribute("data-pad") || "4", 10);
+
+    if (!folder) return;
+    el.dataset.ready = "true";
+
+    // build UI
+    const top = document.createElement("div");
+    top.className = "img-slider-top";
+
+    const range = document.createElement("input");
+    range.type = "range";
+    range.min = "1";
+    range.value = "1";
+    range.className = "img-slider-range";
+
+    const label = document.createElement("div");
+    label.className = "img-slider-label";
+    label.textContent = "Frame 1";
+
+    top.appendChild(range);
+    top.appendChild(label);
+
+    const img = document.createElement("img");
+    img.className = "img-slider-img";
+
+    el.appendChild(top);
+    el.appendChild(img);
+
+    const maxFrame = await detectMaxFrame(folder, prefix, pad);
+    range.max = String(maxFrame);
+
+    function update() {
+      const i = parseInt(range.value, 10);
+      img.src = `${folder}/${prefix}${padNum(i, pad)}.png`;
+      label.textContent = `Frame ${i} / ${maxFrame}`;
+    }
+
+    range.addEventListener("input", update);
+    update();
+  }
+
+  async function initSliders(root = document) {
+    const sliders = Array.from(root.querySelectorAll(".img-slider"));
+    for (const el of sliders) {
+      // eslint-disable-next-line no-await-in-loop
+      await initOneSlider(el);
+    }
+  }
+
+  /* =========================
+     PANEL SWITCHING + THEMING
+     ========================= */
+
   const buttons = Array.from(document.querySelectorAll(".segment-card"));
   const panels  = Array.from(document.querySelectorAll(".case-panel"));
 
@@ -270,16 +351,17 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(bg, accent);
   }
 
-  // wire panel clicks
   buttons.forEach(btn => {
     btn.addEventListener("click", () => showPanel(btn.dataset.target, btn));
   });
 
-  // initial theme (from the active button)
   const active = document.querySelector(".segment-card.is-active") || buttons[0];
   if (active) showPanel(active.dataset.target, active);
 
-  // wire run analysis buttons
+  /* =========================
+     RUN ANALYSIS BUTTON LOGIC
+     ========================= */
+
   const runButtons = Array.from(document.querySelectorAll(".run-analysis-btn"));
 
   runButtons.forEach((btn) => {
@@ -307,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let i = 0;
       if (statusEl) statusEl.textContent = steps[i];
 
-      const timer = setInterval(() => {
+      const timer = setInterval(async () => {
         i += 1;
 
         if (i < steps.length) {
@@ -321,10 +403,16 @@ document.addEventListener("DOMContentLoaded", () => {
         out.classList.remove("is-locked");
         out.style.display = "block";
 
-        // optional: don't re-run
+        // IMPORTANT: build sliders inside unlocked content
+        await initSliders(out);
+
         btn.disabled = true;
       }, 550);
     });
   });
+
+  // ALSO build sliders immediately (so you can see them even before clicking Run)
+  initSliders();
+
 });
 </script>
