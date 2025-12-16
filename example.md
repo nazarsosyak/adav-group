@@ -74,25 +74,19 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-dotcom" class="case-panel is-visible">
-    <h3>**Case File: Dot-com Bubble**</h3>
+    <h3>Case File: Dot-com Bubble</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
     </div>
 
     <p>
-      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a       stronger weight than positive ones.
-      
-      To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic.
-      
-      The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk.
-
-      An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities.
-
-      Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
-
-      You can press the red button below to initiate the analysis.
+      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a       stronger weight than positive ones. To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic. The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk. An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities. Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
     </p>
+    <p>
+      You can press the <span class="text-accent">red button</span> below to initiate the analysis.
+    </p>
+    
     
     <!-- Button directly under the first plot -->
     <button class="run-analysis-btn img-button"
@@ -140,7 +134,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-subprime" class="case-panel">
-    <h3>**Case File: Subprime Crisis**</h3>
+    <h3>Case File: Subprime Crisis</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
@@ -197,7 +191,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-covid" class="case-panel">
-    <h3>**Case File: COVID-19**</h3>
+    <h3>Case File: COVID-19</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
