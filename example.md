@@ -515,3 +515,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+## **Part III: Network analysis**
+
+Once an outbreak window has been isolated, we reconstruct the market as a
+**network of interacting entities** in order to understand how stress propagates
+across assets.
+
+Within this network framework, we aim to identify:
+- the **probable patient zero**, i.e. the entity that first exhibits abnormal stress,
+- **super-spreaders**, which amplify contagion through strong connectivity,
+- and the main **propagation paths** through which market stress spreads.
