@@ -229,3 +229,34 @@ body {
 @media (max-width: 520px) {
   .segment-row { grid-template-columns: 1fr; }
 }
+
+.img-slider {
+  margin: 1rem 0 1.5rem;
+}
+
+.img-slider-top{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.img-slider-range{
+  flex: 1;
+}
+
+.img-slider-label{
+  font-size: 0.95rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.img-slider-img{
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 0;
+  display: block;
+}
+
