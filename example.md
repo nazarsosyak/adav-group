@@ -21,7 +21,7 @@ We therefore begin with the only element the market cannot conceal:
 
   <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
     <strong>Figure 1 — Market return segmentation over time.</strong><br>
-    Weekly mean market log-returns with detected regime segments shown as background shading.
+    Weekly mean market returns with detected regime segments shown as background shading.
     Each colored region corresponds to a period of statistically similar market behavior.
   </p>
 </div>
