@@ -242,5 +242,43 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 </div>
 
 <script>
-/* your existing JS — unchanged */
+/* Panel switching + per-panel theming (bg + accent) */
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = Array.from(document.querySelectorAll(".segment-card"));
+  const panels  = Array.from(document.querySelectorAll(".case-panel"));
+
+  function applyTheme(bg, accent) {
+    document.documentElement.style.setProperty("--page-bg", bg);
+    document.documentElement.style.setProperty("--content-accent", accent);
+    document.documentElement.style.setProperty("--panel-bg", bg);
+    document.documentElement.style.setProperty("--panel-accent", accent);
+  }
+
+  function showPanel(targetId, btn) {
+    // toggle buttons
+    buttons.forEach(b => {
+      b.classList.toggle("is-active", b === btn);
+      b.setAttribute("aria-selected", b === btn ? "true" : "false");
+    });
+
+    // toggle panels
+    panels.forEach(p => p.classList.remove("is-visible"));
+    const panel = document.getElementById(targetId);
+    if (panel) panel.classList.add("is-visible");
+
+    // theme
+    const bg = btn.getAttribute("data-bg") || "#ffffff";
+    const accent = btn.getAttribute("data-accent") || "#2aa36b";
+    applyTheme(bg, accent);
+  }
+
+  // wire clicks
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => showPanel(btn.dataset.target, btn));
+  });
+
+  // initial theme (from the active button)
+  const active = document.querySelector(".segment-card.is-active") || buttons[0];
+  if (active) showPanel(active.dataset.target, active);
+});
 </script>
