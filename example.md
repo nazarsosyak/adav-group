@@ -174,9 +174,17 @@ When you click a card, you access the **case study content** of this very period
     <h3>Case File: COVID</h3>
 
     <!-- 1) Daily returns plot -->
+    <p>
+      Let's first zoom-in on the timeline and have a glance at the daily return of the market:
+    </p>
+    
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
     </div>
+
+    <p>
+      The market yields negative daily returns approximately 57% of the time... In order to have a cumulative return of -22.90% over the whole period the negative returns would have to carry a stronger weight compared to the positive returns. Let's try to understand what is happening behind the scenes. We have to put our immunoligical tool to the test for this one. It should be able to identify who the patient-zero is, meaning which is the first entity that contracted the so-called "virus" and that sparked the flame of this epidemic. The algorithm should also be able to pick out the super-spreaders, in other words the entities that, once contaminated, have an abnormally high transmission rate, as well as "sick" or "at risk" of getting stick entities. An entity is called "sick" if its daily returns cross the -5% threshold and if their cumulative return over the entire period is below -20%. The ones "at risk" of getting sick are the ones that have strong connections, be it strong correlation or causal link with "sick" entities. In the end, entities can recover from the virus and are labelled "recovered". The unaffected entities are labelled "healthy". You can press the big red button below to start the analysis.
+    </p>
 
     <!-- 2) Text -->
     <p>
