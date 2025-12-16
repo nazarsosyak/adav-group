@@ -634,4 +634,99 @@ Our investigation follows three successive steps.
   localized stress to widespread systemic involvement.
 </p>
 
+## **Part IV: Sector analysis**
+
+While contagion initially propagates through individual assets,
+its systemic impact ultimately depends on how stress spreads
+across economic sectors.
+
+In this final step, we aggregate the outbreak dynamics at the sector level
+to identify which sectors act as amplification hubs, how stress is transmitted
+between sectors, and whether the outbreak remains localized or becomes
+system-wide.
+
+### Methodology — Sector-level aggregation
+
+To move from individual entities to a macro-level perspective,
+we project the asset-level outbreak network onto economic sectors.
+
+The analysis proceeds as follows.
+
+1. **Sector aggregation**  
+   Each asset is mapped to its corresponding economic sector.
+   Infection states and transmission measures are aggregated to obtain
+   sector-level indicators of stress intensity and exposure.
+
+2. **Inter-sector transmission**  
+   We construct a sector interaction network where nodes represent sectors
+   and edges capture aggregated transmission strength between sectors.
+   This allows us to identify dominant channels through which stress
+   propagates across the economy.
+
+3. **Systemic versus localized assessment**  
+   By tracking how many sectors become infected and how strongly they interact,
+   we assess whether the outbreak remains confined to a subset of sectors
+   or evolves into a system-wide event.
+
+### Sectoral exposure during the outbreak
+
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/sector_infection_intensity.html' | relative_url }}"
+    loading="lazy"
+    title="Sectoral infection intensity">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Sectoral infection intensity during the outbreak.</strong><br>
+  The figure shows the aggregated level of infection across sectors,
+  highlighting which sectors experience the most severe stress.
+</p>
+
+### Inter-sector transmission network
+
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/sector_network.html' | relative_url }}"
+    loading="lazy"
+    title="Sector-to-sector transmission network">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Sector-to-sector transmission network.</strong><br>
+  Nodes represent economic sectors and edges capture aggregated transmission
+  of financial stress between them, revealing dominant propagation channels.
+</p>
+
+### Extent of systemic involvement
+
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/sector_infection_over_time.html' | relative_url }}"
+    loading="lazy"
+    title="Sector infection over time">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Sector-level propagation over time.</strong><br>
+  The fraction of infected sectors over time illustrates whether the outbreak
+  remains localized or escalates into a system-wide event.
+</p>
+
+<p class="figure-caption">
+  <strong>Figure X — Systemic versus localized sectoral impact.</strong><br>
+  A high level of sectoral involvement indicates a system-wide outbreak,
+  whereas limited participation suggests sector-specific containment.
+</p>
+
+This sector-level perspective reveals that systemic risk is not solely driven
+by individual assets, but by the structure of inter-sector dependencies.
+Outbreaks that rapidly spread across multiple highly connected sectors
+are more likely to evolve into market-wide crises,
+whereas sectorally contained shocks tend to dissipate more quickly.
+
+
 
