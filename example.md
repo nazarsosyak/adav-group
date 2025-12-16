@@ -1,7 +1,7 @@
 ---
 title: "The Story"
 permalink: /story/
-layout: default
+layout: defaulthttps://github.com/nazarsosyak/adav-group/blob/master/example.md
 ---
 
 ## **Part I: Market Segmentation**
@@ -74,7 +74,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-dotcom" class="case-panel is-visible">
-    <h3>**Case File: Dot-com Bubble**</h3>
+    <h3>Case File: Dot-com Bubble</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
@@ -140,7 +140,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-subprime" class="case-panel">
-    <h3>**Case File: Subprime Crisis**</h3>
+    <h3>Case File: Subprime Crisis</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
@@ -197,7 +197,7 @@ Periods are grouped by **similar average returns**, revealing structural regime 
   <!-- ===================================================== -->
 
   <section id="panel-covid" class="case-panel">
-    <h3>**Case File: COVID-19**</h3>
+    <h3>Case File: COVID-19</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
