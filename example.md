@@ -139,7 +139,15 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
       </div>
     </div>
 
+
     <div id="dotcom-output" class="analysis-output is-locked">
+      <div class="plot-frame plot-frame--first">
+          <iframe
+            src="{{ '/assets/plots/ppi_3d_internet.html' | relative_url }}"
+            loading="lazy"
+            title="Dot-com 3D plot"></iframe>
+        </div>
+        
       <p>
         Two interactive plots for the network have been generated below. Patient zero has been identified as entity <span class="text-accent">ROST</span>:
       </p>
@@ -202,6 +210,14 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
     </div>
 
     <div id="subprime-output" class="analysis-output is-locked">
+
+      <div class="plot-frame plot-frame--first">
+          <iframe
+            src="{{ '/assets/plots/ppi_2008.html' | relative_url }}"
+            loading="lazy"
+            title="Subprime 3D plot"></iframe>
+        </div>
+        
       <p>
         Losses propagate through tightly coupled financial institutions.
       </p>
@@ -260,6 +276,14 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
     </div>
 
     <div id="covid-output" class="analysis-output is-locked">
+    
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/plots/ppi_3d_covid.html' | relative_url }}"
+          loading="lazy"
+          title="COVID 3D plot"></iframe>
+      </div>
+
       <p>
         The timeline shows synchronized global drawdowns.
       </p>
