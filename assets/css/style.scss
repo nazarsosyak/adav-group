@@ -546,17 +546,20 @@ body {
   height: auto;
   border-radius: 14px;
 }
-
 .plot-frame--first{
   margin: 0.75rem 0 1.25rem;
+  overflow: hidden;          /* kill iframe overflow */
 }
 
 .plot-frame--first iframe{
   width: 100%;
-  height: 620px;        /* tweak */
+  height: 620px;             /* tweak if needed */
   border: 0;
   border-radius: 14px;
-  background: transparent;
+
+  display: block;
+  overflow: hidden;          /* kill inner scrollbars */
 }
+
 
 
