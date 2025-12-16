@@ -132,6 +132,48 @@ When you click a card, you access the **case study content** of this very period
 
 </div>
 
+<div class="img-slider"
+     data-folder="{{ '/assets/subprime' | relative_url }}"
+     data-prefix="timeline_"
+     data-ext="png"
+     data-pad="4"
+     data-start="0">
+  <div class="img-slider-top">
+    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+  </div>
+  <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
+</div>
+
+<div class="img-slider"
+     data-folder="{{ '/assets/internet' | relative_url }}"
+     data-prefix="timeline_"
+     data-ext="png"
+     data-pad="4"
+     data-start="0">
+  <div class="img-slider-top">
+    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+  </div>
+  <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
+</div>
+
+
+<div class="img-slider"
+     data-folder="{{ '/assets/covid' | relative_url }}"
+     data-prefix="timeline_"
+     data-ext="png"
+     data-pad="4"
+     data-start="0">
+  <div class="img-slider-top">
+    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+  </div>
+  <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
+</div>
+
+
+
 <script>
 (function () {
   const cards  = [...document.querySelectorAll(".segment-card")];
