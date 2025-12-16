@@ -25,10 +25,10 @@ From that full timeline, **four regimes stand out** as unusually violent, meanin
 
 | Period name                | Start date   | End date     | Duration (weeks) | Cumulative return |
 |---------------------------|--------------|--------------|------------------|-------------------|
-| Collapse of the USSR      | 1991-12-20   | 1992-01-10   | 4                | **+17.16%**       |
-| Dot-com bubble burst      | 2000-09-08   | 2000-10-13   | 6                | **−19.49%**       |
-| Subprime financial crisis | 2008-10-03   | 2008-10-17   | 3                | **−22.02%**       |
-| COVID-19 market shock     | 2020-02-21   | 2020-04-03   | 7                | **−22.90%**       |
+| Collapse of the USSR      | 1991-12-20   | 1992-01-17   | 4                | **+17.16%**       |
+| Dot-com bubble burst      | 2000-09-08   | 2000-10-20   | 6                | **−19.49%**       |
+| Subprime financial crisis | 2008-10-03   | 2008-10-24   | 3                | **−22.02%**       |
+| COVID-19 market shock     | 2020-02-21   | 2020-04-10   | 7                | **−22.90%**       |
 
 ---
 
