@@ -535,3 +535,16 @@ body {
   display: grid !important; /* keep layout stable; we control visibility via .is-open */
 }
 
+.panel-intro{
+  margin: 0.75rem 0 1rem;
+}
+
+.panel-intro img{
+  display: block;
+  width: 100%;
+  max-width: 980px;   /* tweak or remove */
+  height: auto;
+  border-radius: 14px;
+}
+
+
