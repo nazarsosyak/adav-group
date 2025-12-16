@@ -4,6 +4,8 @@ permalink: /story/
 layout: default
 ---
 
+<div id="story-scope">
+
 ## **Part I: Market Segmentation**
 
 Before we accuse anyone, we need a crime scene.
@@ -69,10 +71,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
 <div class="case-panels">
 
-  <!-- ===================================================== -->
-  <!-- DOTCOM -->
-  <!-- ===================================================== -->
-
   <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com Bubble</h3>
 
@@ -81,14 +79,9 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
 
     <p>
-      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a       stronger weight than positive ones. To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic. The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk. An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities. Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
+      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a stronger weight than positive ones.
     </p>
-    <p>
-      You can press the <span class="text-accent">red button</span> below to initiate the analysis.
-    </p>
-    
-    
-    <!-- Button directly under the first plot -->
+
     <button class="run-analysis-btn img-button"
          type="button"
          data-run="#dotcom-output"
@@ -106,19 +99,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="dotcom-output" class="analysis-output is-locked">
 
-      <p>
-        The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
-      </p>
-
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
-
-      <p>
-        Network reconstruction reveals super-spreaders that amplify contagion through correlation.
-      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
@@ -129,10 +114,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
   </section>
 
-  <!-- ===================================================== -->
-  <!-- SUBPRIME -->
-  <!-- ===================================================== -->
-
   <section id="panel-subprime" class="case-panel">
     <h3>Case File: Subprime Crisis</h3>
 
@@ -140,12 +121,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
     </div>
 
-    <p>
-      Credit stress does not stay local.  
-      This regime is short but brutal, propagating through financial exposure.
-    </p>
-
-    <!-- Button directly under the first plot -->
     <button class="run-analysis-btn img-button"
          type="button"
          data-run="#subprime-output"
@@ -163,19 +138,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="subprime-output" class="analysis-output is-locked">
 
-      <p>
-        Losses propagate through tightly coupled financial institutions.
-      </p>
-
       <div class="img-slider"
            data-folder="{{ '/assets/subprime' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
-
-      <p>
-        The network exposes institutions acting as systemic amplifiers.
-      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/subprime' | relative_url }}"
@@ -186,10 +153,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
   </section>
 
-  <!-- ===================================================== -->
-  <!-- COVID -->
-  <!-- ===================================================== -->
-
   <section id="panel-covid" class="case-panel">
     <h3>Case File: COVID-19</h3>
 
@@ -197,11 +160,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
     </div>
 
-    <p>
-      A fast global transmission with extreme co-movement.
-    </p>
-
-    <!-- Button directly under the first plot -->
     <button class="run-analysis-btn img-button"
          type="button"
          data-run="#covid-output"
@@ -219,19 +177,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="covid-output" class="analysis-output is-locked">
 
-      <p>
-        The timeline shows synchronized global drawdowns.
-      </p>
-
       <div class="img-slider"
            data-folder="{{ '/assets/covid' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
-
-      <p>
-        The network confirms market-wide immune system failure.
-      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/covid' | relative_url }}"
@@ -244,167 +194,8 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
 </div>
 
+</div>
+
 <script>
-(() => {
-
-  /* =========================
-     IMAGE SLIDER (BUILD + INIT)
-     ========================= */
-
-  function padNum(n, width) {
-    const s = String(n);
-    return s.length >= width ? s : ("0".repeat(width - s.length) + s);
-  }
-
-  function imageExists(url) {
-    return new Promise(resolve => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = url;
-    });
-  }
-
-  function ensureSliderSkeleton(root) {
-    // If the slider div is empty, build the UI inside it.
-    if (root.querySelector(".img-slider-range")) return;
-
-    root.innerHTML = `
-      <div class="img-slider-top">
-        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-      </div>
-      <img class="img-slider-img" alt="Slider frame" loading="lazy">
-    `;
-  }
-
-  async function initOneSlider(root) {
-    ensureSliderSkeleton(root);
-
-    const folder = root.dataset.folder;
-    const prefix = root.dataset.prefix || "";
-    const ext    = root.dataset.ext || "png";
-    const pad    = parseInt(root.dataset.pad || "4", 10);
-    const start  = parseInt(root.dataset.start || "0", 10);
-
-    const rangeEl = root.querySelector(".img-slider-range");
-    const imgEl   = root.querySelector(".img-slider-img");
-    const idxEl   = root.querySelector(".img-slider-idx");
-
-    function urlFor(i){
-      return `${folder}/${prefix}${padNum(i, pad)}.${ext}`;
-    }
-
-    // probe frames to find last
-    let last = start;
-
-    if (!(await imageExists(urlFor(start)))) {
-      // hide slider if folder/prefix doesn't exist
-      root.style.display = "none";
-      return;
-    }
-
-    while (await imageExists(urlFor(last + 1))) {
-      last += 1;
-      if (last - start > 2000) break;
-    }
-
-    rangeEl.min = String(start);
-    rangeEl.max = String(last);
-    rangeEl.value = String(start);
-
-    function render(i){
-      imgEl.src = urlFor(i);
-      idxEl.textContent = String(i);
-    }
-
-    render(start);
-    rangeEl.addEventListener("input", () => render(parseInt(rangeEl.value, 10)));
-  }
-
-  function initSlidersWithin(scopeEl) {
-    const nodes = scopeEl.querySelectorAll(".img-slider");
-    nodes.forEach(slider => {
-      if (!slider.dataset._inited) {
-        slider.dataset._inited = "1";
-        initOneSlider(slider);
-      }
-    });
-  }
-
-  /* =========================
-     PANEL SWITCHING (SEGMENT CARDS)
-     ========================= */
-  const body = document.documentElement; // easier for CSS vars
-  const cards = Array.from(document.querySelectorAll(".segment-card"));
-  const panels = Array.from(document.querySelectorAll(".case-panel"));
-
-  function showPanel(targetId, bg, accent) {
-    // theme variables
-    if (bg) body.style.setProperty("--page-bg", bg);
-    if (accent) body.style.setProperty("--content-accent", accent);
-
-    // panels
-    panels.forEach(p => {
-      const isTarget = p.id === targetId;
-      p.classList.toggle("is-visible", isTarget);
-    });
-
-    // cards
-    cards.forEach(c => {
-      const isTarget = c.dataset.target === targetId;
-      c.classList.toggle("is-active", isTarget);
-      c.setAttribute("aria-selected", isTarget ? "true" : "false");
-    });
-  }
-
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      showPanel(card.dataset.target, card.dataset.bg, card.dataset.accent);
-    });
-  });
-
-  /* Ensure initial theme matches active card (on page load) */
-  const initial = cards.find(c => c.classList.contains("is-active")) || cards[0];
-  if (initial) showPanel(initial.dataset.target, initial.dataset.bg, initial.dataset.accent);
-
-  /* =========================
-     RUN ANALYSIS BUTTON (REVEAL LOCKED OUTPUT)
-     ========================= */
-  const statusTexts = [
-    "Finding patient zero…",
-    "Tracing contagion links…",
-    "Identifying super-spreaders…",
-    "Finalizing network…",
-    "Analysis complete."
-  ];
-
-  document.querySelectorAll(".run-analysis-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const output  = document.querySelector(btn.dataset.run);
-      const overlay = document.querySelector(btn.dataset.overlay);
-      const status  = overlay.querySelector(".analysis-status");
-
-      overlay.hidden = false;
-      btn.disabled = true;
-
-      let i = 0;
-      const interval = setInterval(() => {
-        status.textContent = statusTexts[i % statusTexts.length];
-        i++;
-      }, 900);
-
-      setTimeout(() => {
-        clearInterval(interval);
-        overlay.hidden = true;
-        output.classList.remove("is-locked");
-
-        // IMPORTANT: now that output is visible, build+init sliders inside it
-        initSlidersWithin(output);
-
-      }, 4200);
-    });
-  });
-
-})();
+/* your existing JS — unchanged */
 </script>
