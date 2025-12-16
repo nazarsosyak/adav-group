@@ -4,8 +4,6 @@ permalink: /story/
 layout: default
 ---
 
-<div id="story-scope">
-
 ## **Part I: Market Segmentation**
 
 Before we accuse anyone, we need a crime scene.
@@ -71,6 +69,10 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
 <div class="case-panels">
 
+  <!-- ===================================================== -->
+  <!-- DOTCOM -->
+  <!-- ===================================================== -->
+
   <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com Bubble</h3>
 
@@ -79,7 +81,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
 
     <p>
-      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a stronger weight than positive ones.
+      The market yields negative daily returns approximately x% of the time. In order to obtain a cumulative return of x% over the whole period, negative returns must therefore carry a stronger weight than positive ones. To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic. The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk. An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities. Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
+    </p>
+
+    <p>
+      You can press the <span class="text-accent">red button</span> below to initiate the analysis.
     </p>
 
     <button class="run-analysis-btn img-button"
@@ -99,11 +105,19 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="dotcom-output" class="analysis-output is-locked">
 
+      <p>
+        The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
+      </p>
+
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        Network reconstruction reveals super-spreaders that amplify contagion through correlation.
+      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
@@ -114,12 +128,21 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
   </section>
 
+  <!-- ===================================================== -->
+  <!-- SUBPRIME -->
+  <!-- ===================================================== -->
+
   <section id="panel-subprime" class="case-panel">
     <h3>Case File: Subprime Crisis</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
     </div>
+
+    <p>
+      Credit stress does not stay local.  
+      This regime is short but brutal, propagating through financial exposure.
+    </p>
 
     <button class="run-analysis-btn img-button"
          type="button"
@@ -138,11 +161,19 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="subprime-output" class="analysis-output is-locked">
 
+      <p>
+        Losses propagate through tightly coupled financial institutions.
+      </p>
+
       <div class="img-slider"
            data-folder="{{ '/assets/subprime' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        The network exposes institutions acting as systemic amplifiers.
+      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/subprime' | relative_url }}"
@@ -153,12 +184,20 @@ Periods are grouped by **similar average returns**, revealing structural regime 
     </div>
   </section>
 
+  <!-- ===================================================== -->
+  <!-- COVID -->
+  <!-- ===================================================== -->
+
   <section id="panel-covid" class="case-panel">
     <h3>Case File: COVID-19</h3>
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
     </div>
+
+    <p>
+      A fast global transmission with extreme co-movement.
+    </p>
 
     <button class="run-analysis-btn img-button"
          type="button"
@@ -177,11 +216,19 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="covid-output" class="analysis-output is-locked">
 
+      <p>
+        The timeline shows synchronized global drawdowns.
+      </p>
+
       <div class="img-slider"
            data-folder="{{ '/assets/covid' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        The network confirms market-wide immune system failure.
+      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/covid' | relative_url }}"
@@ -191,8 +238,6 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     </div>
   </section>
-
-</div>
 
 </div>
 
