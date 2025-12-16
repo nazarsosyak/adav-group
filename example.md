@@ -42,47 +42,11 @@ to detect **structural changes in market behavior** without relying on predefine
 
 **Table 1 — Major crisis periods identified by market segmentation.**
 
-<div class="table-container">
-  <p class="table-title">
-    <strong>Table 1 — Data-driven identification of major market crisis periods</strong>
-  </p>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>Crisis episode</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Duration (weeks)</th>
-        <th>Cumulative market return</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Dot-com bubble burst</td>
-        <td>2000-09-08</td>
-        <td>2000-10-20</td>
-        <td>6</td>
-        <td class="negative">−19.49%</td>
-      </tr>
-      <tr>
-        <td>Subprime financial crisis</td>
-        <td>2008-10-03</td>
-        <td>2008-10-24</td>
-        <td>3</td>
-        <td class="negative">−22.02%</td>
-      </tr>
-      <tr>
-        <td>COVID-19 market shock</td>
-        <td>2020-02-21</td>
-        <td>2020-04-10</td>
-        <td>7</td>
-        <td class="negative">−22.90%</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+| Crisis episode            | Start date | End date   | Duration (weeks) | Cumulative market return | Interpretation |
+|---------------------------|------------|------------|------------------|--------------------------|----------------|
+| Dot-com bubble burst      | 2000-09-08 | 2000-10-20 | 6                | **−19.49%**              | Tech-driven systemic correction |
+| Subprime financial crisis | 2008-10-03 | 2008-10-24 | 3                | **−22.02%**              | Global banking and credit collapse |
+| COVID-19 market shock     | 2020-02-21 | 2020-04-10 | 7                | **−22.90%**              | Exogenous shock and synchronized sell-off |
 
 These regimes correspond to well-known systemic crises and validate the segmentation approach.
 Despite differences in duration, all three periods exhibit sharp cumulative losses,
@@ -91,7 +55,8 @@ highlighting moments of extreme market stress.
 In the remainder of this project, we focus on these segments as **financial outbreak windows**,
 within which we study contagion dynamics, transmission pathways, and network-level amplification effects.
 
-All identified crisis periods exhibit cumulative losses exceeding 19%, confirming their systemic nature.
+All identified crisis periods exhibit cumulative losses exceeding 19%, confirming their systemic severity
+and justifying their use as outbreak windows in the subsequent contagion analysis.
 
 ---
 
