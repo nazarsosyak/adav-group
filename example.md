@@ -23,9 +23,13 @@ periods are grouped by **similar average returns**, so we can spot when the mark
 
 From that full timeline, **four regimes stand out** as unusually violent, meaningful, or historically interpretable.
 
+<!---
+| Collapse of the USSR      | 1991-12-20   | 1992-01-17   | 4                | **+17.16%**       |
+-->
+
+
 | Period name                | Start date   | End date     | Duration (weeks) | Cumulative return |
 |---------------------------|--------------|--------------|------------------|-------------------|
-| Collapse of the USSR      | 1991-12-20   | 1992-01-17   | 4                | **+17.16%**       |
 | Dot-com bubble burst      | 2000-09-08   | 2000-10-20   | 6                | **−19.49%**       |
 | Subprime financial crisis | 2008-10-03   | 2008-10-24   | 3                | **−22.02%**       |
 | COVID-19 market shock     | 2020-02-21   | 2020-04-10   | 7                | **−22.90%**       |
@@ -78,6 +82,7 @@ When you click a card, you access the **case study content** of this very period
 <!-- Case file container -->
 <div class="case-panels" id="case-files" aria-live="polite">
 
+<!--
   <section id="panel-ussr" class="case-panel is-visible">
     <h3>Case File: USSR collapse</h3>
     <p>
@@ -89,8 +94,9 @@ When you click a card, you access the **case study content** of this very period
       <iframe src="{{ '/assets/plots/daily_mean_return_1991.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
+-->
 
-  <section id="panel-dotcom" class="case-panel" hidden>
+  <section id="panel-dotcom" class="case-panel is-visible" hidden>
     <h3>Case File: Dot-com burst</h3>
     <p>
       Speculation peaks, then confidence collapses.
