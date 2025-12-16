@@ -23,11 +23,6 @@ periods are grouped by **similar average returns**, so we can spot when the mark
 
 From that full timeline, **four regimes stand out** as unusually violent, meaningful, or historically interpretable.
 
-<!---
-| Collapse of the USSR      | 1991-12-20   | 1992-01-17   | 4                | **+17.16%**       |
--->
-
-
 | Period name                | Start date   | End date     | Duration (weeks) | Cumulative return |
 |---------------------------|--------------|--------------|------------------|-------------------|
 | Dot-com bubble burst      | 2000-09-08   | 2000-10-20   | 6                | **−19.49%**       |
@@ -42,21 +37,12 @@ Pick one regime below.
 When you click a card, you access the **case study content** of this very period.  
 
 <div class="segment-row">
-<!---
-  <button class="segment-card is-active"
-        data-target="panel-ussr"
-        data-bg="#FFF5F6"
-        data-accent="#8C1D2C"
-        aria-selected="true">
-    <img src="{{ '/assets/images/ussr.png' | relative_url }}" alt="Collapse of the USSR">
-    <div class="segment-title">Collapse of the USSR</div>
-  </button>
--->
 
   <button class="segment-card is-active"
         data-target="panel-dotcom"
         data-bg="#F5F6FC"
-        data-accent="#2E357A">
+        data-accent="#2E357A"
+        aria-selected="true">
     <img src="{{ '/assets/images/internet.png' | relative_url }}" alt="Dot-com Bubble">
     <div class="segment-title">Dot-com Bubble</div>
   </button>
@@ -64,7 +50,8 @@ When you click a card, you access the **case study content** of this very period
   <button class="segment-card"
         data-target="panel-subprime"
         data-bg="#F4FBF6"
-        data-accent="#1F6B3A">
+        data-accent="#1F6B3A"
+        aria-selected="false">
     <img src="{{ '/assets/images/subprime.png' | relative_url }}" alt="Subprime Crisis">
     <div class="segment-title">Subprime Crisis</div>
   </button>
@@ -72,7 +59,8 @@ When you click a card, you access the **case study content** of this very period
   <button class="segment-card"
         data-target="panel-covid"
         data-bg="#FDFDF8"
-        data-accent="#6A5F12">
+        data-accent="#6A5F12"
+        aria-selected="false">
     <img src="{{ '/assets/images/covid.png' | relative_url }}" alt="COVID Outbreak">
     <div class="segment-title">COVID Outbreak</div>
   </button>
@@ -82,31 +70,34 @@ When you click a card, you access the **case study content** of this very period
 <!-- Case file container -->
 <div class="case-panels" id="case-files" aria-live="polite">
 
-<!--
-  <section id="panel-ussr" class="case-panel is-visible">
-    <h3>Case File: USSR collapse</h3>
-    <p>
-      This episode is not a crisis. 
-      The collapse of the Soviet Union marks a geopolitical transition that reduces systemic risk and expands the global reach of U.S. firms.
-      Markets briefly adjust to the new information, but the return distribution shifts upward, reflecting improved growth expectations.
-    </p>
-    <div class="plot-frame">
-      <iframe src="{{ '/assets/plots/daily_mean_return_1991.html' | relative_url }}" loading="lazy"></iframe>
-    </div>
-  </section>
--->
-
-  <section id="panel-dotcom" class="case-panel is-visible" hidden>
+  <!-- DOTCOM (visible by default) -->
+  <section id="panel-dotcom" class="case-panel is-visible">
     <h3>Case File: Dot-com burst</h3>
     <p>
       Speculation peaks, then confidence collapses.
       One sector gets hit first, then correlations spike and pull the rest of the market into the outbreak.
     </p>
+
+    <!-- Dot-com slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/internet' | relative_url }}"
+         data-prefix="timeline_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
+    </div>
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
+  <!-- SUBPRIME -->
   <section id="panel-subprime" class="case-panel" hidden>
     <h3>Case File: Subprime Crisis</h3>
     <p>
@@ -114,17 +105,48 @@ When you click a card, you access the **case study content** of this very period
       shocks propagate through financial exposure and sector links,
       turning symptoms into a system-wide condition.
     </p>
+
+    <!-- Subprime slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/subprime' | relative_url }}"
+         data-prefix="timeline_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
+    </div>
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}" loading="lazy"></iframe>
     </div>
   </section>
 
+  <!-- COVID -->
   <section id="panel-covid" class="case-panel" hidden>
     <h3>Case File: COVID</h3>
     <p>
       A fast global transmission: abrupt drawdowns, violent reversals, and extreme co-movement.
       If the market had an immune system, this is the moment it got overwhelmed.
     </p>
+
+    <!-- COVID slider -->
+    <div class="img-slider"
+         data-folder="{{ '/assets/covid' | relative_url }}"
+         data-prefix="timeline_"
+         data-ext="png"
+         data-pad="4"
+         data-start="0">
+      <div class="img-slider-top">
+        <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
+        <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
+      </div>
+      <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
+    </div>
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}" loading="lazy"></iframe>
     </div>
@@ -132,58 +154,17 @@ When you click a card, you access the **case study content** of this very period
 
 </div>
 
-<div class="img-slider"
-     data-folder="{{ '/assets/subprime' | relative_url }}"
-     data-prefix="timeline_"
-     data-ext="png"
-     data-pad="4"
-     data-start="0">
-  <div class="img-slider-top">
-    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-  </div>
-  <img class="img-slider-img" alt="Subprime timeline frame" loading="lazy">
-</div>
-
-<div class="img-slider"
-     data-folder="{{ '/assets/internet' | relative_url }}"
-     data-prefix="timeline_"
-     data-ext="png"
-     data-pad="4"
-     data-start="0">
-  <div class="img-slider-top">
-    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-  </div>
-  <img class="img-slider-img" alt="Dot-com timeline frame" loading="lazy">
-</div>
-
-
-<div class="img-slider"
-     data-folder="{{ '/assets/covid' | relative_url }}"
-     data-prefix="timeline_"
-     data-ext="png"
-     data-pad="4"
-     data-start="0">
-  <div class="img-slider-top">
-    <input class="img-slider-range" type="range" min="0" max="0" step="1" value="0">
-    <div class="img-slider-label">Frame: <span class="img-slider-idx">0</span></div>
-  </div>
-  <img class="img-slider-img" alt="COVID timeline frame" loading="lazy">
-</div>
-
-
-
 <script>
 (function () {
 
-  // --- helper: pad frame number like 3 -> "0003"
+  // ---------------------------
+  // Image slider init
+  // ---------------------------
   function padNum(n, width) {
     const s = String(n);
     return s.length >= width ? s : ("0".repeat(width - s.length) + s);
   }
 
-  // --- helper: check if an image exists (loads fast, cached by browser)
   function imageExists(url) {
     return new Promise(resolve => {
       const img = new Image();
@@ -208,23 +189,18 @@ When you click a card, you access the **case study content** of this very period
       return `${folder}/${prefix}${padNum(i, pad)}.${ext}`;
     }
 
-    // Find last existing frame by probing sequentially (simple + robust).
     let last = start;
 
-    // If start doesn't exist, bail gracefully
     if (!(await imageExists(urlFor(start)))) {
       root.style.display = "none";
       return;
     }
 
-    // Walk forward until the first missing image
     while (await imageExists(urlFor(last + 1))) {
       last += 1;
-      // safety cap to avoid infinite loops if naming isn't sequential
       if (last - start > 2000) break;
     }
 
-    // Setup slider bounds
     rangeEl.min = String(start);
     rangeEl.max = String(last);
     rangeEl.value = String(start);
@@ -234,22 +210,18 @@ When you click a card, you access the **case study content** of this very period
       idxEl.textContent = String(i);
     }
 
-    // initial render
     render(start);
-
-    // update on input (smooth drag)
-    rangeEl.addEventListener("input", () => {
-      render(parseInt(rangeEl.value, 10));
-    });
+    rangeEl.addEventListener("input", () => render(parseInt(rangeEl.value, 10)));
   }
 
-  // init all sliders on the page
+  // Init all sliders once
   document.querySelectorAll(".img-slider").forEach(slider => {
     initOneSlider(slider);
   });
 
-})();
-(function () {
+  // ---------------------------
+  // Case switching + theming
+  // ---------------------------
   const cards  = [...document.querySelectorAll(".segment-card")];
   const panels = [...document.querySelectorAll(".case-panel")];
 
@@ -279,8 +251,12 @@ When you click a card, you access the **case study content** of this very period
 
   cards.forEach(card => {
     card.addEventListener("click", () => {
-      cards.forEach(c => c.classList.remove("is-active"));
+      cards.forEach(c => {
+        c.classList.remove("is-active");
+        c.setAttribute("aria-selected", "false");
+      });
       card.classList.add("is-active");
+      card.setAttribute("aria-selected", "true");
 
       setTheme(card.dataset.bg, card.dataset.accent);
       showPanel(card.dataset.target);
@@ -289,6 +265,6 @@ When you click a card, you access the **case study content** of this very period
 
   const active = document.querySelector(".segment-card.is-active") || cards[0];
   if (active) setTheme(active.dataset.bg, active.dataset.accent);
+
 })();
 </script>
-
