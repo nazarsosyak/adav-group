@@ -620,4 +620,18 @@ Our investigation follows three successive steps.
   by network interactions.
 </p>
 
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/infected_fraction_over_time.html' | relative_url }}"
+    loading="lazy"
+    title="Fraction of infected assets over time">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Temporal propagation of financial contagion.</strong><br>
+  The fraction of infected assets over time highlights the transition from
+  localized stress to widespread systemic involvement.
+</p>
+
 
