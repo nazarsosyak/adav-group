@@ -512,3 +512,26 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* =========================
+   HARDEN OVERLAY CLICK BEHAVIOR
+   ========================= */
+
+/* Overlay should NEVER block clicks unless opened */
+.analysis-overlay{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.analysis-overlay.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* If your theme does anything weird with [hidden], this makes it irrelevant */
+.analysis-overlay[hidden]{
+  display: grid !important; /* keep layout stable; we control visibility via .is-open */
+}
+
