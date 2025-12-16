@@ -105,7 +105,11 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 
     <div id="dotcom-output" class="analysis-output is-locked">
       <p>
-        The timeline highlights how early losses in technology rapidly contaminate adjacent sectors.
+        Two interactive plots for the network have been generated below. Patient zero has been identified as entity <span class="text-accent">ROST</span>:
+      </p>
+
+      <p>
+        Ross Stores is an american company specializing in hard-discount hypermarket. 
       </p>
 
       <div class="img-slider"
