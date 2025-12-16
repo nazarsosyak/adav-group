@@ -242,7 +242,8 @@ Periods are grouped by **similar average returns**, revealing structural regime 
 </div>
 
 <script>
-/* Panel switching + per-panel theming (bg + accent) */
+/* Panel switching + per-panel theming (bg + accent)
+   + Run analysis button logic */
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = Array.from(document.querySelectorAll(".segment-card"));
   const panels  = Array.from(document.querySelectorAll(".case-panel"));
@@ -255,24 +256,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showPanel(targetId, btn) {
-    // toggle buttons
     buttons.forEach(b => {
       b.classList.toggle("is-active", b === btn);
       b.setAttribute("aria-selected", b === btn ? "true" : "false");
     });
 
-    // toggle panels
     panels.forEach(p => p.classList.remove("is-visible"));
     const panel = document.getElementById(targetId);
     if (panel) panel.classList.add("is-visible");
 
-    // theme
     const bg = btn.getAttribute("data-bg") || "#ffffff";
     const accent = btn.getAttribute("data-accent") || "#2aa36b";
     applyTheme(bg, accent);
   }
 
-  // wire clicks
+  // wire panel clicks
   buttons.forEach(btn => {
     btn.addEventListener("click", () => showPanel(btn.dataset.target, btn));
   });
@@ -280,5 +278,53 @@ document.addEventListener("DOMContentLoaded", () => {
   // initial theme (from the active button)
   const active = document.querySelector(".segment-card.is-active") || buttons[0];
   if (active) showPanel(active.dataset.target, active);
+
+  // wire run analysis buttons
+  const runButtons = Array.from(document.querySelectorAll(".run-analysis-btn"));
+
+  runButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const runSel = btn.getAttribute("data-run");
+      const overlaySel = btn.getAttribute("data-overlay");
+
+      const out = runSel ? document.querySelector(runSel) : null;
+      const overlay = overlaySel ? document.querySelector(overlaySel) : null;
+
+      if (!out || !overlay) return;
+
+      overlay.hidden = false;
+
+      const statusEl = overlay.querySelector(".analysis-status");
+      const steps = [
+        "Initializing…",
+        "Loading data…",
+        "Reconstructing network…",
+        "Detecting patient zero…",
+        "Scoring super-spreaders…",
+        "Finalizing…"
+      ];
+
+      let i = 0;
+      if (statusEl) statusEl.textContent = steps[i];
+
+      const timer = setInterval(() => {
+        i += 1;
+
+        if (i < steps.length) {
+          if (statusEl) statusEl.textContent = steps[i];
+          return;
+        }
+
+        clearInterval(timer);
+
+        overlay.hidden = true;
+        out.classList.remove("is-locked");
+        out.style.display = "block";
+
+        // optional: don't re-run
+        btn.disabled = true;
+      }, 550);
+    });
+  });
 });
 </script>
