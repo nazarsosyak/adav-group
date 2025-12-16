@@ -62,6 +62,14 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 
 ## **Part II: Choose a case file**
 
+Once a crisis period has been identified, we isolate it from the full timeline
+and analyze it as a **contained financial outbreak**.
+This allows us to study contagion dynamics *within* a fixed market environment,
+without interference from other regimes.
+
+Select one of the following crisis episodes to open its corresponding case file.
+Each case file contains a focused analysis of market behavior during that outbreak.
+
 <div class="segment-row">
 
   <button class="segment-card is-active"
