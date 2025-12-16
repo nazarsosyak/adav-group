@@ -6,9 +6,11 @@ layout: default
 
 ## **Part I: Market Segmentation**
 
-Before we accuse anyone, we need a crime scene.
+Before accusing any individual stock of driving a crisis, we must first
+identify *when* the market itself entered abnormal regimes.
 
-So we start with the only thing the market can’t hide: the timeline.
+We therefore begin with the only element the market cannot conceal:  
+**the aggregate return timeline**, segmented into statistically homogeneous periods.
 
 <div class="full-width-plot">
   <iframe
