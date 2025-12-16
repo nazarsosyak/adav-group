@@ -368,47 +368,65 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const runSel = btn.getAttribute("data-run");
       const overlaySel = btn.getAttribute("data-overlay");
-
+    
       const out = runSel ? document.querySelector(runSel) : null;
       const overlay = overlaySel ? document.querySelector(overlaySel) : null;
-
+    
       if (!out || !overlay) return;
-
+    
+      // button feedback
+      btn.classList.add("is-pressed", "is-rippling");
+      setTimeout(() => btn.classList.remove("is-rippling"), 600);
+    
       overlay.hidden = false;
-
+      overlay.style.setProperty("--prog", "0");
+    
       const statusEl = overlay.querySelector(".analysis-status");
       const steps = [
-        "Initializing…",
-        "Loading data…",
-        "Reconstructing network…",
-        "Detecting patient zero…",
-        "Scoring super-spreaders…",
-        "Finalizing…"
+        { txt: "Initializing…",            p: 12 },
+        { txt: "Loading data…",            p: 28 },
+        { txt: "Reconstructing network…",  p: 52 },
+        { txt: "Detecting patient zero…",  p: 73 },
+        { txt: "Scoring super-spreaders…", p: 90 },
+        { txt: "Finalizing…",              p: 100 }
       ];
-
+    
       let i = 0;
-      if (statusEl) statusEl.textContent = steps[i];
-
+      if (statusEl) statusEl.textContent = steps[i].txt;
+      overlay.style.setProperty("--prog", String(steps[i].p));
+    
       const timer = setInterval(async () => {
         i += 1;
-
+    
         if (i < steps.length) {
-          if (statusEl) statusEl.textContent = steps[i];
+          if (statusEl) statusEl.textContent = steps[i].txt;
+          overlay.style.setProperty("--prog", String(steps[i].p));
           return;
         }
-
+    
         clearInterval(timer);
-
+    
         overlay.hidden = true;
+    
         out.classList.remove("is-locked");
         out.style.display = "block";
-
-        // IMPORTANT: build sliders inside unlocked content
+    
+        // build sliders (your function)
         await initSliders(out);
-
+    
+        // make injected images "pop" when loaded
+        out.querySelectorAll(".img-slider-img").forEach((img) => {
+          if (img.complete) img.classList.add("is-loaded");
+          else img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
+        });
+    
+        // finish button feedback
+        btn.classList.remove("is-pressed");
         btn.disabled = true;
-      }, 550);
+    
+      }, 520);
     });
+    );
   });
 
   // ALSO build sliders immediately (so you can see them even before clicking Run)
