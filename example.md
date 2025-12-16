@@ -12,13 +12,14 @@ identify *when* the market itself entered abnormal regimes.
 We therefore begin with the only element the market cannot conceal:  
 **the aggregate return timeline**, segmented into statistically homogeneous periods.
 
-<div class="plot-container">
+<div class="plot-container" style="text-align: center; margin: 2rem 0;">
   <iframe
     src="{{ '/assets/plots/segmentation.html' | relative_url }}"
     loading="lazy"
     style="width:100%; height:480px; border:none;">
   </iframe>
-  <p class="plot-caption">
+
+  <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
     <strong>Figure 1 — Market return segmentation over time.</strong><br>
     Weekly mean market log-returns with detected regime segments shown as background shading.
     Each colored region corresponds to a period of statistically similar market behavior.
