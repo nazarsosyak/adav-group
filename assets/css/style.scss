@@ -427,10 +427,22 @@ body {
   color: var(--content-accent);
   font-weight: 600;
    }
+/* =========================
+   STORY SCOPE (SECTION COLORING)
+   ========================= */
 
 #story-scope{
-  background: var(--page-bg, #fff);
+  background: var(--page-bg, #ffffff);
   transition: background-color 700ms ease;
   border-radius: 16px;
-  padding: 1.5rem 1.25rem;
+  padding: 1.25rem 1.25rem;
 }
+
+/* Optional: let it breathe horizontally like plots */
+@media (min-width: 900px){
+  #story-scope{
+    width: 120%;
+    margin-left: -10%;
+  }
+}
+
