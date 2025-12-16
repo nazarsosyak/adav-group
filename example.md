@@ -549,6 +549,12 @@ Our investigation follows three successive steps.
    are labeled *at risk*. Over time, entities may recover, while others remain
    unaffected.
 
+3. **Identifying key transmission roles**  
+   Finally, we combine temporal information with network centrality to
+   identify the most probable patient zero, detect super-spreaders that
+   amplify contagion, and trace the dominant paths through which stress
+   propagates across the market.
+
 ### Network structure at the onset of the outbreak
 
 <div class="plot-frame">
@@ -560,16 +566,58 @@ Our investigation follows three successive steps.
 </div>
 
 <p class="figure-caption">
-  <strong>Figure 5 — Network structure at the onset of the outbreak.</strong><br>
+  <strong>Figure X — Network structure at the onset of the outbreak.</strong><br>
   Nodes represent individual assets and edges capture statistical dependencies
   between their returns. Early-stage infections remain localized, allowing
   identification of the initial source of contagion.
 </p>
 
+### Identification of the probable patient zero
 
-4. **Identifying key transmission roles**  
-   Finally, we combine temporal information with network centrality to
-   identify the most probable patient zero, detect super-spreaders that
-   amplify contagion, and trace the dominant paths through which stress
-   propagates across the market.
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/patient_zero_identification.html' | relative_url }}"
+    loading="lazy"
+    title="Patient zero identification">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Identification of the probable patient zero.</strong><br>
+  The patient zero is defined as the entity that first exhibits abnormal stress
+  while maintaining strong connections to assets that become infected shortly
+  thereafter.
+</p>
+
+### Super-spreaders within the outbreak network
+
+<div class="plot-frame">
+  <iframe
+    src="{{ '/assets/plots/super_spreaders.html' | relative_url }}"
+    loading="lazy"
+    title="Super-spreader ranking">
+  </iframe>
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Super-spreaders within the outbreak network.</strong><br>
+  Super-spreaders are entities that, once infected, transmit stress to a
+  disproportionately large fraction of the network, acting as amplification hubs.
+</p>
+
+### Temporal propagation of financial contagion
+
+<div class="img-slider"
+     data-folder="{{ '/assets/case_name' | relative_url }}"
+     data-prefix="network_"
+     data-pad="4">
+</div>
+
+<p class="figure-caption">
+  <strong>Figure X — Temporal propagation of financial contagion.</strong><br>
+  The network evolution illustrates how initially localized stress progressively
+  spreads through the system, eventually leading to a systemic outbreak driven
+  by network interactions.
+</p>
+
 
