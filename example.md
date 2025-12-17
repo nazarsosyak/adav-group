@@ -165,13 +165,14 @@ during that outbreak.
       <img src="{{ '/assets/images/internetintro.png' | relative_url }}" alt="Dot-com Bubble intro">
     </div>
 
-    <div class="plot-container" style="text-align: center; margin: 2rem 0;">
+
+    <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
-  
-      <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-        <strong>Figure 2 — Mean daily market returns over the dot-com burst period.</strong><br>
-      </p>
-    <div>
+    </div>
+
+    <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
+      <strong>Figure 2 — Mean daily market returns over the dot-com burst period.</strong><br>
+    </p>
 
     <p>
       During this period, the market records negative daily returns on nearly 77% of trading days.
@@ -245,13 +246,10 @@ during that outbreak.
     <div class="panel-intro">
       <img src="{{ '/assets/images/subprimeintro.png' | relative_url }}" alt="Subprime Crisis intro">
     </div>
-    
-    <div class="plot-container" style="text-align: center; margin: 2rem 0;">
+
+    <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
-      <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-          <strong>Figure 2 — Mean daily market returns over the 2008 crisis.</strong><br>
-        </p>
-    <div>
+    </div>
 
     <p>
       Losses accumulate quickly over only a few days.<br><br>
@@ -320,12 +318,9 @@ during that outbreak.
     </div>
 
     
-    <div class="plot-container" style="text-align: center; margin: 2rem 0;">
+    <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
-      <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-        <strong>Figure 2 — Mean daily market returns over the Covid-19 period.</strong><br>
-      </p>
-    <div>
+    </div>
 
     <p>
       Wow a lot of negative returns here ok. Let's examine further.
@@ -788,6 +783,5 @@ by individual assets, but by the structure of inter-sector dependencies.
 Outbreaks that rapidly spread across multiple highly connected sectors
 are more likely to evolve into market-wide crises,
 whereas sectorally contained shocks tend to dissipate more quickly.
-
 
 
