@@ -58,6 +58,60 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 Once a crisis period has been identified, we isolate it from the full market timeline
 and analyze it. 
 
+Before analysis, lets be clear on how the algorithm functions:
+
+<div class="analysis-explainer">
+  <p>
+    <span class="text-accent">How the outbreak investigation works</span><br><br>
+
+    To grasp the algorithm's logic, three key dimensions must be introduced first.
+    These dimensions are jointly used to evaluate the state and systemic relevance
+    of each market entity.<br><br>
+
+    <strong>1. Network centrality</strong><br>
+    We measure how embedded each asset is within the market network.
+    Centrality reflects how strongly a node is connected to others through
+    correlation, mutual information, or causal exposure.
+    Highly central entities act as structural hubs: when they move, stress
+    can propagate more easily through the system.<br><br>
+
+    <strong>2. Temporal leadership</strong><br>
+    Timing matters.
+    Assets that exhibit abnormal stress <em>early</em> in the outbreak window
+    carry more explanatory power than late movers.
+    Early infection combined with strong connectivity raises suspicion
+    regarding a possible triggering role.<br><br>
+
+    <strong>3. Reproduction number (R₀)</strong><br>
+    Borrowing from epidemiology, we estimate how many other entities
+    an infected node tends to contaminate through its connections.
+    A high R₀ signals a super-spreader: once infected,
+    this entity disproportionately amplifies market stress.<br><br>
+
+    Together, these three dimensions define the
+    <span class="text-accent">Pandemic Potential Index</span> (<span class="text-accent">PPI</span>),
+    a composite score that captures an entity’s ability to
+    <strong>initiate</strong>, <strong>amplify</strong>, or <strong>propagate</strong>
+    financial stress within the market.<br><br>
+
+    <strong>Infection state classification</strong><br>
+    In parallel, each entity is assigned a health state based on its return dynamics
+    over the outbreak window.<br><br>
+
+    An entity is labeled <strong>sick</strong> if its daily return crosses the −5% threshold
+    and if its cumulative return over the period falls below −20%.
+    Entities that maintain strong connections with sick nodes—through correlation
+    or causal exposure—are classified as <strong>at risk</strong>.
+    Over time, entities may <strong>recover</strong> if stress subsides,
+    while those that never meet the infection criteria remain <strong>healthy</strong>.<br><br>
+
+    These definitions remain fixed across all case files,
+    ensuring that differences between outbreaks arise from
+    market structure and dynamics rather than changes in classification rules.
+  </p>
+</div>
+
+
 In each case file, we apply the same investigative procedure:
 we examine aggregate market behavior during the outbreak window,
 reconstruct the underlying interaction network,
@@ -219,36 +273,6 @@ during that outbreak.
     </div>
 
     <div id="subprime-output" class="analysis-output is-locked">
-
-      <div class="analysis-explainer">
-      <p>
-      <span class="text-accent">How the outbreak investigation works</span><br>
-      
-      
-      
-      To grasp the algorithm's magic, three key dimensions need to be clarified first. These three dimensions are used by the algorithm to evaluate an entity's state.<br><br>
-      
-      <strong>1. Network centrality</strong><br>
-      We first measure how embedded each asset is within the market network.
-      Centrality reflects how strongly a node is connected to others through
-      correlation or mutual information.
-      Highly central entities generally lead the market in their movement.<br><br>
-      
-      <strong>2. Temporal leadership</strong><br>
-      Assets that exhibit abnormal stress *early* in the outbreak window
-      are key.
-      Early infection combined with strong connectivity raises suspicion.<br><br>
-      
-      <strong>3. Reproduction number (R₀)</strong> <br>
-      Borrowing from epidemiology, we estimate how many other entities
-      an infected node tends to contaminate.
-      A high R₀ signals a super-spreader: once infected,
-      this entity disproportionately amplifies market stress.<br><br>
-      
-      Following these criteria, the <span class="text-accent">Pandemic Potential Index</span>, or <span class="text-accent">PPI<span> for short, can be defined. This index displays a balance of these three that allows the program to assess which entity is a potential <strong>threat</strong> to the market.
-      
-      </div>
-
 
       <div class="plot-frame plot-frame--first">
           <iframe
