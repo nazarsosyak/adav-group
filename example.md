@@ -331,6 +331,10 @@ during that outbreak.
       Wow a lot of negative returns here ok. Let's examine further.
     </p>
 
+    <p>
+      You know the drill already, feel free to press the <span class="text-accent">red button</span>.
+    </p>
+
     <button class="run-analysis-btn img-button"
          type="button"
          data-run="#covid-output"
