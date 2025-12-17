@@ -60,60 +60,55 @@ and analyze it.
 
 Before analysis, lets be clear on how the algorithm functions:
 
-<div class="analysis-explainer">
-  <p>
-    <span class="text-accent">
+To grasp the algorithm's logic, three key dimensions must be introduced first.
+These dimensions are jointly used to evaluate the state and systemic relevance
+of each market entity.
 
-    To grasp the algorithm's logic, three key dimensions must be introduced first.
-    These dimensions are jointly used to evaluate the state and systemic relevance
-    of each market entity.<br><br>
+**1. Network centrality**
+We measure how embedded each asset is within the market network.
+Centrality reflects how strongly a node is connected to others through
+correlation, mutual information, or causal exposure.
+Highly central entities act as structural hubs: when they move, stress
+can propagate more easily through the system.<br><br>
 
-    <strong>1. Network centrality</strong><br>
-    We measure how embedded each asset is within the market network.
-    Centrality reflects how strongly a node is connected to others through
-    correlation, mutual information, or causal exposure.
-    Highly central entities act as structural hubs: when they move, stress
-    can propagate more easily through the system.<br><br>
+**2. Temporal leadership**
+Timing matters.
+Assets that exhibit abnormal stress **early** in the outbreak window
+carry more explanatory power than late movers.
+Early infection combined with strong connectivity raises suspicion
+regarding a possible triggering role.
 
-    <strong>2. Temporal leadership</strong><br>
-    Timing matters.
-    Assets that exhibit abnormal stress <em>early</em> in the outbreak window
-    carry more explanatory power than late movers.
-    Early infection combined with strong connectivity raises suspicion
-    regarding a possible triggering role.<br><br>
+**3. Reproduction number (R₀)**
+Borrowing from epidemiology, we estimate how many other entities
+an infected node tends to contaminate through its connections.
+A high R₀ signals a super-spreader: once infected,
+this entity disproportionately amplifies market stress.
 
-    <strong>3. Reproduction number (R₀)</strong><br>
-    Borrowing from epidemiology, we estimate how many other entities
-    an infected node tends to contaminate through its connections.
-    A high R₀ signals a super-spreader: once infected,
-    this entity disproportionately amplifies market stress.<br><br>
+Together, these three dimensions define the
+**Pandemic Potential Index** (**PPI**),
+a composite score that captures an entity’s ability to
+**initiate**, **amplify**, or **propagate**
+financial stress within the market.
 
-    Together, these three dimensions define the
-    <strong>Pandemic Potential Index</strong> (<strong>PPI</strong>),
-    a composite score that captures an entity’s ability to
-    <strong>initiate</strong>, <strong>amplify</strong>, or <strong>propagate</strong>
-    financial stress within the market.<br><br>
+**Infection state classification**
+    
+In parallel, each entity is assigned a health state based on its return dynamics
+over the outbreak window.
 
-    <strong>Infection state classification</strong><br>
-    In parallel, each entity is assigned a health state based on its return dynamics
-    over the outbreak window.<br><br>
+An entity is labeled **sick** if its daily return crosses the −5% threshold
+**and** if its cumulative return over the period falls below −20%.
+Entities that maintain strong connections with sick nodes (through correlation
+or causal exposure) are classified as **at risk**.
+Over time, entities may **recover** if stress subsides,
+while those that never meet the infection criteria remain **healthy**.
 
-    An entity is labeled <strong>sick</strong> if its daily return crosses the −5% threshold
-    and if its cumulative return over the period falls below −20%.
-    Entities that maintain strong connections with sick nodes (through correlation
-    or causal exposure) are classified as <strong>at risk</strong>.
-    Over time, entities may <strong>recover</strong> if stress subsides,
-    while those that never meet the infection criteria remain <strong>healthy</strong>.<br><br>
-
-    These definitions remain fixed across all case files,
-    ensuring that differences between outbreaks arise from
-    market structure and dynamics.
-  </p>
-</div>
+These definitions remain fixed across all case files,
+ensuring that differences between outbreaks arise from
+market structure and dynamics.
 
 
 In each case file, we apply the same investigative procedure:
-we examine aggregate market behavior during the outbreak window,
+we examine market behavior during the outbreak window,
 reconstruct the underlying interaction network,
 and identify key roles such as patient zero, super-spreaders, and high-risk entities.
 
