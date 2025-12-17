@@ -226,7 +226,7 @@ during that outbreak.
       
       
       
-      To grasp the algorithm's magic, 3 key dimensions need to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.<br><br>
+      To grasp the algorithm's magic, three key dimensions need to be clarified first. These three dimensions are used by the algorithm to evaluate an entity's state.<br><br>
       
       <strong>1. Network centrality</strong><br>
       We first measure how embedded each asset is within the market network.
@@ -245,8 +245,7 @@ during that outbreak.
       A high R₀ signals a super-spreader: once infected,
       this entity disproportionately amplifies market stress.<br><br>
       
-      No single criterion is sufficient on its own and only assets that are **well connected**, **early infected**, and **highly contagious**
-      emerge as credible candidates for patient zero or super-spreaders.
+      Following these criteria, the <span class="text-accent">Pandemic Potential Index</span>, or <span class="text-accent">PPI<span> for short, can be defined. This index displays a balance of these three that allows the program to assess which entity is a potential <strong>threat</strong> to the market.
       
       </div>
 
