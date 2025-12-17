@@ -226,24 +226,24 @@ during that outbreak.
       
       
       
-      To grasp the algorithm's magic, 3 key dimensions needs to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.
+      To grasp the algorithm's magic, 3 key dimensions needs to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.<br><br>
       
-      <strong>1. Network centrality</strong>
+      <strong>1. Network centrality</strong><br>
       We first measure how embedded each asset is within the market network.
       Centrality reflects how strongly a node is connected to others through
       correlation or mutual information.
-      Highly central entities generally lead the market in their movement.
+      Highly central entities generally lead the market in their movement.<br><br>
       
-      <strong>2. Temporal leadership</strong> 
+      <strong>2. Temporal leadership</strong><br>
       Assets that exhibit abnormal stress *early* in the outbreak window
       are key.
-      Early infection combined with strong connectivity raises suspicion.
+      Early infection combined with strong connectivity raises suspicion.<br><br>
       
-      <strong>3. Reproduction number (R₀)</strong> 
+      <strong>3. Reproduction number (R₀)</strong> <br>
       Borrowing from epidemiology, we estimate how many other entities
       an infected node tends to contaminate.
       A high R₀ signals a super-spreader: once infected,
-      this entity disproportionately amplifies market stress.
+      this entity disproportionately amplifies market stress.<br><br>
       
       No single criterion is sufficient on its own and only assets that are **well connected**, **early infected**, and **highly contagious**
       emerge as credible candidates for patient zero or super-spreaders.
