@@ -222,11 +222,11 @@ during that outbreak.
 
       <div class="analysis-explainer">
       <p>
-      <span class="text-accent">How the outbreak investigation works</span>
+      <span class="text-accent">How the outbreak investigation works</span><br>
       
       
       
-      To grasp the algorithm's magic, 3 key dimensions needs to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.<br><br>
+      To grasp the algorithm's magic, 3 key dimensions need to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.<br><br>
       
       <strong>1. Network centrality</strong><br>
       We first measure how embedded each asset is within the market network.
