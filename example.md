@@ -221,25 +221,25 @@ during that outbreak.
     <div id="subprime-output" class="analysis-output is-locked">
 
       <div class="analysis-explainer">
-
-      ### How the outbreak investigation works
+      <p>
+      <span class="text-accent">How the outbreak investigation works</span>
       
       
       
       To grasp the algorithm's magic, 3 key dimensions needs to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.
       
-      **1. Network centrality**
+      <strong>1. Network centrality</strong>
       We first measure how embedded each asset is within the market network.
       Centrality reflects how strongly a node is connected to others through
       correlation or mutual information.
       Highly central entities generally lead the market in their movement.
       
-      **2. Temporal leadership**  
+      <strong>2. Temporal leadership</strong> 
       Assets that exhibit abnormal stress *early* in the outbreak window
       are key.
       Early infection combined with strong connectivity raises suspicion.
       
-      **3. Reproduction number (R₀)**  
+      <strong>3. Reproduction number (R₀)</strong> 
       Borrowing from epidemiology, we estimate how many other entities
       an infected node tends to contaminate.
       A high R₀ signals a super-spreader: once infected,
