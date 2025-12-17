@@ -10,7 +10,7 @@ Before accusing any individual stock of driving a crisis, we must first
 identify *when* the market itself entered abnormal regimes.
 
 We therefore begin with the only element the market cannot conceal:  
-**the aggregate return timeline**, segmented into statistically homogeneous periods.
+**the timeline**.
 
 <div class="plot-container" style="text-align: center; margin: 2rem 0;">
   <iframe
@@ -22,7 +22,7 @@ We therefore begin with the only element the market cannot conceal:
   <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
     <strong>Figure 1 — Market return segmentation over time.</strong><br>
     Weekly mean market returns with detected regime segments shown as background shading.
-    Each colored region corresponds to a period of statistically similar market behavior.
+    Each colored region corresponds to a period of statistically similar market behavior (dynamic programming constrained to 50 segments).
   </p>
 </div>
 This segmentation reveals several extended periods of abnormal market dynamics,
@@ -31,7 +31,7 @@ Notably, the most severe segments coincide with well-known systemic crises,
 including the dot-com bubble burst, the 2008 financial crisis, and the COVID-19 shock.
 
 These periods serve as our **outbreak windows** in the subsequent analysis.
-Rather than analyzing the full timeline uniformly, we focus on these segments
+We will focus on these segments
 to study how financial contagion emerges, propagates, and eventually dissipates.
 
 ### What we did
@@ -44,16 +44,9 @@ to detect **structural changes in market behavior** without relying on predefine
 
 | Crisis episode            | Start date | End date   | Duration (weeks) | Cumulative market return | Interpretation |
 |---------------------------|------------|------------|------------------|--------------------------|----------------|
-| Dot-com bubble burst      | 2000-09-08 | 2000-10-20 | 6                | **−19.49%**              | Tech-driven systemic correction |
-| Subprime financial crisis | 2008-10-03 | 2008-10-24 | 3                | **−22.02%**              | Global banking and credit collapse |
-| COVID-19 market shock     | 2020-02-21 | 2020-04-10 | 7                | **−22.90%**              | Exogenous shock and synchronized sell-off |
-
-These regimes correspond to well-known systemic crises and validate the segmentation approach.
-Despite differences in duration, all three periods exhibit sharp cumulative losses,
-highlighting moments of extreme market stress.
-
-In the remainder of this project, we focus on these segments as **financial outbreak windows**,
-within which we study contagion dynamics, transmission pathways, and network-level amplification effects.
+| Dot-com bubble burst      | 2000-09-08 | 2000-10-20 | 6                | **−19.49%**              | Huge correction after the internet hype |
+| Subprime financial crisis | 2008-10-03 | 2008-10-24 | 3                | **−22.02%**              | Banking and credit collapse |
+| COVID-19 market shock     | 2020-02-21 | 2020-04-10 | 7                | **−22.90%**              | Global shutdown |
 
 All identified crisis periods exhibit cumulative losses exceeding 19%, confirming their systemic severity
 and justifying their use as outbreak windows in the subsequent contagion analysis.
@@ -63,16 +56,14 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 ## **Part II: Choose a case file**
 
 Once a crisis period has been identified, we isolate it from the full market timeline
-and analyze it as a **contained financial outbreak**.  
-This controlled setting allows us to study contagion dynamics *within a fixed market environment*,
-without interference from other regimes.
+and analyze it. 
 
 In each case file, we apply the same investigative procedure:
 we examine aggregate market behavior during the outbreak window,
 reconstruct the underlying interaction network,
 and identify key roles such as patient zero, super-spreaders, and high-risk entities.
 
-Select one of the following crisis episodes to open its corresponding case file.
+You may now select one of the following crisis episodes to open its corresponding case file.
 Each case file presents a focused and comparable analysis of market behavior
 during that outbreak.
 
@@ -129,6 +120,10 @@ during that outbreak.
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
     </div>
+
+    <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
+      <strong>Figure 2 — Mean daily market returns over the dot-com burst period.</strong><br>
+    </p>
 
     <p>
       The market yields negative daily returns approximately 77% of the time. In order to match the cumulative return of -19.49% over the whole period, negative returns must therefore carry a stronger weight than positive ones. To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic. The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk. An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities. Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
@@ -224,6 +219,37 @@ during that outbreak.
     </div>
 
     <div id="subprime-output" class="analysis-output is-locked">
+
+      <div class="analysis-explainer">
+
+      ### How the outbreak investigation works
+      
+      
+      
+      To grasp the algorithm's magic, 3 key dimensions needs to be clarified first. These 3 dimensions are used by the algorithm to evaluate an entity's state.
+      
+      **1. Network centrality**
+      We first measure how embedded each asset is within the market network.
+      Centrality reflects how strongly a node is connected to others through
+      correlation or mutual information.
+      Highly central entities generally lead the market in their movement.
+      
+      **2. Temporal leadership**  
+      Assets that exhibit abnormal stress *early* in the outbreak window
+      are key.
+      Early infection combined with strong connectivity raises suspicion.
+      
+      **3. Reproduction number (R₀)**  
+      Borrowing from epidemiology, we estimate how many other entities
+      an infected node tends to contaminate.
+      A high R₀ signals a super-spreader: once infected,
+      this entity disproportionately amplifies market stress.
+      
+      No single criterion is sufficient on its own and only assets that are **well connected**, **early infected**, and **highly contagious**
+      emerge as credible candidates for patient zero or super-spreaders.
+      
+      </div>
+
 
       <div class="plot-frame plot-frame--first">
           <iframe
