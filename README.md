@@ -3,18 +3,31 @@
 **Ever wondered which stock took your wallet down the drain?**  
 **Looking for someone to blame for your life savings disappearing?**
 
-We can help with that.
+Markets rarely collapse in a single blow. They deteriorate through **chains of exposure**:
+correlations tighten, sector linkages transmit stress, and hidden dependencies turn local shocks
+into systemic events.
+
+This datastory treats financial markets as a **living network**, where shocks behave like pathogens
+and risk spreads through interaction channels. Our goal is not prediction, but **forensic understanding**:
+reconstruct the outbreak, identify the main transmission routes, and explain how the system fails.
 
 ---
 
 ### **The idea**
 
-Markets don’t collapse all at once.  
+Markets don’t collapse all at once. A crisis leaves traces.  
 They spread.
 
 A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies, infecting stocks that were never directly exposed to the original event.
 
 This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network.
+
+we can investigate questions that resemble outbreak response:
+
+- Where did the stress appear first?
+- Which entities amplified it?
+- Through which paths did it spread?
+- When did the market stop containing it?
 
 ---
 
@@ -39,10 +52,12 @@ This investigation is guided the following research questions:
 
 ### **Our objective**
 
-> **Find the patient zero.  
-> Identify the spreading patterns.  
-> Reconstruct the outbreak.  
-> Then politely ask the culprit to explain themselves in court.**
+We treat each crisis episode as a **case file** and aim to:
+
+- identify the most probable **patient zero**,
+- detect **super-spreaders** and amplification hubs,
+- reconstruct the **propagation timeline** and dominant transmission paths,
+- assess whether the outbreak remains **localized** or becomes **system-wide**.
 
 ---
 
@@ -60,28 +75,45 @@ The goal is not prediction, but **forensic understanding**.
 
 ---
 
-### **The investigation workflow**
+### **How the investigation works**
 
-This investigation is staged like a real outbreak response:
+We analyze a stock-level dataset and reconstruct financial outbreaks step by step.
+Each case file combines:
+- an outbreak window extracted from the market timeline,
+- interactive visualizations of network structure and evolution,
+- role identification (patient zero, super-spreaders, at-risk entities),
+- and sector-level mapping to interpret systemic risk.
 
-1. **Market segmentation**  
-   We first scan the full timeline to detect **critical periods** where an outbreak is suspected.
-
-2. **Zoom-in on a selected outbreak window**  
-   Once a period is flagged, we isolate it and treat it as a **contained outbreak**.
-
-3. **Network analysis**  
-   Inside the outbreak window, we build a network of interactions to identify:
-   - probable patient zero 
-   - super-spreaders 
-   - propagation paths
-
-4. **Sector analysis**  
-   Finally, we map the outbreak onto sectors to detect:
-   - critical sectors that amplify contagion  
-   - sector-to-sector transmission patterns  
-   - whether the outbreak is localized or system-wide
+The companion notebook contains the full implementation and computations;
+this website focuses on **visual storytelling and interpretability**.
 
 ---
 
-**Welcome to the investigation.**
+### **Investigation workflow**
+
+Our workflow mirrors a real outbreak response:
+
+1. **Market segmentation**  
+   We scan the full return timeline to detect **critical regimes** where abnormal market behavior emerges.
+
+2. **Case isolation**  
+   Once a regime is flagged, we isolate it and analyze it as a **contained financial outbreak**.
+
+3. **Network reconstruction**  
+   Inside the outbreak window, we build dynamic interaction networks to identify:
+   - the probable **patient zero**,
+   - **super-spreaders**,
+   - and dominant **propagation paths**.
+
+4. **Sector mapping**  
+   Finally, we project contagion onto sectors to detect:
+   - **critical sectors** that amplify contagion,
+   - **sector-to-sector transmission** patterns,
+   - and whether the episode becomes **system-wide**.
+
+---
+
+**Welcome to the investigation.**  
+Start with **The Story** to follow the analysis from the first signal to the full outbreak reconstruction.
+<a class="btn-primary" href="{{ '/story/' | relative_url }}">Start the data story →</a>
+
