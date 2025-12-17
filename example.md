@@ -62,7 +62,7 @@ Before analysis, lets be clear on how the algorithm functions:
 
 <div class="analysis-explainer">
   <p>
-    <span class="text-accent">How the outbreak investigation works</span><br><br>
+    <span class="text-accent">
 
     To grasp the algorithm's logic, three key dimensions must be introduced first.
     These dimensions are jointly used to evaluate the state and systemic relevance
@@ -89,7 +89,7 @@ Before analysis, lets be clear on how the algorithm functions:
     this entity disproportionately amplifies market stress.<br><br>
 
     Together, these three dimensions define the
-    <span class="text-accent">Pandemic Potential Index</span> (<span class="text-accent">PPI</span>),
+    <strong>Pandemic Potential Index</strong> (<strong>PPI</strong>),
     a composite score that captures an entity’s ability to
     <strong>initiate</strong>, <strong>amplify</strong>, or <strong>propagate</strong>
     financial stress within the market.<br><br>
@@ -100,14 +100,14 @@ Before analysis, lets be clear on how the algorithm functions:
 
     An entity is labeled <strong>sick</strong> if its daily return crosses the −5% threshold
     and if its cumulative return over the period falls below −20%.
-    Entities that maintain strong connections with sick nodes—through correlation
-    or causal exposure—are classified as <strong>at risk</strong>.
+    Entities that maintain strong connections with sick nodes (through correlation
+    or causal exposure) are classified as <strong>at risk</strong>.
     Over time, entities may <strong>recover</strong> if stress subsides,
     while those that never meet the infection criteria remain <strong>healthy</strong>.<br><br>
 
     These definitions remain fixed across all case files,
     ensuring that differences between outbreaks arise from
-    market structure and dynamics rather than changes in classification rules.
+    market structure and dynamics.
   </p>
 </div>
 
@@ -180,7 +180,11 @@ during that outbreak.
     </p>
 
     <p>
-      The market yields negative daily returns approximately 77% of the time. In order to match the cumulative return of -19.49% over the whole period, negative returns must therefore carry a stronger weight than positive ones. To understand what is happening behind the scenes, we put our immunological framework to the test. The objective is to identify the patient zero, or the first entity that contracted the “virus” and ignited the epidemic. The algorithm is also designed to detect super-spreaders, meaning entities that, once contaminated, exhibit an abnormally high transmission rate, as well as entities that are sick or at risk. An entity is labeled sick if its daily return crosses the −5% threshold and if its cumulative return over the entire period falls below −20%. Entities at risk are those that maintain strong connections, either through correlation or causal exposure, with sick entities. Over time, entities may recover and are then labeled recovered, while those unaffected throughout the episode remain healthy.
+      During this period, the market records negative daily returns on nearly 77% of trading days.
+      Frequency alone, however, cannot explain a cumulative loss of −19.49%.<br><br>
+      
+      To grasp what's happening here we shall analyze the internal structure of the market and track
+      how stress appears, spreads, and concentrates at the entity level.
     </p>
 
     <p>
@@ -253,8 +257,12 @@ during that outbreak.
     </div>
 
     <p>
-      Credit stress does not stay local.  
-      This regime is short but brutal, propagating through financial exposure.
+      Losses accumulate quickly over only a few days.<br><br>
+      This usually suggests rapid transmission. Whatever let's let the algorithm do its job.<br>
+    </p>
+
+    <p>
+      Just press <span class="text-accent">red button</span> below I guess, lets see what happens.
     </p>
 
     <button class="run-analysis-btn img-button"
@@ -320,7 +328,7 @@ during that outbreak.
     </div>
 
     <p>
-      A fast global transmission with extreme co-movement.
+      Wow a lot of negative returns here ok. Let's examine further.
     </p>
 
     <button class="run-analysis-btn img-button"
