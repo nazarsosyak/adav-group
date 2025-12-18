@@ -233,6 +233,20 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <p><span class="text-accent"><strong><h3>Part III: Sectoral Analysis</h3></large></strong></span></p>
+
+      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
+      We will reuse the algorithm, but this time, over the different sectors of the market.
+      </p>
+
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/internet/sector/ppi_3d_analysis.html' | relative_url }}"
+          loading="lazy"
+          title="Sector-to-sector 3D">
+        </iframe>
+      </div>
+
     </div>
   </section>
 
@@ -308,7 +322,11 @@ during that outbreak.
       we assess whether the outbreak remains confined to a subset of sectors
       or evolves into a system-wide event.
       </p>
-      <p><span class="text-accent"><strong><large>Part III: Sectoral exposure during the outbreak</large></strong></span></p>
+      <p><span class="text-accent"><strong><h3>Part III: Sectoral Analysis</h3></large></strong></span></p>
+
+      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
+      We will reuse the algorithm, but this time, over the different sectors of the market.
+      </p>
 
       <div class="plot-frame plot-frame--first">
         <iframe
@@ -335,45 +353,6 @@ during that outbreak.
         The figure shows the aggregated level of infection across sectors,
         highlighting which sectors experience the most severe stress.
       </p>
-      
-      <p><span class="text-accent"><strong>Inter-sector transmission network</strong></span></p>
-      
-      <div class="plot-frame">
-        <iframe
-          src="{{ '/assets/plots/sector_network.html' | relative_url }}"
-          loading="lazy"
-          title="Sector-to-sector transmission network">
-        </iframe>
-      </div>
-      
-      <p class="figure-caption">
-        <strong>Figure X — Sector-to-sector transmission network.</strong><br>
-        Nodes represent economic sectors and edges capture aggregated transmission
-        of financial stress between them, revealing dominant propagation channels.
-      </p>
-      
-      <p><span class="text-accent"><strong>Extent of systemic involvement</strong></span></p>
-      
-      <div class="plot-frame">
-        <iframe
-          src="{{ '/assets/plots/sector_infection_over_time.html' | relative_url }}"
-          loading="lazy"
-          title="Sector infection over time">
-        </iframe>
-      </div>
-      
-      <p class="figure-caption">
-        <strong>Figure X — Sector-level propagation over time.</strong><br>
-        The fraction of infected sectors over time illustrates whether the outbreak
-        remains localized or escalates into a system-wide event.
-      </p>
-      
-      <p class="figure-caption">
-        <strong>Figure X — Systemic versus localized sectoral impact.</strong><br>
-        A high level of sectoral involvement indicates a system-wide outbreak,
-        whereas limited participation suggests sector-specific containment.
-      </p>
-      <p>
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies.
       Outbreaks that rapidly spread across multiple highly connected sectors
