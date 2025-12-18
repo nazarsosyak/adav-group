@@ -158,7 +158,7 @@ during that outbreak.
   <!-- ===================================================== -->
 
   <section id="panel-dotcom" class="case-panel is-visible">
-    <h3>Case File: Dot-com Bubble</h3>
+    <h1><strong>Case File: Dot-com Bubble</strong></h1>
 
     <div class="panel-intro">
       <img src="{{ '/assets/images/internetintro.png' | relative_url }}" alt="Dot-com Bubble intro">
@@ -254,7 +254,7 @@ during that outbreak.
   <!-- ===================================================== -->
 
   <section id="panel-subprime" class="case-panel">
-    <h3>Case File: Subprime Crisis</h3>
+    <h1><strong>Case File: Subprime Crisis</strong></h1>
 
     <div class="panel-intro">
       <img src="{{ '/assets/images/subprimeintro.png' | relative_url }}" alt="Subprime Crisis intro">
@@ -368,7 +368,7 @@ during that outbreak.
   <!-- ===================================================== -->
 
   <section id="panel-covid" class="case-panel">
-    <h3>Case File: COVID-19</h3>
+    <h1><strong>Case File: COVID-19</strong></h1>
 
     <div class="panel-intro">
       <img src="{{ '/assets/images/covidintro.png' | relative_url }}" alt="COVID-19 intro">
