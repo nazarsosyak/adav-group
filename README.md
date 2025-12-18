@@ -7,10 +7,6 @@ Markets rarely collapse in a single blow. They deteriorate through **chains of e
 correlations tighten, sector linkages transmit stress, and hidden dependencies turn local shocks
 into systemic events.
 
-This datastory treats financial markets as a **living network**, where shocks behave like pathogens
-and risk spreads through interaction channels. Our goal is not prediction, but **forensic understanding**:
-reconstruct the outbreak, identify the main transmission routes, and explain how the system fails.
-
 ---
 
 ### **The idea**
@@ -21,13 +17,6 @@ They spread.
 A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies, infecting stocks that were never directly exposed to the original event.
 
 This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network.
-
-we can investigate questions that resemble outbreak response:
-
-- Where did the stress appear first?
-- Which entities amplified it?
-- Through which paths did it spread?
-- When did the market stop containing it?
 
 ---
 
@@ -56,35 +45,9 @@ We treat each crisis episode as a **case file** and aim to:
 - identify the most probable **patient zero**,
 - detect **super-spreaders** and amplification hubs,
 - reconstruct the **propagation timeline** and dominant transmission paths,
+<!---
 - assess whether the outbreak remains **localized** or becomes **system-wide**.
-
----
-
-### **How it works**
-
-Using a large stock-level dataset, we reconstruct financial outbreaks step by step.  
-Each post in this blog is a **case file**, documenting:
-
-- early warning signals  
-- transmission paths across stocks and sectors  
-- super-spreader behavior  
-- moments where the market’s immune system failed  
-
-The goal is not prediction, but **forensic understanding**.
-
----
-
-### **How the investigation works**
-
-We analyze a stock-level dataset and reconstruct financial outbreaks step by step.
-Each case file combines:
-- an outbreak window extracted from the market timeline,
-- interactive visualizations of network structure and evolution,
-- role identification (patient zero, super-spreaders, at-risk entities),
-- and sector-level mapping to interpret systemic risk.
-
-The companion notebook contains the full implementation and computations;
-this website focuses on **visual storytelling and interpretability**.
+-->
 
 ---
 
