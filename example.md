@@ -437,38 +437,65 @@ during that outbreak.
 </div>
 
 ---
-
 ## **Part IV: Crisis Signatures**
 
-The case files analyzed each outbreak in isolation.
-We now step back and compare crises **at the structural level**.
+Up to this point, each crisis has been examined in isolation through its
+own case file. We now take a step back and ask a broader question:
 
-Rather than tracking individual assets, we compress each crisis into a
-**latent signature** using Principal Component Analysis (PCA).
+> **Do different crises stress the market through the same underlying mechanisms, or through fundamentally different ones?**
 
-Each crisis is represented by:
-- the **dominant PCA mode** (PC1),
-- its **explained variance** (how synchronized the market becomes),
-- and its **mechanism** (which features drive that mode).
+To answer this, we compress each crisis into a **latent market signature**
+using **Principal Component Analysis (PCA)** applied to the immune phenotype
+features introduced earlier.
+
+Rather than focusing on individual assets, PCA extracts the **dominant
+collective mode** that explains how the market behaves *as a system* during
+each outbreak.
+
+Each crisis is therefore summarized by:
+- its **dominant PCA mode (PC1)**, capturing the main direction of market stress,
+- the **fraction of variance explained** by that mode, measuring how synchronized
+  the market becomes,
+- and the **feature loadings** defining the underlying crisis mechanism.
 
 <div id="signature-controls" class="signature-controls">
   <label for="pc-select"><strong>Select component:</strong></label>
   <select id="pc-select">
-    <option value="PC1" selected>PC1 - dominant mode</option>
-    <option value="PC2">PC2 - secondary mode</option>
+    <option value="PC1" selected>PC1 - dominant market stress mode</option>
+    <option value="PC2">PC2 - secondary market mode</option>
   </select>
 </div>
 
 <div id="signature-plot" class="signature-plot"></div>
 
 <p class="signature-caption">
-  <strong>Figure X — Crisis signature comparison.</strong><br>
-  Each node represents a crisis. Node size reflects the explained variance
-  of the selected PCA component, while distances reflect similarity between
-  crisis mechanisms. Hovering a node reveals the feature contributions
-  defining that crisis.
+  <strong>Figure X: Crisis signature comparison.</strong><br>
+  Each node represents a crisis period. The vertical position and size of a node
+  reflect the fraction of variance explained by the selected PCA component:
+  larger and higher nodes indicate more synchronized, low-dimensional market
+  behavior. Hovering over a node reveals the standardized feature loadings that
+  define the corresponding crisis mechanism. Positive loadings indicate features
+  that intensify the crisis mode, while negative loadings indicate stabilizing or
+  opposing effects.
 </p>
 
+### How to read this figure
+
+This comparison highlights **structural differences between crises**.
+
+A crisis dominated by a single, high-variance component reflects a market that
+collapses onto a **common stress mode**, where many assets behave similarly.
+In contrast, a lower explained variance indicates a more **heterogeneous
+response**, with multiple competing mechanisms at play.
+
+Differences in feature loadings reveal **which dimensions of market health**
+drive each crisis. For example, a dominant mode may be associated with a rapid
+increase in sick assets and prolonged recovery times, while another may be driven
+by milder but more widespread losses.
+
+Taken together, these signatures show that major market crises are not simply
+stronger or weaker versions of one another, but can differ **qualitatively**
+in how stress propagates through the financial system.
 
 
 <script>
