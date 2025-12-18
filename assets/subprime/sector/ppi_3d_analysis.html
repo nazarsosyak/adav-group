@@ -12,6 +12,24 @@
   }
 </style>
 </head>
+<script>
+  window.addEventListener("load", () => {
+    const gd = document.getElementById("PLOT_ID");
+    if (!gd) return;
+
+    // In case layout had fixed size, kill it after creation:
+    if (gd.layout){
+      gd.layout.autosize = true;
+      delete gd.layout.width;
+      delete gd.layout.height;
+    }
+
+    // Resize now that CSS sizing is applied
+    Plotly?.Plots?.resize(gd);
+    setTimeout(() => Plotly?.Plots?.resize(gd), 250);
+    setTimeout(() => Plotly?.Plots?.resize(gd), 800);
+  });
+</script>
 <body style="margin:0; padding:0; overflow:hidden;">
     <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
         <script type="text/javascript">/**
