@@ -45,16 +45,37 @@ window.addEventListener("load", () => {
   const gd = document.querySelector(".plotly-graph-div");
   if (!gd || !window.Plotly) return;
 
-  Plotly.relayout(gd, {
-    margin: { l: 0, r: 160, t: 40, b: 0 }
-  });
+  function forceColorbar() {
+    // 1) Make room on the right
+    Plotly.relayout(gd, { margin: { l: 0, r: 200, t: 60, b: 40 } });
 
-  Plotly.restyle(gd, {
-    "marker.colorbar.x": 0.95,
-    "marker.colorbar.xanchor": "left"
-  });
+    // 2) Force colorbar on any trace that has marker.color
+    const n = (gd.data || []).length;
+    for (let i = 0; i < n; i++) {
+      const tr = gd.data[i];
+      const hasMarkerColors = tr && tr.marker && tr.marker.color != null;
 
-  Plotly.Plots.resize(gd);
+      if (!hasMarkerColors) continue;
+
+      Plotly.restyle(gd, {
+        "marker.showscale": true,
+        "marker.colorbar": {
+          title: { text: "PPI", side: "right" },
+          x: 1.0,
+          xanchor: "left",
+          len: 0.75,
+          thickness: 18
+        }
+      }, [i]);
+    }
+
+    Plotly.Plots.resize(gd);
+  }
+
+  forceColorbar();
+  setTimeout(forceColorbar, 200);
+  setTimeout(forceColorbar, 800);
+  window.addEventListener("resize", forceColorbar);
 });
 </script>
 
