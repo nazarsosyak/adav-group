@@ -202,6 +202,7 @@ during that outbreak.
 
 
     <div id="dotcom-output" class="analysis-output is-locked">
+      <hr class="analysis-separator">
       <div class="plot-frame plot-frame--first">
           <iframe
             src="{{ '/assets/plots/ppi_3d_internet.html' | relative_url }}"
@@ -289,7 +290,7 @@ during that outbreak.
     </div>
 
     <div id="subprime-output" class="analysis-output is-locked">
-
+      <hr class="analysis-separator">
       <div class="plot-frame plot-frame--first">
           <iframe
             src="{{ '/assets/plots/ppi_2008.html' | relative_url }}"
@@ -403,7 +404,7 @@ during that outbreak.
     </div>
 
     <div id="covid-output" class="analysis-output is-locked">
-    
+      <hr class="analysis-separator">
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/ppi_3d_covid.html' | relative_url }}"
