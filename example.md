@@ -215,7 +215,7 @@ during that outbreak.
       </p>
 
       <p>
-        <span class="text-accent">Ross Stores is an american company specializing in hard-discount hypermarkets.</span>
+        <strong><span class="text-accent">Ross Stores is an american company specializing in hard-discount hypermarkets.</span></strong>
       </p>
 
       <div class="img-slider"
@@ -303,6 +303,77 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <p>
+      By tracking how many sectors become infected and how strongly they interact,
+      we assess whether the outbreak remains confined to a subset of sectors
+      or evolves into a system-wide event.
+      </p>
+      <p><span class="text-accent"><strong>Sectoral exposure during the outbreak</strong></span></p>
+
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime/sector' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
+      
+      <div class="img-slider"
+           data-folder="{{ '/assets/subprime/sector' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
+      
+      <p class="figure-caption">
+        <strong>Figure X — Sectoral infection intensity during the outbreak.</strong><br>
+        The figure shows the aggregated level of infection across sectors,
+        highlighting which sectors experience the most severe stress.
+      </p>
+      
+      <p><span class="text-accent"><strong>Inter-sector transmission network</strong></span></p>
+      
+      <div class="plot-frame">
+        <iframe
+          src="{{ '/assets/plots/sector_network.html' | relative_url }}"
+          loading="lazy"
+          title="Sector-to-sector transmission network">
+        </iframe>
+      </div>
+      
+      <p class="figure-caption">
+        <strong>Figure X — Sector-to-sector transmission network.</strong><br>
+        Nodes represent economic sectors and edges capture aggregated transmission
+        of financial stress between them, revealing dominant propagation channels.
+      </p>
+      
+      <p><span class="text-accent"><strong>Extent of systemic involvement</strong></span></p>
+      
+      <div class="plot-frame">
+        <iframe
+          src="{{ '/assets/plots/sector_infection_over_time.html' | relative_url }}"
+          loading="lazy"
+          title="Sector infection over time">
+        </iframe>
+      </div>
+      
+      <p class="figure-caption">
+        <strong>Figure X — Sector-level propagation over time.</strong><br>
+        The fraction of infected sectors over time illustrates whether the outbreak
+        remains localized or escalates into a system-wide event.
+      </p>
+      
+      <p class="figure-caption">
+        <strong>Figure X — Systemic versus localized sectoral impact.</strong><br>
+        A high level of sectoral involvement indicates a system-wide outbreak,
+        whereas limited participation suggests sector-specific containment.
+      </p>
+      <p>
+      This sector-level perspective reveals that systemic risk is not solely driven
+      by individual assets, but by the structure of inter-sector dependencies.
+      Outbreaks that rapidly spread across multiple highly connected sectors
+      are more likely to evolve into market-wide crises,
+      whereas sectorally contained shocks tend to dissipate more quickly.
+      </p>
+      
+
     </div>
   </section>
 
@@ -570,218 +641,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-
-## **Part III: Network analysis**
-
-Once an outbreak window has been isolated, we reconstruct the market as a
-**network of interacting entities** in order to understand how stress propagates
-across assets.
-
-Within this network framework, we aim to identify:
-- the **probable patient zero**, i.e. the entity that first exhibits abnormal stress,
-- **super-spreaders**, which amplify contagion through strong connectivity,
-- and the main **propagation paths** through which market stress spreads.
-
-### Methodology — Reconstructing the outbreak
-
-Within each outbreak window, we reinterpret the market as a living system.
-Individual stocks are treated as entities, and their interactions form a
-dynamic network through which financial stress can propagate.
-
-Our investigation follows three successive steps.
-
-1. **Reconstructing the interaction network**  
-   We first map the web of interactions between assets by measuring
-   statistical dependencies in their returns. Pairwise correlations and
-   causal exposure measures define weighted connections between entities.
-   As market conditions evolve, these connections are updated over time,
-   allowing the network structure to change throughout the outbreak.
-
-2. **Labeling infection states**  
-   Each entity is then assigned a health status based on its return dynamics.
-   An entity becomes *infected* when its daily return crosses a −5% threshold
-   and is classified as *sick* if its cumulative return over the outbreak
-   falls below −20%. Entities that maintain strong connections to sick nodes
-   are labeled *at risk*. Over time, entities may recover, while others remain
-   unaffected.
-
-3. **Identifying key transmission roles**  
-   Finally, we combine temporal information with network centrality to
-   identify the most probable patient zero, detect super-spreaders that
-   amplify contagion, and trace the dominant paths through which stress
-   propagates across the market.
-
-### Network structure at the onset of the outbreak
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/network_snapshot_early.html' | relative_url }}"
-    loading="lazy"
-    title="Network snapshot at outbreak onset">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Network structure at the onset of the outbreak.</strong><br>
-  Nodes represent individual assets and edges capture statistical dependencies
-  between their returns. Early-stage infections remain localized, allowing
-  identification of the initial source of contagion.
-</p>
-
-### Identification of the probable patient zero
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/patient_zero_identification.html' | relative_url }}"
-    loading="lazy"
-    title="Patient zero identification">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Identification of the probable patient zero.</strong><br>
-  The patient zero is defined as the entity that first exhibits abnormal stress
-  while maintaining strong connections to assets that become infected shortly
-  thereafter.
-</p>
-
-### Super-spreaders within the outbreak network
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/super_spreaders.html' | relative_url }}"
-    loading="lazy"
-    title="Super-spreader ranking">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Super-spreaders within the outbreak network.</strong><br>
-  Super-spreaders are entities that, once infected, transmit stress to a
-  disproportionately large fraction of the network, acting as amplification hubs.
-</p>
-
-### Temporal propagation of financial contagion
-
-<div class="img-slider"
-     data-folder="{{ '/assets/case_name' | relative_url }}"
-     data-prefix="network_"
-     data-pad="4">
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Temporal propagation of financial contagion.</strong><br>
-  The network evolution illustrates how initially localized stress progressively
-  spreads through the system, eventually leading to a systemic outbreak driven
-  by network interactions.
-</p>
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/infected_fraction_over_time.html' | relative_url }}"
-    loading="lazy"
-    title="Fraction of infected assets over time">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Temporal propagation of financial contagion.</strong><br>
-  The fraction of infected assets over time highlights the transition from
-  localized stress to widespread systemic involvement.
-</p>
-
-## **Part IV: Sector analysis**
-
-While contagion initially propagates through individual assets,
-its systemic impact ultimately depends on how stress spreads
-across economic sectors.
-
-In this final step, we aggregate the outbreak dynamics at the sector level
-to identify which sectors act as amplification hubs, how stress is transmitted
-between sectors, and whether the outbreak remains localized or becomes
-system-wide.
-
-### Methodology — Sector-level aggregation
-
-To move from individual entities to a macro-level perspective,
-we project the asset-level outbreak network onto economic sectors.
-
-The analysis proceeds as follows.
-
-1. **Sector aggregation**  
-   Each asset is mapped to its corresponding economic sector.
-   Infection states and transmission measures are aggregated to obtain
-   sector-level indicators of stress intensity and exposure.
-
-2. **Inter-sector transmission**  
-   We construct a sector interaction network where nodes represent sectors
-   and edges capture aggregated transmission strength between sectors.
-   This allows us to identify dominant channels through which stress
-   propagates across the economy.
-
-3. **Systemic versus localized assessment**  
-   By tracking how many sectors become infected and how strongly they interact,
-   we assess whether the outbreak remains confined to a subset of sectors
-   or evolves into a system-wide event.
-
-### Sectoral exposure during the outbreak
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/sector_infection_intensity.html' | relative_url }}"
-    loading="lazy"
-    title="Sectoral infection intensity">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Sectoral infection intensity during the outbreak.</strong><br>
-  The figure shows the aggregated level of infection across sectors,
-  highlighting which sectors experience the most severe stress.
-</p>
-
-### Inter-sector transmission network
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/sector_network.html' | relative_url }}"
-    loading="lazy"
-    title="Sector-to-sector transmission network">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Sector-to-sector transmission network.</strong><br>
-  Nodes represent economic sectors and edges capture aggregated transmission
-  of financial stress between them, revealing dominant propagation channels.
-</p>
-
-### Extent of systemic involvement
-
-<div class="plot-frame">
-  <iframe
-    src="{{ '/assets/plots/sector_infection_over_time.html' | relative_url }}"
-    loading="lazy"
-    title="Sector infection over time">
-  </iframe>
-</div>
-
-<p class="figure-caption">
-  <strong>Figure X — Sector-level propagation over time.</strong><br>
-  The fraction of infected sectors over time illustrates whether the outbreak
-  remains localized or escalates into a system-wide event.
-</p>
-
-<p class="figure-caption">
-  <strong>Figure X — Systemic versus localized sectoral impact.</strong><br>
-  A high level of sectoral involvement indicates a system-wide outbreak,
-  whereas limited participation suggests sector-specific containment.
-</p>
-
-This sector-level perspective reveals that systemic risk is not solely driven
-by individual assets, but by the structure of inter-sector dependencies.
-Outbreaks that rapidly spread across multiple highly connected sectors
-are more likely to evolve into market-wide crises,
-whereas sectorally contained shocks tend to dissipate more quickly.
-
 
