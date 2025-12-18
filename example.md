@@ -95,8 +95,7 @@ financial stress within the market.
 In parallel, each entity is assigned a health state based on its return dynamics
 over the outbreak window.
 
-An entity is labeled **sick** if its daily return crosses the −5% threshold
-**and** if its cumulative return over the period falls below −20%.
+An entity is labeled **sick** if its daily return crosses the **−5% over a day** threshold.
 Entities that maintain strong connections with sick nodes (through correlation
 or causal exposure) are classified as **at risk**.
 Over time, entities may **recover** if stress subsides,
