@@ -233,7 +233,7 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-      <p><span class="text-accent"><strong><h3>Part III: Sectoral Analysis</h3></large></strong></span></p>
+      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></large></strong></span></p>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
@@ -322,7 +322,7 @@ during that outbreak.
       we assess whether the outbreak remains confined to a subset of sectors
       or evolves into a system-wide event.
       </p>
-      <p><span class="text-accent"><strong><h3>Part III: Sectoral Analysis</h3></large></strong></span></p>
+      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
