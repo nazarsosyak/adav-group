@@ -310,7 +310,7 @@ during that outbreak.
       </p>
       <p><span class="text-accent"><strong>Sectoral exposure during the outbreak</strong></span></p>
 
-      <div class="plot-frame">
+      <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/subprime/sector/ppi_3d_analysis.html' | relative_url }}"
           loading="lazy"
