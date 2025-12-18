@@ -41,24 +41,33 @@
   });
 </script>
 <script>
-  window.addEventListener("load", () => {
-    const gd = document.querySelector(".plotly-graph-div");
-    if (!gd || !window.Plotly) return;
+window.addEventListener("load", () => {
+  const gd = document.querySelector(".plotly-graph-div");
+  if (!gd || !window.Plotly) return;
 
-    function fix() {
-      // leave room for the colorbar on the right
-      Plotly.relayout(gd, {
-        margin: { l: 0, r: 120, t: 40, b: 0 },
-        scene: { domain: { x: [0, 1], y: [0, 1] }, aspectmode: "auto" }
-      });
+  function fixColorbar() {
+    // give space on the right so the colorbar can live inside the canvas
+    Plotly.relayout(gd, { margin: { l: 0, r: 140, t: 40, b: 0 } });
 
-      Plotly.Plots.resize(gd);
+    // pull any trace colorbars slightly inward (works for marker.colorbar)
+    const n = (gd.data || []).length;
+    for (let i = 0; i < n; i++) {
+      const hasMarkerCB = gd.data[i]?.marker?.colorbar;
+      if (hasMarkerCB) {
+        Plotly.restyle(gd, {
+          "marker.colorbar.x": 0.98,
+          "marker.colorbar.xanchor": "left"
+        }, [i]);
+      }
     }
 
-    fix();
-    window.addEventListener("resize", fix);
-    setTimeout(fix, 250);
-    setTimeout(fix, 800);
-  });
+    Plotly.Plots.resize(gd);
+  }
+
+  fixColorbar();
+  setTimeout(fixColorbar, 250);
+  setTimeout(fixColorbar, 800);
+  window.addEventListener("resize", fixColorbar);
+});
 </script>
 
