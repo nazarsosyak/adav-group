@@ -182,7 +182,7 @@ during that outbreak.
     </p>
 
     <p>
-      You can press the <span class="text-accent">red button</span> below to initiate the analysis.
+      You can press the <span class="text-accent"><strong>RED BUTTON</strong></span> below to initiate the analysis.
     </p>
 
     <button class="run-analysis-btn img-button"
@@ -271,7 +271,7 @@ during that outbreak.
     </p>
 
     <p>
-      Just press <span class="text-accent">red button</span> below I guess, lets see what happens.
+      Press <span class="text-accent"><strong>RED BUTTON</strong></span> below, let's see what happens.
     </p>
 
     <button class="run-analysis-btn img-button"
@@ -385,7 +385,7 @@ during that outbreak.
     </p>
 
     <p>
-      You know the drill already, feel free to press the <span class="text-accent">red button</span>.
+      You can press the <span class="text-accent"><strong>RED BUTTON</strong></span> below to proceed with the analysis.
     </p>
 
     <button class="run-analysis-btn img-button"
