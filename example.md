@@ -434,6 +434,40 @@ during that outbreak.
     </div>
   </section>
 
+---
+
+## **Part IV: Crisis Signatures**
+
+The case files analyzed each outbreak in isolation.
+We now step back and compare crises **at the structural level**.
+
+Rather than tracking individual assets, we compress each crisis into a
+**latent signature** using Principal Component Analysis (PCA).
+
+Each crisis is represented by:
+- the **dominant PCA mode** (PC1),
+- its **explained variance** (how synchronized the market becomes),
+- and its **mechanism** (which features drive that mode).
+
+<div id="signature-controls" class="signature-controls">
+  <label for="pc-select"><strong>Select component:</strong></label>
+  <select id="pc-select">
+    <option value="PC1" selected>PC1 - dominant mode</option>
+    <option value="PC2">PC2 - secondary mode</option>
+  </select>
+</div>
+
+<div id="signature-plot" class="signature-plot"></div>
+
+<p class="signature-caption">
+  <strong>Figure X — Crisis signature comparison.</strong><br>
+  Each node represents a crisis. Node size reflects the explained variance
+  of the selected PCA component, while distances reflect similarity between
+  crisis mechanisms. Hovering a node reveals the feature contributions
+  defining that crisis.
+</p>
+
+
 </div>
 
 <script>
@@ -628,4 +662,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
+<script>
+(async function buildCrisisSignature() {
+
+  const FILES = {
+    "Dot-com (2000)": "{{ '/assets/data/pca_signature_dot-com_2000.csv' | relative_url }}",
+    "Subprime (2008)": "{{ '/assets/data/pca_signature_subprime_2008.csv' | relative_url }}",
+    "COVID (2020)": "{{ '/assets/data/pca_signature_covid_2020.csv' | relative_url }}"
+  };
+
+  const FEATURES = [
+    "sick_frac",
+    "mean_recovery_days",
+    "health_frac",
+    "mean_sick_return"
+  ];
+
+  async function loadCSV(url) {
+    const text = await fetch(url).then(r => r.text());
+    const rows = text.trim().split("\n").map(r => r.split(","));
+    const header = rows.shift();
+    return rows.map(r =>
+      Object.fromEntries(r.map((v, i) => [header[i], v]))
+    );
+  }
+
+  function extractSignature(rows, pc) {
+    const ev = parseFloat(rows[0][`explained_var_${pc}`]);
+    const loadings = FEATURES.map(f => ({
+      feature: f,
+      value: parseFloat(rows[0][`loading_${pc}_${f}`])
+    }));
+    return { ev, loadings };
+  }
+
+  function render(pc) {
+    Promise.all(
+      Object.entries(FILES).map(async ([name, url]) => {
+        const rows = await loadCSV(url);
+        const sig = extractSignature(rows, pc);
+        return { name, ...sig };
+      })
+    ).then(crises => {
+
+      const trace = {
+        type: "scatter",
+        mode: "markers+text",
+        x: crises.map((_, i) => i),
+        y: crises.map(c => c.ev),
+        text: crises.map(c => c.name),
+        textposition: "top center",
+        marker: {
+          size: crises.map(c => 40 + 200 * c.ev),
+          color: "#2E357A",
+          opacity: 0.85
+        },
+        hovertemplate: crises.map(c =>
+          `<b>${c.name}</b><br>` +
+          `Explained variance: ${(100*c.ev).toFixed(1)}%<br>` +
+          c.loadings.map(l =>
+            `${l.feature}: ${(+l.value).toFixed(2)}`
+          ).join("<br>")
+        )
+      };
+
+      Plotly.newPlot("signature-plot", [trace], {
+        title: `Crisis signatures — ${pc}`,
+        template: "plotly_white",
+        xaxis: { visible: false },
+        yaxis: {
+          title: "Explained variance",
+          tickformat: ".0%"
+        },
+        margin: { l: 60, r: 30, t: 70, b: 40 }
+      });
+    });
+  }
+
+  document.getElementById("pc-select").addEventListener("change", e => {
+    render(e.target.value);
+  });
+
+  render("PC1");
+
+})();
+</script>
+
 
