@@ -568,4 +568,17 @@ body {
   overflow: hidden;          /* kill inner scrollbars */
 }
 
+.analysis-separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--content-accent, #c62828),
+    transparent
+  );
+  margin: 2.5rem 0 2rem;
+  opacity: 0.8;
+}
+
 
