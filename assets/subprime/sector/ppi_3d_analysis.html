@@ -40,4 +40,21 @@
     setTimeout(resize, 800);
   });
 </script>
+<script>
+window.addEventListener("load", () => {
+  const gd = document.querySelector(".plotly-graph-div");
+  if (!gd || !window.Plotly) return;
+
+  Plotly.relayout(gd, {
+    margin: { l: 0, r: 160, t: 40, b: 0 }
+  });
+
+  Plotly.restyle(gd, {
+    "marker.colorbar.x": 0.95,
+    "marker.colorbar.xanchor": "left"
+  });
+
+  Plotly.Plots.resize(gd);
+});
+</script>
 
