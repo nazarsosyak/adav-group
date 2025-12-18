@@ -479,23 +479,33 @@ Each crisis is therefore summarized by:
   opposing effects.
 </p>
 
-### How to read this figure
+### What this comparison reveals
 
-This comparison highlights **structural differences between crises**.
+The crisis signatures highlight clear structural differences between major market shocks.
 
-A crisis dominated by a single, high-variance component reflects a market that
-collapses onto a **common stress mode**, where many assets behave similarly.
-In contrast, a lower explained variance indicates a more **heterogeneous
-response**, with multiple competing mechanisms at play.
+The **dot-com bubble** emerges as the most synchronized episode. Its dominant PCA mode
+explains a larger fraction of the variance than in the other crises, indicating that
+market behavior collapsed onto a **single prevailing stress mechanism**.
+This mode is driven by a sharp rise in sick assets and longer recovery times, while
+the fraction of healthy assets contributes in the opposite direction. In this sense,
+the dot-com crisis reflects a broad erosion of market health concentrated along
+one dominant dimension.
 
-Differences in feature loadings reveal **which dimensions of market health**
-drive each crisis. For example, a dominant mode may be associated with a rapid
-increase in sick assets and prolonged recovery times, while another may be driven
-by milder but more widespread losses.
+The **subprime crisis** displays a less concentrated structure.
+Its lower explained variance suggests a more **heterogeneous propagation of stress**,
+consistent with a crisis originating within specific financial institutions and
+spreading through tightly connected parts of the system rather than affecting all
+assets uniformly.
 
-Taken together, these signatures show that major market crises are not simply
-stronger or weaker versions of one another, but can differ **qualitatively**
-in how stress propagates through the financial system.
+The **COVID-19 shock**, while severe in magnitude, is characterized by a dominant mode
+that explains even less variance. This indicates that market stress unfolded through
+**multiple concurrent channels**, reflecting an abrupt shock impacting
+assets and sectors in uneven ways.
+
+Overall, these signatures show that crises with similar aggregate losses can differ
+substantially in their internal dynamics. PCA reveals that each episode is governed
+by a distinct latent stress structure, shaping how quickly, how broadly, and how
+uniformly financial contagion spreads through the market.
 
 
 <script>
@@ -756,7 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       Plotly.newPlot("signature-plot", [trace], {
-        title: `Crisis signatures — ${pc}`,
+        title: `Crisis signatures - ${pc}`,
         template: "plotly_white",
         xaxis: { visible: false },
         yaxis: {
