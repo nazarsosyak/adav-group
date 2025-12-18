@@ -574,7 +574,7 @@ body {
   background: linear-gradient(
     to right,
     transparent,
-    var(--content-accent, #c62828),
+    var(--content-accent),
     transparent
   );
   margin: 2.5rem 0 2rem;
