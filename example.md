@@ -308,7 +308,7 @@ during that outbreak.
       we assess whether the outbreak remains confined to a subset of sectors
       or evolves into a system-wide event.
       </p>
-      <p><span class="text-accent"><strong>Sectoral exposure during the outbreak</strong></span></p>
+      <p><span class="text-accent"><strong><large>Part III: Sectoral exposure during the outbreak</large></strong></span></p>
 
       <div class="plot-frame plot-frame--first">
         <iframe
