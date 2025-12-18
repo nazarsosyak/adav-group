@@ -39,8 +39,7 @@ This investigation is guided the following research questions:
 > Through which channels do shocks spread, and how do individual stocks and sectors react as the disturbance unfolds?
 
 > **Can we identify a patient zero?**
-> Is it possible to trace major market events back to an initial source, and distinguish between early carriers, super-spreaders, and secondary infections?
-
+> Is it possible to trace major market events back to an initial source, and distinguish between early carriers and super-spreaders?
 > **What are the dynamics of financial contagion?**
 > How fast does risk propagate, how concentrated is the spread, and when does it become systemic?
 
