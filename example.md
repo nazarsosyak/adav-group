@@ -434,6 +434,8 @@ during that outbreak.
     </div>
   </section>
 
+</div>
+
 ---
 
 ## **Part IV: Crisis Signatures**
@@ -468,7 +470,6 @@ Each crisis is represented by:
 </p>
 
 
-</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -662,7 +663,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <script>
 (async function buildCrisisSignature() {
 
