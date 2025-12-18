@@ -69,7 +69,7 @@ We measure how embedded each asset is within the market network.
 Centrality reflects how strongly a node is connected to others through
 correlation, mutual information, or causal exposure.
 Highly central entities act as structural hubs: when they move, stress
-can propagate more easily through the system.<br><br>
+can propagate more easily through the system.
 
 **2. Temporal leadership**
 Timing matters.
