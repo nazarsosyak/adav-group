@@ -359,7 +359,7 @@ during that outbreak.
       </div>
 
       
-      </p>
+      <p>
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies.
       Outbreaks that rapidly spread across multiple highly connected sectors
