@@ -339,8 +339,10 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
           loading="lazy"
-          style="width:100%; height:600px; border:none;">
+          scrolling="no"
+          style="width:100%; height:640px; border:none; overflow:hidden;">
         </iframe>
+
       
         <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
           <strong>Figure: Sector bubblemap.</strong><br>
@@ -568,7 +570,8 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
           loading="lazy"
-          style="width:100%; height:600px; border:none;">
+          scrolling="no"
+          style="width:100%; height:640px; border:none; overflow:hidden;">
         </iframe>
       
         <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
@@ -799,7 +802,8 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
           loading="lazy"
-          style="width:100%; height:600px; border:none;">
+          scrolling="no"
+          style="width:100%; height:640px; border:none; overflow:hidden;">
         </iframe>
       
         <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
