@@ -8,207 +8,348 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <style>
-:root{
-  --bg:#0b0d12;
-  --fg:#e8e8e8;
-  --muted:#9aa0a6;
-  --panel:#12151c;
-}
+  :root{
+    --bg:#ffffff;
+    --fg:#111827;
+    --muted:#6b7280;
+    --stroke: rgba(17,24,39,.14);
+    --shadow: 0 18px 50px rgba(17,24,39,.10);
+    --shadow2: 0 8px 22px rgba(17,24,39,.10);
+    --r: 16px;
+  }
 
-html,body{
-  margin:0;
-  height:100%;
-  background:var(--bg);
-  color:var(--fg);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
+  html,body{
+    margin:0; height:100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
 
-#wrap{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-}
+  #wrap{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+  }
 
-#top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 14px;
-  font-size:13px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
+  #top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(17,24,39,.08);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
 
-#back{
-  background:none;
-  border:1px solid rgba(255,255,255,.15);
-  color:var(--fg);
-  padding:6px 10px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:12px;
-  opacity:.5;
-}
-#back.enabled{opacity:1}
+  #title{
+    display:flex; flex-direction:column; gap:2px;
+  }
+  #title .h{
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: .2px;
+  }
+  #title .sub{
+    font-size: 12px;
+    color: var(--muted);
+  }
 
-svg{
-  flex:1;
-  width:100%;
-  height:100%;
-}
+  #back{
+    appearance:none;
+    border:1px solid rgba(17,24,39,.14);
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--fg);
+    padding:7px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: transform .16s ease, box-shadow .2s ease, opacity .2s ease;
+    opacity: .45;
+    box-shadow: var(--shadow2);
+  }
+  #back.enabled{opacity: 1;}
+  #back:hover{transform: translateY(-1px);}
+  #back:active{transform: translateY(0px) scale(.99);}
 
-text{
-  fill:var(--fg);
-  pointer-events:none;
-  text-anchor:middle;
-  dominant-baseline:middle;
-  font-size:11px;
-}
+  svg{
+    flex:1;
+    width:100%;
+    height:100%;
+    display:block;
+    background:
+      radial-gradient(900px 520px at 18% 12%, rgba(99,102,241,.10), transparent 60%),
+      radial-gradient(900px 520px at 82% 20%, rgba(16,185,129,.10), transparent 60%),
+      radial-gradient(900px 520px at 65% 80%, rgba(236,72,153,.10), transparent 60%),
+      #ffffff;
+  }
+
+  .node{ cursor:pointer; }
+
+  .label{
+    pointer-events:none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: rgba(17,24,39,.92);
+    font-weight: 650;
+    letter-spacing: .2px;
+  }
+
+  .label.small{
+    font-weight: 600;
+    fill: rgba(17,24,39,.78);
+  }
 </style>
 </head>
 
 <body>
 <div id="wrap">
   <div id="top">
-    <div id="title">Sector overview</div>
-    <button id="back">← Back</button>
+    <div id="title">
+      <div class="h" id="headline">Sector bubblemap</div>
+      <div class="sub" id="subline">Click a sector to reveal ~20 major tickers</div>
+    </div>
+    <button id="back" type="button">← Back</button>
   </div>
-  <svg id="svg"></svg>
+
+  <svg id="svg" role="img" aria-label="Interactive bubble map"></svg>
 </div>
 
 <script>
 /* ============================================================
-   DATA — sectors + popular tickers (static, no CSV)
+   DATA — sectors + major tickers (static)
    ============================================================ */
-
 const SECTORS = [
-  { name:"Basic Materials", color:"#8dd3c7", tickers:["LIN","SHW","APD","ECL","FCX","NEM","DOW","DD","PPG","IFF","VMC","MLM","ALB","CF","MOS","NUE","STLD","X","RIO","BHP"] },
-  { name:"Consumer Discretionary", color:"#fb8072", tickers:["AMZN","TSLA","HD","MCD","NKE","LOW","BKNG","SBUX","GM","F","ROST","TJX","CMG","MAR","HLT","EBAY","YUM","LULU","AZO","ORLY"] },
-  { name:"Consumer Staples", color:"#80b1d3", tickers:["WMT","PG","COST","KO","PEP","MDLZ","CL","MO","PM","KMB","GIS","KHC","SYY","KR","HSY","EL","CPB","STZ","TAP","WBA"] },
-  { name:"Energy", color:"#fdb462", tickers:["XOM","CVX","SHEL","BP","COP","EOG","SLB","HAL","PSX","VLO","MPC","OXY","KMI","WMB","BKR","DVN","FANG","APA","HES","EQT"] },
-  { name:"Finance", color:"#b3de69", tickers:["JPM","BAC","WFC","GS","MS","C","AXP","V","MA","BRK.B","SCHW","BLK","SPGI","ICE","AIG","PNC","USB","TFC","COF","BK"] },
-  { name:"Health Care", color:"#fccde5", tickers:["UNH","JNJ","LLY","PFE","MRK","ABBV","TMO","ABT","DHR","AMGN","GILD","BMY","VRTX","ISRG","REGN","MDT","CI","CVS","ELV","HUM"] },
-  { name:"Industrials", color:"#d9d9d9", tickers:["BA","CAT","GE","RTX","LMT","DE","MMM","HON","UPS","FDX","NOC","ETN","EMR","CSX","NSC","WM","ROP","ITW","PCAR","FAST"] },
-  { name:"Miscellaneous", color:"#bc80bd", tickers:["META","GOOG","NFLX","UBER","SPOT","SNAP","TWLO","ROKU","ZM","PINS","DOCU","SQ","SHOP","DASH","PLTR","RBLX","COIN","LYFT","AFRM","HOOD"] },
-  { name:"Real Estate", color:"#ccebc5", tickers:["AMT","PLD","CCI","EQIX","SPG","PSA","O","DLR","VTR","WELL","AVB","EQR","ARE","IRM","ESS","MAA","UDR","BXP","KIM","REG"] },
-  { name:"Technology", color:"#ffed6f", tickers:["AAPL","MSFT","NVDA","GOOG","META","AVGO","ORCL","CRM","ADBE","AMD","INTC","QCOM","TXN","CSCO","AMAT","LRCX","KLAC","SNPS","INTU","NOW"] },
-  { name:"Telecommunications", color:"#bebada", tickers:["VZ","T","TMUS","AMX","CHTR","CMCSA","BTI","VOD","TEF","ORAN","TEL","SKM","NTT","KT","LUMN","USM","TELIA","TIM","SJM","MTN"] },
-  { name:"Utilities", color:"#ffffb3", tickers:["NEE","DUK","SO","AEP","EXC","SRE","D","XEL","PEG","ED","EIX","PCG","WEC","ES","CMS","PPL","DTE","NRG","AES","IDA"] }
+  { name:"Basic Materials", color:"#2dd4bf", tickers:["LIN","SHW","APD","ECL","FCX","NEM","DOW","DD","PPG","IFF","VMC","MLM","ALB","CF","MOS","NUE","STLD","RIO","BHP","VALE"] },
+  { name:"Consumer Discretionary", color:"#fb7185", tickers:["AMZN","TSLA","HD","MCD","NKE","LOW","BKNG","SBUX","GM","F","ROST","TJX","CMG","MAR","HLT","EBAY","YUM","LULU","AZO","ORLY"] },
+  { name:"Consumer Staples", color:"#60a5fa", tickers:["WMT","PG","COST","KO","PEP","MDLZ","CL","MO","PM","KMB","GIS","KHC","SYY","KR","HSY","EL","CPB","STZ","WBA","TSN"] },
+  { name:"Energy", color:"#f59e0b", tickers:["XOM","CVX","COP","EOG","SLB","HAL","PSX","VLO","MPC","OXY","KMI","WMB","BKR","DVN","FANG","APA","HES","EQT","ENPH","SEDG"] },
+  { name:"Finance", color:"#22c55e", tickers:["JPM","BAC","WFC","GS","MS","C","AXP","V","MA","SCHW","BLK","SPGI","ICE","AIG","PNC","USB","TFC","COF","BK","CB"] },
+  { name:"Health Care", color:"#f472b6", tickers:["UNH","JNJ","LLY","PFE","MRK","ABBV","TMO","ABT","DHR","AMGN","GILD","BMY","VRTX","ISRG","REGN","MDT","CI","CVS","ELV","HUM"] },
+  { name:"Industrials", color:"#94a3b8", tickers:["BA","CAT","GE","RTX","LMT","DE","MMM","HON","UPS","FDX","NOC","ETN","EMR","CSX","NSC","WM","ROP","ITW","PCAR","FAST"] },
+  { name:"Miscellaneous", color:"#a78bfa", tickers:["META","GOOG","NFLX","UBER","SPOT","SNAP","TWLO","ROKU","ZM","PINS","DOCU","SQ","SHOP","DASH","PLTR","RBLX","COIN","LYFT","AFRM","HOOD"] },
+  { name:"Real Estate", color:"#34d399", tickers:["AMT","PLD","CCI","EQIX","SPG","PSA","O","DLR","VTR","WELL","AVB","EQR","ARE","IRM","ESS","MAA","UDR","BXP","KIM","REG"] },
+  { name:"Technology", color:"#facc15", tickers:["AAPL","MSFT","NVDA","GOOG","META","AVGO","ORCL","CRM","ADBE","AMD","INTC","QCOM","TXN","CSCO","AMAT","LRCX","KLAC","SNPS","INTU","NOW"] },
+  { name:"Telecommunications", color:"#818cf8", tickers:["VZ","T","TMUS","CHTR","CMCSA","VOD","ORAN","TEF","TEL","NTT","SKM","KT","LUMN","USM","TIM","TELIA","AMX","BTI","MTN","VEON"] },
+  { name:"Utilities", color:"#fde68a", tickers:["NEE","DUK","SO","AEP","EXC","SRE","D","XEL","PEG","ED","EIX","PCG","WEC","ES","CMS","PPL","DTE","NRG","AES","IDA"] }
 ];
 
 /* ============================================================
-   PACK LAYOUT + STATE
+   SVG + defs (glass look)
    ============================================================ */
-
 const svg = d3.select("#svg");
+const defs = svg.append("defs");
+
+// soft shadow
+defs.append("filter")
+  .attr("id","softShadow")
+  .attr("x","-30%").attr("y","-30%")
+  .attr("width","160%").attr("height","160%")
+  .append("feDropShadow")
+    .attr("dx", 0).attr("dy", 10)
+    .attr("stdDeviation", 12)
+    .attr("flood-color", "rgba(17,24,39,.18)");
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
 const g = svg.append("g");
+const backBtn  = document.getElementById("back");
+const headline = document.getElementById("headline");
+const subline  = document.getElementById("subline");
 
-const backBtn = document.getElementById("back");
-const titleEl = document.getElementById("title");
-
-let width, height, current="sectors";
+let W = 800, H = 600;
+let state = { view:"sectors", sector:null };
 
 function resize(){
   const r = svg.node().getBoundingClientRect();
-  width = r.width;
-  height = r.height;
+  W = r.width; H = r.height;
 }
 resize();
 window.addEventListener("resize", () => { resize(); render(); });
 
-const pack = d3.pack().padding(8);
-
-/* ============================================================
-   RENDER FUNCTIONS
-   ============================================================ */
-
-function renderSectors(){
-  titleEl.textContent = "Sector overview";
-  backBtn.classList.remove("enabled");
-
-  const root = d3.hierarchy({children:SECTORS.map(d=>({name:d.name,value:1,color:d.color,data:d}))})
-    .sum(d=>d.value);
-
-  pack.size([width,height])(root);
-
-  const nodes = g.selectAll("g").data(root.leaves(), d=>d.data.name);
-
-  nodes.exit().transition().duration(300).style("opacity",0).remove();
-
-  const enter = nodes.enter().append("g")
-    .style("cursor","pointer")
-    .on("click",(e,d)=>renderTickers(d.data.data));
-
-  enter.append("circle");
-  enter.append("text");
-
-  const all = enter.merge(nodes);
-
-  all.transition().duration(600)
-    .attr("transform",d=>`translate(${d.x},${d.y})`);
-
-  all.select("circle")
-    .transition().duration(600)
-    .attr("r",d=>d.r)
-    .attr("fill",d=>d.data.color)
-    .attr("opacity",0.85);
-
-  all.select("text")
-    .text(d=>d.data.name)
-    .style("font-size",d=>Math.min(14,d.r/3)+"px");
+function glassFill(hex, a=0.18){
+  const c = d3.color(hex);
+  return `rgba(${c.r},${c.g},${c.b},${a})`;
 }
-
-function renderTickers(sector){
-  current="tickers";
-  titleEl.textContent = sector.name;
-  backBtn.classList.add("enabled");
-
-  const root = d3.hierarchy({
-    children: sector.tickers.map(t=>({name:t,value:1}))
-  }).sum(d=>d.value);
-
-  pack.size([width,height])(root);
-
-  const nodes = g.selectAll("g").data(root.leaves(), d=>d.data.name);
-
-  nodes.exit().transition().duration(300).style("opacity",0).remove();
-
-  const enter = nodes.enter().append("g");
-  enter.append("circle");
-  enter.append("text");
-
-  const all = enter.merge(nodes);
-
-  all.transition().duration(600)
-    .attr("transform",d=>`translate(${d.x},${d.y})`);
-
-  all.select("circle")
-    .transition().duration(600)
-    .attr("r",d=>d.r)
-    .attr("fill",sector.color)
-    .attr("opacity",0.9);
-
-  all.select("text")
-    .text(d=>d.data.name)
-    .style("font-size",d=>Math.min(12,d.r/2)+"px");
+function glassStroke(hex, a=0.38){
+  const c = d3.color(hex);
+  return `rgba(${c.r},${c.g},${c.b},${a})`;
 }
 
 /* ============================================================
-   EVENTS
+   Organic, non-overlapping placement (force simulation)
    ============================================================ */
+function computeOrganicNodes(items, radiusFn){
+  // initial positions: random-ish inside canvas
+  const nodes = items.map((d,i) => ({
+    ...d,
+    r: radiusFn(d,i),
+    x: W*(0.2 + 0.6*Math.random()),
+    y: H*(0.2 + 0.6*Math.random())
+  }));
 
-backBtn.addEventListener("click",()=>{
-  if(current==="tickers"){
-    current="sectors";
-    renderSectors();
+  const sim = d3.forceSimulation(nodes)
+    .force("center", d3.forceCenter(W/2, H/2))
+    .force("charge", d3.forceManyBody().strength(-18))
+    .force("collide", d3.forceCollide().radius(d => d.r + 5).iterations(2))
+    .force("x", d3.forceX(W/2).strength(0.045))
+    .force("y", d3.forceY(H/2).strength(0.045))
+    .stop();
+
+  // run fixed ticks synchronously (stable + deterministic-ish)
+  for(let i=0;i<260;i++) sim.tick();
+
+  return nodes;
+}
+
+/* ============================================================
+   Rendering
+   ============================================================ */
+const ease = d3.easeCubicInOut;
+
+function render(){
+  // background / header
+  if(state.view === "sectors"){
+    headline.textContent = "Sector bubblemap";
+    subline.textContent  = "Click a sector to reveal ~20 major tickers";
+    backBtn.classList.remove("enabled");
+  } else {
+    headline.textContent = state.sector.name;
+    subline.textContent  = "Click back to return to sectors";
+    backBtn.classList.add("enabled");
+  }
+
+  // build node data
+  let data;
+  if(state.view === "sectors"){
+    // radius based on “importance” (here: number of tickers, constant-ish)
+    const rFn = () => Math.min(W,H) * 0.13;
+    data = computeOrganicNodes(
+      SECTORS.map(s => ({ kind:"sector", key:s.name, name:s.name, color:s.color, sector:s })),
+      (d,i) => rFn(d,i) * (0.78 + 0.35*Math.random())
+    );
+  } else {
+    const sector = state.sector;
+    const rFn = () => Math.min(W,H) * 0.06;
+    data = computeOrganicNodes(
+      sector.tickers.map(t => ({ kind:"ticker", key:t, name:t, color:sector.color })),
+      (d,i) => rFn(d,i) * (0.65 + 0.45*Math.random())
+    );
+  }
+
+  // join
+  const sel = g.selectAll("g.node").data(data, d => d.key);
+
+  // exit (modern fade + shrink)
+  sel.exit()
+    .transition().duration(280).ease(ease)
+    .style("opacity", 0)
+    .attr("transform", d => `translate(${d.x},${d.y}) scale(0.85)`)
+    .remove();
+
+  // enter
+  const ent = sel.enter()
+    .append("g")
+    .attr("class","node")
+    .style("opacity", 0)
+    .attr("transform", d => `translate(${W/2},${H/2}) scale(0.88)`);
+
+  // main circle
+  ent.append("circle")
+    .attr("filter","url(#softShadow)")
+    .attr("r", 0);
+
+  // highlight overlay (smaller circle w/ gradient)
+  ent.append("circle")
+    .attr("class","shine")
+    .attr("r", 0)
+    .attr("opacity", 1)
+    .style("pointer-events","none");
+
+  // label
+  ent.append("text")
+    .attr("class","label");
+
+  // click interactions
+  ent.on("click", (e,d) => {
+    if(d.kind === "sector"){
+      state.view = "tickers";
+      state.sector = d.sector;
+      render();
+    }
+  });
+
+  // merge
+  const all = ent.merge(sel);
+
+  // transitions in (modern “float in”)
+  all.transition().duration(650).ease(ease)
+    .style("opacity", 1)
+    .attr("transform", d => `translate(${d.x},${d.y}) scale(1)`);
+
+  // bubble styling
+  all.select("circle:not(.shine)")
+    .transition().duration(650).ease(ease)
+    .attr("r", d => d.r)
+    .attr("fill", d => glassFill(d.color, 0.16))
+    .attr("stroke", d => glassStroke(d.color, 0.44))
+    .attr("stroke-width", 1.2);
+
+  // “shine” overlay — fake glass reflection
+  all.select("circle.shine")
+    .transition().duration(650).ease(ease)
+    .attr("r", d => Math.max(0, d.r * 0.86))
+    .attr("fill", d => {
+      // radial-ish highlight via SVG gradient per node key
+      const gid = `grad_${d.key.replace(/[^a-z0-9]/gi,"_")}`;
+      if(!defs.select(`#${gid}`).node()){
+        const grad = defs.append("radialGradient")
+          .attr("id", gid)
+          .attr("cx", "30%").attr("cy", "28%")
+          .attr("r", "80%");
+        grad.append("stop").attr("offset","0%").attr("stop-color","rgba(255,255,255,.75)");
+        grad.append("stop").attr("offset","35%").attr("stop-color","rgba(255,255,255,.18)");
+        grad.append("stop").attr("offset","100%").attr("stop-color","rgba(255,255,255,0)");
+      }
+      return `url(#${gid})`;
+    })
+    .attr("stroke","rgba(255,255,255,.30)")
+    .attr("stroke-width", 0.9);
+
+  // label sizing
+  all.select("text.label")
+    .text(d => d.name)
+    .classed("small", d => d.kind === "ticker")
+    .transition().duration(650).ease(ease)
+    .style("font-size", d => {
+      const base = d.kind === "sector" ? 14 : 12;
+      return Math.max(10, Math.min(base + d.r/10, d.kind==="sector"?18:14)) + "px";
+    });
+}
+
+/* ============================================================
+   Back
+   ============================================================ */
+backBtn.addEventListener("click", () => {
+  if(state.view === "tickers"){
+    state.view = "sectors";
+    state.sector = null;
+    render();
   }
 });
 
 /* ============================================================
-   INIT
+   Init
    ============================================================ */
-
-renderSectors();
+render();
 </script>
 </body>
 </html>
