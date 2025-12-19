@@ -232,8 +232,7 @@ during that outbreak.
       <h2 class="text-accent">Cluster membership</h2>
 
       <p>
-        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
-        They emerge directly from how individual stocks behave during the outbreak window.
+        The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
       </p>
       
       <p>
@@ -403,8 +402,7 @@ during that outbreak.
       <h2 class="text-accent">Cluster membership</h2>
 
       <p>
-        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
-        They emerge directly from how individual stocks behave during the outbreak window.
+        The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
       </p>
       
       <p>
@@ -570,8 +568,7 @@ during that outbreak.
       <h2 class="text-accent">Cluster membership</h2>
 
       <p>
-        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
-        They emerge directly from how individual stocks behave during the outbreak window.
+        The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
       </p>
       
       <p>
