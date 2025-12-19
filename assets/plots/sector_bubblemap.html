@@ -8,20 +8,26 @@ layout: null
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sector Bubblemap</title>
   <style>
-    html, body { height: 100%; margin: 0; background: transparent; }
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
     #wrap { height: 100%; width: 100%; position: relative; }
     #chart { height: 640px; width: 100%; }
 
     .glass {
-      position:absolute; inset: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(0,0,0,.08);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.10);
-      pointer-events:none;
-      z-index: 1;
-    }
+        position:absolute;
+        inset: 14px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.92); /* was .55 */
+        border: 1px solid rgba(0,0,0,.08);
+        backdrop-filter: none;              
+        box-shadow: 0 6px 18px rgba(0,0,0,.08);
+        pointer-events:none;
+        z-index: 1;
+      }
+
 
     #topbar {
       position:absolute; top: 18px; left: 22px; right: 22px;
@@ -81,7 +87,7 @@ layout: null
     <div class="glass"></div>
 
     <div id="topbar">
-      <div id="title">Sector bubblemap — click a sector</div>
+      <div id="title">Sector bubblemap: click a sector</div>
       <div id="right">
         <div id="hint">Non-overlapping · drilldown</div>
         <button id="backBtn" type="button">← Back</button>
@@ -483,7 +489,7 @@ layout: null
             return `
               <div style="font-family:Inter,system-ui; font-weight:900; margin-bottom:4px;">${p.name}</div>
               <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
-                Examples: <b>${top || "—"}</b><br/>Click to drill down
+                Examples: <b>${top || ":"}</b><br/>Click to drill down
               </div>
             `;
           }
@@ -523,7 +529,7 @@ layout: null
       const s = DATA.find(x => x.key === sectorKey);
       if (!s) return;
 
-      titleEl.textContent = `${s.name} — largest NASDAQ names`;
+      titleEl.textContent = `${s.name}: largest NASDAQ names`;
       backBtn.style.display = "inline-block";
 
       const weights = s.stocks.map((_,i)=> (s.stocks.length - i)); // bigger = earlier
@@ -560,29 +566,43 @@ layout: null
           }
         },
         series: [{
-          type: "scatter",
-          data: seriesData,
-          symbol: "circle",
-          emphasis: {
-            scale: true,
-            focus: "self",
-            itemStyle: { shadowBlur: 0 }
-          },
-          label: {
-            show: true,
-            formatter: (p) => p.name,
-            fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-            fontWeight: 900,
-            fontSize: 12,
-            color: "rgba(20,20,20,.95)",
-            backgroundColor: LABEL_BG,
-            borderColor: LABEL_BORDER,
-            borderWidth: 1,
-            borderRadius: 8,
-            padding: [4, 6, 4, 6]
-          },
-          labelLayout: { hideOverlap: true }
-        }]
+        type: "scatter",
+        data: seriesData,
+        symbol: "circle",
+      
+        // 🔥 make bubbles solid + no haze
+        itemStyle: {
+          opacity: 1,
+          shadowBlur: 0,
+          shadowColor: "transparent",
+          borderWidth: 1,
+          borderColor: "rgba(0,0,0,.18)"
+        },
+      
+        emphasis: {
+          scale: true,
+          focus: "self",
+          itemStyle: {
+            shadowBlur: 0,
+            shadowColor: "transparent",
+            borderWidth: 2,
+            borderColor: "rgba(0,0,0,.28)"
+          }
+        },
+      
+        // 🔥 make labels readable
+        label: {
+          show: true,
+          color: "#111",
+          fontWeight: 900,
+          backgroundColor: "rgba(255,255,255,.95)",
+          borderColor: "rgba(0,0,0,.20)",
+          borderWidth: 1,
+          borderRadius: 8,
+          padding: [4, 6]
+        },
+        labelLayout: { hideOverlap: true }
+      }]
       }, true);
     }
 
