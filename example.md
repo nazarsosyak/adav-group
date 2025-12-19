@@ -369,6 +369,17 @@ during that outbreak.
            data-pad="4">
       </div>
 
+      <div class="sector-body-wrapper">
+        <div id="sector-body" class="sector-body-chart"></div>
+      
+        <p class="figure-caption">
+          <strong>Figure X: Sectoral health map.</strong><br>
+          Each organ represents a market sector. Color encodes the mean sector return
+          over the outbreak window: green indicates resilience, red indicates stress.
+        </p>
+      </div>
+
+
       
       <p>
       This sector-level perspective reveals that systemic risk is not solely driven
@@ -1463,4 +1474,65 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const chartDom = document.getElementById("sector-body");
+  const myChart = echarts.init(chartDom);
+
+  fetch("{{ '/assets/svg/organ_diagram.svg' | relative_url }}")
+    .then(r => r.text())
+    .then(svgText => {
+      echarts.registerMap("organ_diagram", { svg: svgText });
+      initBody();
+
+      // 👇 example call (temporary test)
+      updateOrgans({
+        Technology: -6.2,
+        Finance: -9.1,
+        Energy: 1.4,
+        Healthcare: -0.8,
+        Industrials: -3.5
+      });
+    });
+
+  function initBody() {
+    myChart.setOption({
+      tooltip: {
+        formatter: p =>
+          `<b>${p.name}</b><br>Mean return: ${p.value.toFixed(2)}%`
+      },
+      geo: {
+        map: "organ_diagram",
+        roam: false
+      }
+    });
+  }
+
+  // ==========================
+  // 👉 PUT IT HERE
+  // ==========================
+  function updateOrgans(sectorReturns) {
+    myChart.setOption({
+      geo: {
+        regions: Object.entries(sectorReturns).map(
+          ([sector, value]) => ({
+            name: sector,
+            value: value,
+            itemStyle: {
+              areaColor:
+                value < -5 ? "#7f0000" :
+                value < -2 ? "#c62828" :
+                value <  0 ? "#ef5350" :
+                             "#66bb6a"
+            }
+          })
+        )
+      }
+    });
+  }
+
+});
+</script>
 
