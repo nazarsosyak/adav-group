@@ -188,7 +188,8 @@ function glassStroke(hex, a=0.38){
    Organic, non-overlapping placement (force simulation)
    ============================================================ */
 function computeOrganicNodes(items, radiusFn){
-  // initial positions: random-ish inside canvas
+  const margin = 14;
+
   const nodes = items.map((d,i) => ({
     ...d,
     r: radiusFn(d,i),
@@ -196,19 +197,38 @@ function computeOrganicNodes(items, radiusFn){
     y: H*(0.2 + 0.6*Math.random())
   }));
 
+  // custom "keep in bounds" force
+  function forceBounds(){
+    for (const n of nodes){
+      const minX = n.r + margin;
+      const maxX = W - n.r - margin;
+      const minY = n.r + margin;
+      const maxY = H - n.r - margin;
+
+      if (n.x < minX) n.x = minX;
+      if (n.x > maxX) n.x = maxX;
+      if (n.y < minY) n.y = minY;
+      if (n.y > maxY) n.y = maxY;
+    }
+  }
+
   const sim = d3.forceSimulation(nodes)
     .force("center", d3.forceCenter(W/2, H/2))
     .force("charge", d3.forceManyBody().strength(-18))
-    .force("collide", d3.forceCollide().radius(d => d.r + 5).iterations(2))
-    .force("x", d3.forceX(W/2).strength(0.045))
-    .force("y", d3.forceY(H/2).strength(0.045))
+    .force("collide", d3.forceCollide().radius(d => d.r + 6).iterations(3))
+    .force("x", d3.forceX(W/2).strength(0.05))
+    .force("y", d3.forceY(H/2).strength(0.05))
+    .force("bounds", forceBounds)
     .stop();
 
-  // run fixed ticks synchronously (stable + deterministic-ish)
-  for(let i=0;i<260;i++) sim.tick();
+  for(let i=0;i<360;i++) sim.tick();
+
+  // final hard clamp (just in case)
+  forceBounds();
 
   return nodes;
 }
+
 
 /* ============================================================
    Rendering
