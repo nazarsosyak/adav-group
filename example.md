@@ -259,6 +259,31 @@ during that outbreak.
         </iframe>
       </div>
 
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet/sector' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
+      
+      <div class="img-slider"
+           data-folder="{{ '/assets/internet/sector' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
+
+      
+      <p class="figure-caption">
+        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
+        The figure shows the aggregated level of infection across sectors,
+        highlighting which sectors experience the most severe stress.
+      </p>
+      This sector-level perspective reveals that systemic risk is not solely driven
+      by individual assets, but by the structure of inter-sector dependencies.
+      Outbreaks that rapidly spread across multiple highly connected sectors
+      are more likely to evolve into market-wide crises,
+      whereas sectorally contained shocks tend to dissipate more quickly.
+      </p>
+
     </div>
   </section>
 
@@ -370,7 +395,7 @@ during that outbreak.
 
       
       <p class="figure-caption">
-        <strong>Figure X — Sectoral infection intensity during the outbreak.</strong><br>
+        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
         The figure shows the aggregated level of infection across sectors,
         highlighting which sectors experience the most severe stress.
       </p>
@@ -465,6 +490,38 @@ during that outbreak.
       <div class="cluster-widget" data-period="covid"></div>
 
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/covid/sector/ppi_3d_analysis.html' | relative_url }}"
+          loading="lazy"
+          title="Sector-to-sector 3D">
+        </iframe>
+      </div>
+
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid/sector' | relative_url }}"
+           data-prefix="timeline_"
+           data-pad="4">
+      </div>
+      
+      <div class="img-slider"
+           data-folder="{{ '/assets/covid/sector' | relative_url }}"
+           data-prefix="network_"
+           data-pad="4">
+      </div>
+
+      
+      <p class="figure-caption">
+        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
+        The figure shows the aggregated level of infection across sectors,
+        highlighting which sectors experience the most severe stress.
+      </p>
+      This sector-level perspective reveals that systemic risk is not solely driven
+      by individual assets, but by the structure of inter-sector dependencies.
+      Outbreaks that rapidly spread across multiple highly connected sectors
+      are more likely to evolve into market-wide crises,
+      whereas sectorally contained shocks tend to dissipate more quickly.
+      </p>
 
 
     </div>
