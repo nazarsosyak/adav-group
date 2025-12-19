@@ -732,5 +732,91 @@ body {
   color: #111;
 }
 
+/* =========================
+   TICKER HELPER (RIGHT SIDEBAR)
+   ========================= */
+
+.ticker-helper{
+  position: fixed;
+  top: 92px;
+  right: 18px;
+  width: min(340px, calc(100vw - 36px));
+  max-height: calc(100vh - 120px);
+  overflow: hidden;
+  z-index: 999;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,.70);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+}
+
+.th-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+.th-title{ font-weight: 800; }
+.th-close{
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.75);
+  border-radius: 10px;
+  padding: 4px 8px;
+  cursor:pointer;
+}
+
+.th-body{ padding: 12px; overflow:auto; max-height: calc(100vh - 170px); }
+
+.th-empty{
+  color: rgba(0,0,0,.65);
+  font-size: .95rem;
+}
+
+.th-card{ display:flex; flex-direction:column; gap: 8px; }
+
+.th-ticker{
+  font-weight: 900;
+  letter-spacing: .5px;
+  font-size: 1.1rem;
+  color: var(--content-accent);
+}
+
+.th-desc{ color: rgba(0,0,0,.82); line-height: 1.35; }
+
+.th-links a{
+  display:inline-block;
+  margin-right: 10px;
+  font-size: .92rem;
+}
+
+.th-open{
+  position: fixed;
+  top: 96px;
+  right: 18px;
+  z-index: 998;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.75);
+  cursor:pointer;
+  display: none; /* shown when sidebar closed */
+  font-weight: 900;
+}
+
+/* On small screens, make it a bottom drawer */
+@media (max-width: 900px){
+  .ticker-helper{
+    top: auto;
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: auto;
+    max-height: 42vh;
+  }
+}
 
 
