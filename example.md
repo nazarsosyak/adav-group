@@ -233,6 +233,36 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
+      <h2 class="text-accent">Cluster membership</h2>
+
+      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
+        <strong>How to read clusters on the 3D plot:</strong>
+        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
+        Use the mapping below to match the buttons to what you see in the graph.
+      </p>
+      
+      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
+        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
+          <strong>Cluster 0</strong>: orange group (with blue points)
+        </span>
+      
+        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
+          <strong>Cluster 1</strong>: blue group (with orange points)
+        </span>
+      
+        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
+          <strong>Cluster 2</strong>: pink group (with green points)
+        </span>
+      
+        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
+          <strong>Cluster 3</strong>: green group (with purple points)
+        </span>
+      </div>
       
       <div class="plot-frame plot-frame--first">
         <iframe
@@ -242,7 +272,6 @@ during that outbreak.
         </iframe>
       </div>
 
-      <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="dotcom"></div>
 
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
@@ -355,6 +384,36 @@ during that outbreak.
            data-pad="4">
       </div>
 
+      <h2 class="text-accent">Cluster membership</h2>
+
+      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
+        <strong>How to read clusters on the 3D plot:</strong>
+        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
+        Use the mapping below to match the buttons to what you see in the graph.
+      </p>
+      
+      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
+        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
+          <strong>Cluster 0</strong>: orange group (with blue points)
+        </span>
+      
+        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
+          <strong>Cluster 1</strong>: blue group (with orange points)
+        </span>
+      
+        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
+          <strong>Cluster 2</strong>: pink group (with green points)
+        </span>
+      
+        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
+          <strong>Cluster 3</strong>: green group (with purple points)
+        </span>
+      </div>
+
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_subprime.html' | relative_url }}"
@@ -363,8 +422,6 @@ during that outbreak.
         </iframe>
       </div>
 
-      
-      <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="subprime"></div>
       
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
@@ -477,6 +534,38 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
+      <h2 class="text-accent">Cluster membership</h2>
+
+      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
+        <strong>How to read clusters on the 3D plot:</strong>
+        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
+        Use the mapping below to match the buttons to what you see in the graph.
+      </p>
+      
+      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
+        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
+          <strong>Cluster 0</strong>: orange group (with blue points)
+        </span>
+      
+        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
+          <strong>Cluster 1</strong>: blue group (with orange points)
+        </span>
+      
+        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
+          <strong>Cluster 2</strong>: pink group (with green points)
+        </span>
+      
+        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
+          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
+          <strong>Cluster 3</strong>: green group (with purple points)
+        </span>
+      </div>
+
+      
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_covid.html' | relative_url }}"
@@ -485,8 +574,6 @@ during that outbreak.
         </iframe>
       </div>
 
-      
-      <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="covid"></div>
 
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
@@ -942,10 +1029,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="cw-controls">
           <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
           <button class="cw-btn is-active" data-filter="all" type="button">All</button>
-          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
-          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
-          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
-          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
+          <button class="cw-btn" data-filter="0" type="button">Cluster 0 (Orange, Blue pts)</button>
+          <button class="cw-btn" data-filter="1" type="button">Cluster 1 (Blue, Orange pts)</button>
+          <button class="cw-btn" data-filter="2" type="button">Cluster 2 (Pink, Green pts)</button>
+          <button class="cw-btn" data-filter="3" type="button">Cluster 3 (Green, Purple pts)</button>
         </div>
       </div>
 
