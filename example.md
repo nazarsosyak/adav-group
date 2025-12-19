@@ -172,8 +172,8 @@ during that outbreak.
       was treated as the future of civilization. Valuations detached from fundamentals,
       and skepticism quietly exited the room.
       Then reality pushed back when the internet bubble burst.
-      
-      </p>
+    
+    </p>
       
       <p>
       The plot below shows the mean daily market return during the identified outbreak window.
@@ -413,7 +413,7 @@ during that outbreak.
 
     <p> 
       Here the market records negative daily returns on <strong>80% of trading days</strong>, with a cumulative loss of <strong>−19.49%</strong> over this time period.<br><br>
-    <p>
+    </p>
       Press <span class="text-accent"><strong>RED BUTTON</strong></span> below and see what happens.
     </p>
 
