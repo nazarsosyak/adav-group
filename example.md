@@ -1090,10 +1090,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>Selected:</span>
           <span class="cw-pill" data-selected>None</span>
         </div>
-        <div class="cw-kv">
-          <span>Visible:</span>
-          <span class="cw-pill" data-count>0</span>
-        </div>
       </div>
     `;
 
@@ -1128,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const pick = () => {
           selectedTicker = d.ticker;
-          selectedPill.textContent = `${d.ticker} — Cluster ${d.cluster}`;
+          selectedPill.textContent = `${d.ticker} : Cluster ${d.cluster}`;
           render(); // re-render to update highlight
         };
 
