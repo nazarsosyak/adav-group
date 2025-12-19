@@ -332,7 +332,7 @@ during that outbreak.
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
-      We will reuse the algorithm, but this time, over the different sectors of the market.
+      We will reuse the algorithm, but this time, over the different sectors of the market. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
       </p>
 
       <div class="plot-container" style="margin:2rem 0;">
@@ -378,12 +378,9 @@ during that outbreak.
            data-pad="4">
       </div>
       
+
       <p>
-      This sector-level perspective reveals that systemic risk is not solely driven
-      by individual assets, but by the structure of inter-sector dependencies.
-      Outbreaks that rapidly spread across multiple highly connected sectors
-      are more likely to evolve into market-wide crises,
-      whereas sectorally contained shocks tend to dissipate more quickly.
+        For the case of the dot-com bubble burst, the sectorial <strong>patient zero</strong> is <span class="text-accent">Utilities</span>.
       </p>
 
     </div>
@@ -556,7 +553,19 @@ during that outbreak.
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
-      We will reuse the algorithm, but this time, over the different sectors of the market.
+      We will reuse the algorithm, but this time, over the different sectors of the market. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
+      </p>
+
+      <div class="plot-container" style="margin:2rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:620px; border:none;">
+        </iframe>
+      </div>
+
+      <p>
+        We can use the same reasoning as for individual tickers but this time we apply it to our newly defined sectors.
       </p>
 
       <div class="plot-frame plot-frame--first">
@@ -596,10 +605,7 @@ during that outbreak.
       
       <p>
       This sector-level perspective reveals that systemic risk is not solely driven
-      by individual assets, but by the structure of inter-sector dependencies.
-      Outbreaks that rapidly spread across multiple highly connected sectors
-      are more likely to evolve into market-wide crises,
-      whereas sectorally contained shocks tend to dissipate more quickly.
+      by individual assets, but by the structure of inter-sector dependencies. The <strong>patient zero</strong> in this case is the <span class="text-accent">Real Estate Sector</span>, which totally makes sense historically! This is a great sign.
       </p>
       
 
@@ -784,8 +790,16 @@ during that outbreak.
       <p>
         In this section, we shift the level of observation from assets to sectors.
         Each sector is treated as an aggregated entity whose health reflects
-        the combined behavior of its constituent stocks during the outbreak window.
+        the combined behavior of its constituent stocks during the outbreak window. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
       </p>
+
+      <div class="plot-container" style="margin:2rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:620px; border:none;">
+        </iframe>
+      </div>
       
       <p>
         The 3D plot below positions sectors in a contagion space analogous to the one
@@ -837,11 +851,7 @@ during that outbreak.
            data-pad="4">
       </div>
       <p>
-      This sector-level perspective reveals that systemic risk is not solely driven
-      by individual assets, but by the structure of inter-sector dependencies.
-      Outbreaks that rapidly spread across multiple highly connected sectors
-      are more likely to evolve into market-wide crises,
-      whereas sectorally contained shocks tend to dissipate more quickly.
+      In this specific case, the sectorial <strong>patient zero</strong> is <span class="text-accent">Consumer Staples</span>.
       </p>
 
 
