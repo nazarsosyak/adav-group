@@ -428,6 +428,7 @@ during that outbreak.
     <p> 
       Here the market records negative daily returns on <strong>80% of trading days</strong>, with a cumulative loss of <strong>−19.49%</strong> over this time period.<br><br>
     </p>
+    <p>
       Press <span class="text-accent"><strong>RED BUTTON</strong></span> below and see what happens.
     </p>
 
