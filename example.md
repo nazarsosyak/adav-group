@@ -1097,7 +1097,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const search = el.querySelector(".cw-search");
     const btns = Array.from(el.querySelectorAll(".cw-btn"));
     const selectedPill = el.querySelector("[data-selected]");
-    const countPill = el.querySelector("[data-count]");
 
     let activeFilter = "all";
     let activeQuery = "";
@@ -1136,7 +1135,6 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.appendChild(chip);
       });
 
-      countPill.textContent = String(visible.length);
       if (!selectedTicker) selectedPill.textContent = "None";
     }
 
