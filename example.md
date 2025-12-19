@@ -282,7 +282,7 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_dot-com.html' | relative_url }}"
           loading="lazy"
-          title="Immune phenotypes — Dot-com">
+          title="Immune phenotypes: Dot-com">
         </iframe>
       </div>
 
@@ -451,7 +451,7 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_subprime.html' | relative_url }}"
           loading="lazy"
-          title="Immune phenotypes — Subprime">
+          title="Immune phenotypes: Subprime">
         </iframe>
       </div>
 
@@ -618,7 +618,7 @@ during that outbreak.
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_covid.html' | relative_url }}"
           loading="lazy"
-          title="Immune phenotypes — COVID">
+          title="Immune phenotypes: COVID">
         </iframe>
       </div>
 
@@ -1070,16 +1070,16 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="cw-top">
         <div>
           <div class="cw-title">Interactive directory - ${meta.label}</div>
-          <div class="cw-sub">Filter by cluster, or search a ticker. Click a ticker to highlight it.</div>
+          <div class="cw-sub">Here you can check to which cluster every stock belongs, and reciprocally which stocks are contained in every cluster.</div>
         </div>
 
         <div class="cw-controls">
           <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
           <button class="cw-btn is-active" data-filter="all" type="button">All</button>
-          <button class="cw-btn" data-filter="0" type="button">Cluster 0 (Orange, Blue pts)</button>
-          <button class="cw-btn" data-filter="1" type="button">Cluster 1 (Blue, Orange pts)</button>
-          <button class="cw-btn" data-filter="2" type="button">Cluster 2 (Pink, Green pts)</button>
-          <button class="cw-btn" data-filter="3" type="button">Cluster 3 (Green, Purple pts)</button>
+          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
+          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
+          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
+          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
         </div>
       </div>
 
