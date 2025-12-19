@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,9 +9,8 @@
   <style>
     html, body { height: 100%; margin: 0; background: transparent; }
     #wrap { height: 100%; width: 100%; position: relative; }
-    #chart { height: 560px; width: 100%; }
+    #chart { height: 600px; width: 100%; }
 
-    /* subtle “glass” frame that still works on any theme bg */
     .glass {
       position:absolute; inset: 14px;
       border-radius: 18px;
@@ -18,44 +19,35 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(0,0,0,.10);
       pointer-events:none;
+      z-index: 1;
     }
 
     #topbar {
       position:absolute; top: 18px; left: 22px; right: 22px;
       display:flex; align-items:center; justify-content:space-between;
       gap: 10px;
-      pointer-events:none;
+      z-index: 5;
     }
+
     #title {
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 13px;
       letter-spacing: .2px;
       color: rgba(20,20,20,.85);
       padding: 8px 10px;
       border-radius: 12px;
-      background: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.70);
       border: 1px solid rgba(0,0,0,.06);
-      pointer-events:none;
+      max-width: 72%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    #backBtn {
-      pointer-events:auto;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.70);
-      border-radius: 12px;
-      padding: 8px 10px;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-weight: 650;
-      font-size: 13px;
-      cursor: pointer;
-      color: rgba(20,20,20,.85);
-      transition: transform .15s ease, background .2s ease;
-      display:none;
-    }
-    #backBtn:hover { transform: translateY(-1px); background: rgba(255,255,255,.85); }
+    #right { display:flex; gap: 10px; align-items:center; }
+
     #hint {
-      pointer-events:none;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-size: 12px;
       color: rgba(20,20,20,.65);
@@ -63,8 +55,23 @@
       border-radius: 12px;
       background: rgba(255,255,255,.55);
       border: 1px solid rgba(0,0,0,.05);
-      display:block;
     }
+
+    #backBtn {
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.78);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      color: rgba(20,20,20,.85);
+      transition: transform .15s ease, background .2s ease;
+      display:none;
+      user-select: none;
+    }
+    #backBtn:hover { transform: translateY(-1px); background: rgba(255,255,255,.92); }
   </style>
 </head>
 
@@ -73,321 +80,382 @@
     <div class="glass"></div>
 
     <div id="topbar">
-      <div id="title">Sector bubblemap — click a sector to reveal its giants</div>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <div id="hint">Drilldown · animated</div>
-        <button id="backBtn" type="button">← Back to sectors</button>
+      <div id="title">Sector bubblemap: click a sector</div>
+      <div id="right">
+        <div id="hint">Non-overlapping · drilldown</div>
+        <button id="backBtn" type="button">← Back</button>
       </div>
     </div>
 
     <div id="chart"></div>
   </div>
 
-  <!-- ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-
   <script>
   (function () {
-    // =========================
-    // CONFIG — EDIT PATHS HERE
-    // =========================
-    // Put your CSVs under: assets/data/sectors/
-    // and keep filenames exactly like in your screenshot.
-    const SECTOR_FILES = [
-      { key: "basic_materials",         name: "Basic Materials",          file: "{{ '/assets/data/basic_materials.csv' | relative_url }}",         color: "#6b5b95" },
-      { key: "consumer_discretionary",  name: "Consumer Discretionary",   file: "{{ '/assets/data/consumer_discretionary.csv' | relative_url }}",  color: "#ff6f61" },
-      { key: "consumer_staples",        name: "Consumer Staples",         file: "{{ '/assets/data/consumer_staples.csv' | relative_url }}",        color: "#88b04b" },
-      { key: "energy",                  name: "Energy",                   file: "{{ '/assets/data/energy.csv' | relative_url }}",                  color: "#f7cac9" },
-      { key: "finance",                 name: "Finance",                  file: "{{ '/assets/data/finance.csv' | relative_url }}",                 color: "#92a8d1" },
-      { key: "health_care",             name: "Health Care",              file: "{{ '/assets/data/health_care.csv' | relative_url }}",             color: "#45b8ac" },
-      { key: "industrials",             name: "Industrials",              file: "{{ '/assets/data/industrials.csv' | relative_url }}",             color: "#955251" },
-      { key: "miscellaneous",           name: "Misc.",                    file: "{{ '/assets/data/miscellaneous.csv' | relative_url }}",           color: "#b565a7" },
-      { key: "real_estate",             name: "Real Estate",              file: "{{ '/assets/data/real_estate.csv' | relative_url }}",             color: "#dd4124" },
-      { key: "technology",              name: "Technology",               file: "{{ '/assets/data/technology.csv' | relative_url }}",              color: "#009b77" },
-      { key: "telecommunications",      name: "Telecom",                  file: "{{ '/assets/data/telecommunications.csv' | relative_url }}",      color: "#5b5ea6" },
-      { key: "utilities",               name: "Utilities",                file: "{{ '/assets/data/utilities.csv' | relative_url }}",               color: "#9b2335" },
+    const el = document.getElementById("chart");
+    const titleEl = document.getElementById("title");
+    const backBtn = document.getElementById("backBtn");
+    const chart = echarts.init(el, null, { renderer: "canvas" });
+    window.addEventListener("resize", () => chart.resize());
+
+    // -------------------------------------------------------
+    // Hardcoded NASDAQ "largest names" per sector (edit freely)
+    // Format: {t:"TICKER", n:"Company Name"}
+    // -------------------------------------------------------
+    const DATA = [
+      {
+        key:"technology", name:"Technology", color:"#009b77",
+        stocks:[
+          {t:"MSFT", n:"Microsoft"},
+          {t:"AAPL", n:"Apple"},
+          {t:"NVDA", n:"NVIDIA"},
+          {t:"AVGO", n:"Broadcom"},
+          {t:"ADBE", n:"Adobe"},
+          {t:"CSCO", n:"Cisco"},
+          {t:"INTC", n:"Intel"},
+          {t:"AMD",  n:"AMD"}
+        ]
+      },
+      {
+        key:"health_care", name:"Health Care", color:"#45b8ac",
+        stocks:[
+          {t:"AMGN", n:"Amgen"},
+          {t:"GILD", n:"Gilead Sciences"},
+          {t:"REGN", n:"Regeneron"},
+          {t:"VRTX", n:"Vertex"},
+          {t:"ISRG", n:"Intuitive Surgical"},
+          {t:"ILMN", n:"Illumina"},
+          {t:"BIIB", n:"Biogen"},
+          {t:"MRNA", n:"Moderna"}
+        ]
+      },
+      {
+        key:"consumer_discretionary", name:"Consumer Discretionary", color:"#ff6f61",
+        stocks:[
+          {t:"AMZN", n:"Amazon"},
+          {t:"TSLA", n:"Tesla"},
+          {t:"BKNG", n:"Booking Holdings"},
+          {t:"MELI", n:"MercadoLibre"},
+          {t:"NFLX", n:"Netflix"},
+          {t:"EBAY", n:"eBay"},
+          {t:"ROST", n:"Ross Stores"},
+          {t:"ORLY", n:"O’Reilly Automotive"}
+        ]
+      },
+      {
+        key:"consumer_staples", name:"Consumer Staples", color:"#88b04b",
+        stocks:[
+          {t:"COST", n:"Costco"},
+          {t:"PEP",  n:"PepsiCo"},
+          {t:"MDLZ", n:"Mondelez"},
+          {t:"KDP",  n:"Keurig Dr Pepper"},
+          {t:"SBUX", n:"Starbucks"},
+          {t:"MNST", n:"Monster Beverage"},
+          {t:"WBA",  n:"Walgreens Boots Alliance"},
+          {t:"KR",   n:"Kroger"}
+        ]
+      },
+      {
+        key:"finance", name:"Finance", color:"#92a8d1",
+        stocks:[
+          {t:"CME",  n:"CME Group"},
+          {t:"COIN", n:"Coinbase"},
+          {t:"IBKR", n:"Interactive Brokers"},
+          {t:"HOOD", n:"Robinhood"},
+          {t:"NDAQ", n:"Nasdaq, Inc."},
+          {t:"TROW", n:"T. Rowe Price"},
+          {t:"PYPL", n:"PayPal"},
+          {t:"AFRM", n:"Affirm"}
+        ]
+      },
+      {
+        key:"industrials", name:"Industrials", color:"#955251",
+        stocks:[
+          {t:"HON",  n:"Honeywell"},
+          {t:"LHX",  n:"L3Harris"},
+          {t:"CSX",  n:"CSX"},
+          {t:"FDX",  n:"FedEx"},
+          {t:"FAST", n:"Fastenal"},
+          {t:"ODFL", n:"Old Dominion Freight Line"},
+          {t:"PAYX", n:"Paychex"},
+          {t:"UAL",  n:"United Airlines"}
+        ]
+      },
+      {
+        key:"energy", name:"Energy", color:"#f4b183",
+        stocks:[
+          {t:"CEG", n:"Constellation Energy"},
+          {t:"FANG", n:"Diamondback Energy"},
+          {t:"BKR", n:"Baker Hughes"},
+          {t:"WFRD", n:"Weatherford"},
+          {t:"CHRD", n:"Chord Energy"},
+          {t:"CIVI", n:"Civitas Resources"},
+          {t:"VTNR", n:"Vertex Energy"},
+          {t:"NGS",  n:"Natural Gas Services"}
+        ]
+      },
+      {
+        key:"utilities", name:"Utilities", color:"#9b2335",
+        stocks:[
+          {t:"AEP", n:"American Electric Power"},
+          {t:"EXC", n:"Exelon"},
+          {t:"XEL", n:"Xcel Energy"},
+          {t:"PCG", n:"PG&E"},
+          {t:"WEC", n:"WEC Energy Group"},
+          {t:"ES",  n:"Eversource"},
+          {t:"NI",  n:"NiSource"},
+          {t:"CMS", n:"CMS Energy"}
+        ]
+      },
+      {
+        key:"telecommunications", name:"Telecom", color:"#5b5ea6",
+        stocks:[
+          {t:"TMUS", n:"T-Mobile US"},
+          {t:"CMCSA", n:"Comcast"},
+          {t:"CHTR", n:"Charter Communications"},
+          {t:"LBRDA", n:"Liberty Broadband"},
+          {t:"AMDOCS", n:"Amdocs"},
+          {t:"FYBR", n:"Frontier"},
+          {t:"CCOI", n:"Cogent"},
+          {t:"IDCC", n:"InterDigital"}
+        ]
+      },
+      {
+        key:"real_estate", name:"Real Estate", color:"#dd4124",
+        stocks:[
+          {t:"AMT", n:"American Tower"},
+          {t:"EQIX", n:"Equinix"},
+          {t:"DLR", n:"Digital Realty"},
+          {t:"VICI", n:"VICI Properties"},
+          {t:"SUI", n:"Sun Communities"},
+          {t:"WY",  n:"Weyerhaeuser"},
+          {t:"EXR", n:"Extra Space Storage"},
+          {t:"IRM", n:"Iron Mountain"}
+        ]
+      },
+      {
+        key:"basic_materials", name:"Basic Materials", color:"#6b5b95",
+        stocks:[
+          {t:"NTRS", n:"(edit list)"},
+          {t:"ALB",  n:"Albemarle"},
+          {t:"CCJ",  n:"Cameco"},
+          {t:"IFF",  n:"IFF"},
+          {t:"CLF",  n:"Cleveland-Cliffs"},
+          {t:"SID",  n:"Companhia Siderúrgica Nacional"},
+          {t:"GOLD", n:"Barrick Gold"},
+          {t:"NEM",  n:"Newmont"}
+        ]
+      },
+      {
+        key:"miscellaneous", name:"Misc.", color:"#b565a7",
+        stocks:[
+          {t:"GOOG", n:"Alphabet (Class C)"},
+          {t:"META", n:"Meta Platforms"},
+          {t:"INTU", n:"Intuit"},
+          {t:"SNPS", n:"Synopsys"},
+          {t:"PANW", n:"Palo Alto Networks"},
+          {t:"CRWD", n:"CrowdStrike"},
+          {t:"FTNT", n:"Fortinet"},
+          {t:"ADSK", n:"Autodesk"}
+        ]
+      }
     ];
 
-    // how many stocks to show inside a sector
-    const TOP_N = 12;
-
-    // =========================
-    // HELPERS
-    // =========================
-    const el = document.getElementById("chart");
-    const backBtn = document.getElementById("backBtn");
-    const titleEl = document.getElementById("title");
-
-    const chart = echarts.init(el, null, { renderer: "canvas" });
-
-    function parseCSV(text) {
-      const lines = text.trim().split(/\r?\n/);
-      if (!lines.length) return [];
-      const header = lines[0].split(",").map(s => s.trim());
-      const rows = [];
-      for (let i = 1; i < lines.length; i++) {
-        const raw = lines[i];
-        if (!raw) continue;
-        const cols = raw.split(",");
-        const obj = {};
-        for (let j = 0; j < header.length; j++) obj[header[j]] = (cols[j] ?? "").trim();
-        rows.push(obj);
-      }
-      return rows;
-    }
-
-    function toNum(x) {
-      const v = (x ?? "").toString().replace(/[$,]/g, "");
-      const n = parseFloat(v);
-      return Number.isFinite(n) ? n : NaN;
-    }
-
-    // try common column names (we don’t know your schema for “largest”)
-    function scoreRow(r) {
-      const keysMC = ["marketCap","MarketCap","market_cap","mktcap","MktCap","cap","Cap"];
-      const keysW  = ["weight","Weight"];
-      const keysP  = ["close","Close","adj_close","Adj Close","AdjClose"];
-      const keysV  = ["volume","Volume"];
-
-      for (const k of keysMC) { const n = toNum(r[k]); if (Number.isFinite(n)) return n; }
-      for (const k of keysW)  { const n = toNum(r[k]); if (Number.isFinite(n)) return n; }
-
-      // fallback: proxy size = mean-ish price * volume if present
-      let p = NaN, v = NaN;
-      for (const k of keysP) { const n = toNum(r[k]); if (Number.isFinite(n)) { p = n; break; } }
-      for (const k of keysV) { const n = toNum(r[k]); if (Number.isFinite(n)) { v = n; break; } }
-      if (Number.isFinite(p) && Number.isFinite(v)) return p * v;
-
-      return NaN;
-    }
-
-    function pickTicker(r) {
-      return r.ticker || r.Ticker || r.symbol || r.Symbol || r.SYMBOL || r.pname || r.Name || r.name || "UNKNOWN";
-    }
-
-    function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
-
-    function scaleSizes(vals, minS, maxS) {
-      const finite = vals.filter(v => Number.isFinite(v));
-      const lo = Math.min(...finite);
-      const hi = Math.max(...finite);
-      return vals.map(v => {
-        if (!Number.isFinite(v) || hi === lo) return (minS + maxS) / 2;
-        const t = (v - lo) / (hi - lo);
-        // gentle non-linear scaling so big caps pop, but small still visible
-        const u = Math.pow(t, 0.55);
-        return minS + u * (maxS - minS);
+    // -------------------------------------------------------
+    // Non-overlapping circle packing (deterministic)
+    // -------------------------------------------------------
+    function scaleSizes(values, minR, maxR) {
+      const v = values.slice().filter(Number.isFinite);
+      const lo = Math.min(...v), hi = Math.max(...v);
+      return values.map(x => {
+        if (!Number.isFinite(x) || hi === lo) return (minR + maxR) / 2;
+        const t = (x - lo) / (hi - lo);
+        const u = Math.pow(t, 0.6);
+        return minR + u * (maxR - minR);
       });
     }
 
-    function radialLayout(n, R) {
-      // stable “bubble-map” placement
-      const pts = [];
-      for (let i = 0; i < n; i++) {
-        const a = (i / n) * Math.PI * 2;
-        const r = R * (0.55 + 0.35 * Math.sin(i * 1.7));
-        pts.push([r * Math.cos(a), r * Math.sin(a)]);
+    function packCircles(radii) {
+      const placed = [];
+
+      function collides(x,y,r) {
+        for (const p of placed) {
+          const dx = x - p.x, dy = y - p.y;
+          const rr = r + p.r + 6; // padding
+          if (dx*dx + dy*dy < rr*rr) return true;
+        }
+        return false;
       }
-      return pts;
+
+      const order = radii.map((r,i)=>({r,i})).sort((a,b)=>b.r-a.r);
+
+      for (const it of order) {
+        const r = it.r;
+        let a = 0;
+        let ok = false;
+
+        for (let k=0; k<8000; k++) {
+          a += 0.33;
+          const rad = 2.3 * a;
+          const x = rad * Math.cos(a);
+          const y = rad * Math.sin(a);
+          if (!collides(x,y,r)) {
+            placed.push({x,y,r,i:it.i});
+            ok = true;
+            break;
+          }
+        }
+        if (!ok) placed.push({x: 250 + it.i*12, y: 0, r, i: it.i});
+      }
+
+      const out = Array(radii.length);
+      for (const p of placed) out[p.i] = [p.x, p.y];
+      return out;
     }
 
-    // =========================
-    // LOAD DATA
-    // =========================
-    async function loadAll() {
-      const sectorData = [];
-      for (const s of SECTOR_FILES) {
-        const txt = await fetch(s.file).then(r => r.text());
-        const rows = parseCSV(txt);
-
-        const scored = rows
-          .map(r => ({ r, ticker: pickTicker(r), score: scoreRow(r) }))
-          .filter(x => x.ticker && x.ticker !== "UNKNOWN")
-          .sort((a,b) => (b.score ?? -Infinity) - (a.score ?? -Infinity));
-
-        const top = scored.slice(0, TOP_N);
-
-        // sector “size” = sum of top scores (robust, works even if only proxy sizes exist)
-        const sectorSize = top.reduce((acc, x) => acc + (Number.isFinite(x.score) ? x.score : 0), 0);
-
-        sectorData.push({
-          ...s,
-          size: sectorSize,
-          top: top.map(x => ({ ticker: x.ticker, score: x.score }))
-        });
-      }
-      return sectorData;
+    function normalize(points, targetX=120, targetY=85) {
+      let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+      for (const [x,y] of points) { minX=Math.min(minX,x); maxX=Math.max(maxX,x); minY=Math.min(minY,y); maxY=Math.max(maxY,y); }
+      const w = Math.max(1e-9, maxX-minX), h = Math.max(1e-9, maxY-minY);
+      const s = Math.min((2*targetX)/w, (2*targetY)/h);
+      const cx = (minX+maxX)/2, cy = (minY+maxY)/2;
+      return points.map(([x,y]) => [(x-cx)*s, (y-cy)*s]);
     }
 
-    // =========================
-    // RENDER: SECTORS VIEW
-    // =========================
-    function renderSectors(sectors) {
+    // -------------------------------------------------------
+    // Render: sectors
+    // -------------------------------------------------------
+    function renderSectors() {
+      titleEl.textContent = "Sector bubblemap: click a sector";
       backBtn.style.display = "none";
-      titleEl.textContent = "Sector bubblemap — click a sector to reveal its giants";
 
-      const sizes = sectors.map(s => s.size);
-      const sym = scaleSizes(sizes, 48, 115);
+      // sector weights = number of “large names”
+      const weights = DATA.map(s => s.stocks.length);
+      const radii = scaleSizes(weights, 46, 108);
+      const pts = normalize(packCircles(radii), 125, 85);
 
-      const pts = radialLayout(sectors.length, 55);
-
-      const data = sectors.map((s, i) => ({
+      const seriesData = DATA.map((s,i) => ({
         name: s.name,
-        value: [pts[i][0], pts[i][1], s.size],
-        symbolSize: sym[i],
-        itemStyle: { color: s.color },
+        value: [pts[i][0], pts[i][1], weights[i]],
+        symbolSize: radii[i],
+        itemStyle: { color: s.color, opacity: 0.92 },
         sectorKey: s.key
       }));
 
       chart.setOption({
         backgroundColor: "transparent",
         animation: true,
-        animationDuration: 900,
+        animationDuration: 850,
         animationEasing: "cubicOut",
-        grid: { left: 10, right: 10, top: 10, bottom: 10 },
-        xAxis: { show: false, min: -90, max: 90 },
-        yAxis: { show: false, min: -70, max: 70 },
+        xAxis: { show:false, min:-150, max:150 },
+        yAxis: { show:false, min:-110, max:110 },
         tooltip: {
-          backgroundColor: "rgba(255,255,255,.92)",
+          backgroundColor: "rgba(255,255,255,.95)",
           borderColor: "rgba(0,0,0,.10)",
           borderWidth: 1,
-          textStyle: { color: "rgba(20,20,20,.9)" },
           formatter: (p) => {
-            const s = sectors.find(x => x.name === p.name);
-            if (!s) return p.name;
-            const top3 = s.top.slice(0,3).map(x => x.ticker).join(", ");
+            const s = DATA.find(x => x.name === p.name);
+            const top = (s?.stocks || []).slice(0,4).map(x => x.t).join(", ");
             return `
-              <div style="font-family:Inter,system-ui; font-weight:700; margin-bottom:4px;">${s.name}</div>
+              <div style="font-family:Inter,system-ui; font-weight:900; margin-bottom:4px;">${p.name}</div>
               <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
-                Top: <b>${top3 || "—"}</b><br/>
-                Click to drill down
+                Examples: <b>${top || ":"}</b><br/>Click to drill down
               </div>
             `;
           }
         },
         series: [{
           type: "scatter",
-          data,
+          data: seriesData,
           symbol: "circle",
-          emphasis: {
-            scale: true,
-            focus: "self",
-            itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" }
-          },
+          emphasis: { scale: true, focus: "self", itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" } },
           label: {
             show: true,
             formatter: (p) => p.name,
             fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-            fontWeight: 750,
+            fontWeight: 900,
             fontSize: 12,
-            color: "rgba(20,20,20,.85)"
+            color: "rgba(20,20,20,.86)"
           }
         }]
       }, true);
     }
 
-    // =========================
-    // RENDER: STOCKS VIEW
-    // =========================
-    function renderStocks(sectors, sectorKey) {
-      const s = sectors.find(x => x.key === sectorKey);
+    // -------------------------------------------------------
+    // Render: stocks
+    // -------------------------------------------------------
+    function renderStocks(sectorKey) {
+      const s = DATA.find(x => x.key === sectorKey);
       if (!s) return;
 
+      titleEl.textContent = `${s.name}: largest NASDAQ names`;
       backBtn.style.display = "inline-block";
-      titleEl.textContent = `${s.name} — largest stocks in this sector`;
 
-      const vals = s.top.map(x => x.score);
-      const sym = scaleSizes(vals, 26, 78);
+      // stock weights = rank index (bigger for earlier ones)
+      const weights = s.stocks.map((_,i)=> (s.stocks.length - i));
+      const radii = scaleSizes(weights, 22, 70);
+      const pts = normalize(packCircles(radii), 125, 85);
 
-      // inner “bubble cluster”
-      const pts = radialLayout(s.top.length, 45);
-
-      const data = s.top.map((x, i) => ({
-        name: x.ticker,
-        value: [pts[i][0], pts[i][1], x.score],
-        symbolSize: sym[i],
-        itemStyle: { color: s.color }
+      const seriesData = s.stocks.map((x,i) => ({
+        name: x.t,
+        value: [pts[i][0], pts[i][1], weights[i]],
+        symbolSize: radii[i],
+        itemStyle: { color: s.color, opacity: 0.92 },
+        company: x.n
       }));
 
       chart.setOption({
-        xAxis: { min: -70, max: 70 },
-        yAxis: { min: -60, max: 60 },
+        backgroundColor: "transparent",
+        animation: true,
+        animationDuration: 700,
+        animationEasing: "cubicOut",
+        xAxis: { show:false, min:-150, max:150 },
+        yAxis: { show:false, min:-110, max:110 },
         tooltip: {
+          backgroundColor: "rgba(255,255,255,.95)",
+          borderColor: "rgba(0,0,0,.10)",
+          borderWidth: 1,
           formatter: (p) => {
-            const score = p.value?.[2];
-            const pretty = Number.isFinite(score) ? score.toLocaleString() : "—";
+            const c = p.data?.company || "";
             return `
-              <div style="font-family:Inter,system-ui; font-weight:800">${p.name}</div>
+              <div style="font-family:Inter,system-ui; font-weight:900;">${p.name}</div>
               <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
-                “Size” proxy: <b>${pretty}</b>
+                ${c}
               </div>
             `;
           }
         },
-        graphic: [{
-          type: "text",
-          left: "center",
-          top: "middle",
-          style: {
-            text: s.name,
-            font: "800 22px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial",
-            fill: "rgba(20,20,20,.16)"
-          },
-          silent: true
-        }],
         series: [{
           type: "scatter",
-          data,
+          data: seriesData,
           symbol: "circle",
-          emphasis: {
-            scale: true,
-            focus: "self",
-            label: { show: true }
-          },
+          emphasis: { scale: true, focus: "self", itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" } },
           label: {
             show: true,
             formatter: (p) => p.name,
             fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-            fontWeight: 750,
+            fontWeight: 900,
             fontSize: 12,
             color: "rgba(20,20,20,.90)"
-          },
-          itemStyle: {
-            opacity: 0.92,
-            shadowBlur: 18,
-            shadowColor: "rgba(0,0,0,.10)"
-          },
-          animationDuration: 650,
-          animationEasing: "cubicOut"
+          }
         }]
       }, true);
     }
 
-    // =========================
-    // INIT + INTERACTIONS
-    // =========================
-    let CACHE = null;
+    // -------------------------------------------------------
+    // Interactions (click drilldown + back)
+    // -------------------------------------------------------
+    backBtn.addEventListener("click", () => renderSectors());
 
-    backBtn.addEventListener("click", () => {
-      if (CACHE) renderSectors(CACHE);
-    });
-
+    chart.off("click");
     chart.on("click", (params) => {
-      const sectorKey = params?.data?.sectorKey;
-      if (sectorKey && CACHE) renderStocks(CACHE, sectorKey);
+      const k = params?.data?.sectorKey;
+      if (k) renderStocks(k);
     });
-
-    window.addEventListener("resize", () => chart.resize());
 
     // boot
-    loadAll().then(sectors => {
-      CACHE = sectors;
-      renderSectors(sectors);
-    }).catch(err => {
-      console.error(err);
-      el.innerHTML = "<div style='padding:18px;font-family:Inter,system-ui;'>Failed to load sector CSVs. Check paths in sector_bubblemap.html.</div>";
-    });
-
+    renderSectors();
   })();
   </script>
 </body>
