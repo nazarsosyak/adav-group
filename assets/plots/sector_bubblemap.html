@@ -1,4 +1,5 @@
 ---
+layout: null
 ---
 <!doctype html>
 <html lang="en">
@@ -9,7 +10,7 @@
   <style>
     html, body { height: 100%; margin: 0; background: transparent; }
     #wrap { height: 100%; width: 100%; position: relative; }
-    #chart { height: 600px; width: 100%; }
+    #chart { height: 640px; width: 100%; }
 
     .glass {
       position:absolute; inset: 14px;
@@ -80,7 +81,7 @@
     <div class="glass"></div>
 
     <div id="topbar">
-      <div id="title">Sector bubblemap: click a sector</div>
+      <div id="title">Sector bubblemap — click a sector</div>
       <div id="right">
         <div id="hint">Non-overlapping · drilldown</div>
         <button id="backBtn" type="button">← Back</button>
@@ -100,8 +101,8 @@
     window.addEventListener("resize", () => chart.resize());
 
     // -------------------------------------------------------
-    // Hardcoded NASDAQ "largest names" per sector (edit freely)
-    // Format: {t:"TICKER", n:"Company Name"}
+    // Hardcoded NASDAQ names per sector (added ~10 each)
+    // Edit freely.
     // -------------------------------------------------------
     const DATA = [
       {
@@ -114,7 +115,17 @@
           {t:"ADBE", n:"Adobe"},
           {t:"CSCO", n:"Cisco"},
           {t:"INTC", n:"Intel"},
-          {t:"AMD",  n:"AMD"}
+          {t:"AMD",  n:"AMD"},
+          {t:"ORCL", n:"Oracle"},
+          {t:"CRM",  n:"Salesforce"},
+          {t:"NOW",  n:"ServiceNow"},
+          {t:"SNPS", n:"Synopsys"},
+          {t:"CDNS", n:"Cadence"},
+          {t:"ANET", n:"Arista Networks"},
+          {t:"MU",   n:"Micron"},
+          {t:"LRCX", n:"Lam Research"},
+          {t:"KLAC", n:"KLA"},
+          {t:"ADSK", n:"Autodesk"}
         ]
       },
       {
@@ -127,7 +138,17 @@
           {t:"ISRG", n:"Intuitive Surgical"},
           {t:"ILMN", n:"Illumina"},
           {t:"BIIB", n:"Biogen"},
-          {t:"MRNA", n:"Moderna"}
+          {t:"MRNA", n:"Moderna"},
+          {t:"DXCM", n:"Dexcom"},
+          {t:"IDXX", n:"IDEXX Laboratories"},
+          {t:"SGEN", n:"Seagen"},
+          {t:"INCY", n:"Incyte"},
+          {t:"ALGN", n:"Align Technology"},
+          {t:"HOLX", n:"Hologic"},
+          {t:"BMRN", n:"BioMarin"},
+          {t:"EXAS", n:"Exact Sciences"},
+          {t:"VEEV", n:"Veeva Systems"},
+          {t:"UTHR", n:"United Therapeutics"}
         ]
       },
       {
@@ -140,7 +161,17 @@
           {t:"NFLX", n:"Netflix"},
           {t:"EBAY", n:"eBay"},
           {t:"ROST", n:"Ross Stores"},
-          {t:"ORLY", n:"O’Reilly Automotive"}
+          {t:"ORLY", n:"O’Reilly Automotive"},
+          {t:"ABNB", n:"Airbnb"},
+          {t:"UBER", n:"Uber"},
+          {t:"LYFT", n:"Lyft"},
+          {t:"PDD",  n:"PDD"},
+          {t:"JD",   n:"JD.com"},
+          {t:"LULU", n:"Lululemon"},
+          {t:"MAR",  n:"Marriott"},
+          {t:"EXPE", n:"Expedia"},
+          {t:"NKE",  n:"Nike"},
+          {t:"ETSY", n:"Etsy"}
         ]
       },
       {
@@ -152,8 +183,18 @@
           {t:"KDP",  n:"Keurig Dr Pepper"},
           {t:"SBUX", n:"Starbucks"},
           {t:"MNST", n:"Monster Beverage"},
+          {t:"KR",   n:"Kroger"},
           {t:"WBA",  n:"Walgreens Boots Alliance"},
-          {t:"KR",   n:"Kroger"}
+          {t:"CHDN", n:"Churchill Downs"},
+          {t:"CPB",  n:"Campbell Soup"},
+          {t:"CAG",  n:"Conagra Brands"},
+          {t:"SJM",  n:"J.M. Smucker"},
+          {t:"HSY",  n:"Hershey"},
+          {t:"TSN",  n:"Tyson Foods"},
+          {t:"KHC",  n:"Kraft Heinz"},
+          {t:"CLX",  n:"Clorox"},
+          {t:"STZ",  n:"Constellation Brands"},
+          {t:"BG",   n:"Bunge"}
         ]
       },
       {
@@ -164,9 +205,19 @@
           {t:"IBKR", n:"Interactive Brokers"},
           {t:"HOOD", n:"Robinhood"},
           {t:"NDAQ", n:"Nasdaq, Inc."},
-          {t:"TROW", n:"T. Rowe Price"},
           {t:"PYPL", n:"PayPal"},
-          {t:"AFRM", n:"Affirm"}
+          {t:"TROW", n:"T. Rowe Price"},
+          {t:"AFRM", n:"Affirm"},
+          {t:"SCHW", n:"Charles Schwab"},
+          {t:"BLK",  n:"BlackRock"},
+          {t:"AXP",  n:"American Express"},
+          {t:"MS",   n:"Morgan Stanley"},
+          {t:"GS",   n:"Goldman Sachs"},
+          {t:"JPM",  n:"JPMorgan Chase"},
+          {t:"BAC",  n:"Bank of America"},
+          {t:"C",    n:"Citigroup"},
+          {t:"SPGI", n:"S&P Global"},
+          {t:"MCO",  n:"Moody’s"}
         ]
       },
       {
@@ -179,20 +230,40 @@
           {t:"FAST", n:"Fastenal"},
           {t:"ODFL", n:"Old Dominion Freight Line"},
           {t:"PAYX", n:"Paychex"},
-          {t:"UAL",  n:"United Airlines"}
+          {t:"UAL",  n:"United Airlines"},
+          {t:"RTX",  n:"RTX"},
+          {t:"BA",   n:"Boeing"},
+          {t:"CAT",  n:"Caterpillar"},
+          {t:"DE",   n:"Deere"},
+          {t:"GD",   n:"General Dynamics"},
+          {t:"NOC",  n:"Northrop Grumman"},
+          {t:"ETN",  n:"Eaton"},
+          {t:"EMR",  n:"Emerson"},
+          {t:"UPS",  n:"UPS"},
+          {t:"CPRT", n:"Copart"}
         ]
       },
       {
         key:"energy", name:"Energy", color:"#f4b183",
         stocks:[
-          {t:"CEG", n:"Constellation Energy"},
+          {t:"CEG",  n:"Constellation Energy"},
           {t:"FANG", n:"Diamondback Energy"},
-          {t:"BKR", n:"Baker Hughes"},
-          {t:"WFRD", n:"Weatherford"},
+          {t:"BKR",  n:"Baker Hughes"},
           {t:"CHRD", n:"Chord Energy"},
           {t:"CIVI", n:"Civitas Resources"},
-          {t:"VTNR", n:"Vertex Energy"},
-          {t:"NGS",  n:"Natural Gas Services"}
+          {t:"EOG",  n:"EOG Resources"},
+          {t:"OXY",  n:"Occidental Petroleum"},
+          {t:"COP",  n:"ConocoPhillips"},
+          {t:"XOM",  n:"Exxon Mobil"},
+          {t:"CVX",  n:"Chevron"},
+          {t:"SLB",  n:"Schlumberger"},
+          {t:"HAL",  n:"Halliburton"},
+          {t:"MPC",  n:"Marathon Petroleum"},
+          {t:"VLO",  n:"Valero"},
+          {t:"PSX",  n:"Phillips 66"},
+          {t:"DVN",  n:"Devon Energy"},
+          {t:"PXD",  n:"Pioneer Natural Resources"},
+          {t:"KMI",  n:"Kinder Morgan"}
         ]
       },
       {
@@ -202,10 +273,20 @@
           {t:"EXC", n:"Exelon"},
           {t:"XEL", n:"Xcel Energy"},
           {t:"PCG", n:"PG&E"},
-          {t:"WEC", n:"WEC Energy Group"},
+          {t:"WEC", n:"WEC Energy"},
           {t:"ES",  n:"Eversource"},
           {t:"NI",  n:"NiSource"},
-          {t:"CMS", n:"CMS Energy"}
+          {t:"CMS", n:"CMS Energy"},
+          {t:"DUK", n:"Duke Energy"},
+          {t:"SO",  n:"Southern Company"},
+          {t:"D",   n:"Dominion Energy"},
+          {t:"ED",  n:"Con Edison"},
+          {t:"PEG", n:"Public Service Enterprise Group"},
+          {t:"EIX", n:"Edison International"},
+          {t:"SRE", n:"Sempra"},
+          {t:"PPL", n:"PPL"},
+          {t:"FE",  n:"FirstEnergy"},
+          {t:"ETR", n:"Entergy"}
         ]
       },
       {
@@ -214,37 +295,67 @@
           {t:"TMUS", n:"T-Mobile US"},
           {t:"CMCSA", n:"Comcast"},
           {t:"CHTR", n:"Charter Communications"},
-          {t:"LBRDA", n:"Liberty Broadband"},
-          {t:"AMDOCS", n:"Amdocs"},
-          {t:"FYBR", n:"Frontier"},
-          {t:"CCOI", n:"Cogent"},
-          {t:"IDCC", n:"InterDigital"}
+          {t:"IDCC", n:"InterDigital"},
+          {t:"AMX",  n:"América Móvil"},
+          {t:"VZ",   n:"Verizon"},
+          {t:"T",    n:"AT&T"},
+          {t:"TEF",  n:"Telefónica"},
+          {t:"TU",   n:"Telus"},
+          {t:"BCE",  n:"BCE"},
+          {t:"VOD",  n:"Vodafone"},
+          {t:"TLK",  n:"Telkom Indonesia"},
+          {t:"NTES", n:"NetEase (comms-adj)"},
+          {t:"SATS", n:"EchoStar"},
+          {t:"LUMN", n:"Lumen"},
+          {t:"VIAV", n:"Viavi"},
+          {t:"COMM", n:"CommScope"},
+          {t:"CALX", n:"Calix"}
         ]
       },
       {
         key:"real_estate", name:"Real Estate", color:"#dd4124",
         stocks:[
-          {t:"AMT", n:"American Tower"},
+          {t:"AMT",  n:"American Tower"},
           {t:"EQIX", n:"Equinix"},
-          {t:"DLR", n:"Digital Realty"},
+          {t:"DLR",  n:"Digital Realty"},
           {t:"VICI", n:"VICI Properties"},
-          {t:"SUI", n:"Sun Communities"},
-          {t:"WY",  n:"Weyerhaeuser"},
-          {t:"EXR", n:"Extra Space Storage"},
-          {t:"IRM", n:"Iron Mountain"}
+          {t:"SUI",  n:"Sun Communities"},
+          {t:"WY",   n:"Weyerhaeuser"},
+          {t:"EXR",  n:"Extra Space Storage"},
+          {t:"IRM",  n:"Iron Mountain"},
+          {t:"PLD",  n:"Prologis"},
+          {t:"PSA",  n:"Public Storage"},
+          {t:"O",    n:"Realty Income"},
+          {t:"SPG",  n:"Simon Property"},
+          {t:"AVB",  n:"AvalonBay"},
+          {t:"EQR",  n:"Equity Residential"},
+          {t:"ARE",  n:"Alexandria Real Estate"},
+          {t:"WELL", n:"Welltower"},
+          {t:"VTR",  n:"Ventas"},
+          {t:"KIM",  n:"Kimco Realty"}
         ]
       },
       {
         key:"basic_materials", name:"Basic Materials", color:"#6b5b95",
         stocks:[
-          {t:"NTRS", n:"(edit list)"},
           {t:"ALB",  n:"Albemarle"},
           {t:"CCJ",  n:"Cameco"},
           {t:"IFF",  n:"IFF"},
           {t:"CLF",  n:"Cleveland-Cliffs"},
-          {t:"SID",  n:"Companhia Siderúrgica Nacional"},
           {t:"GOLD", n:"Barrick Gold"},
-          {t:"NEM",  n:"Newmont"}
+          {t:"NEM",  n:"Newmont"},
+          {t:"FCX",  n:"Freeport-McMoRan"},
+          {t:"RIO",  n:"Rio Tinto"},
+          {t:"BHP",  n:"BHP"},
+          {t:"VALE", n:"Vale"},
+          {t:"APD",  n:"Air Products"},
+          {t:"LIN",  n:"Linde"},
+          {t:"ECL",  n:"Ecolab"},
+          {t:"SHW",  n:"Sherwin-Williams"},
+          {t:"DOW",  n:"Dow"},
+          {t:"DD",   n:"DuPont"},
+          {t:"NUE",  n:"Nucor"},
+          {t:"STLD", n:"Steel Dynamics"}
         ]
       },
       {
@@ -253,17 +364,27 @@
           {t:"GOOG", n:"Alphabet (Class C)"},
           {t:"META", n:"Meta Platforms"},
           {t:"INTU", n:"Intuit"},
-          {t:"SNPS", n:"Synopsys"},
           {t:"PANW", n:"Palo Alto Networks"},
           {t:"CRWD", n:"CrowdStrike"},
           {t:"FTNT", n:"Fortinet"},
-          {t:"ADSK", n:"Autodesk"}
+          {t:"SNOW", n:"Snowflake"},
+          {t:"PLTR", n:"Palantir"},
+          {t:"SHOP", n:"Shopify"},
+          {t:"ASML", n:"ASML"},
+          {t:"TSM",  n:"TSMC"},
+          {t:"QCOM", n:"Qualcomm"},
+          {t:"TXN",  n:"Texas Instruments"},
+          {t:"INTC", n:"Intel"},
+          {t:"AMAT", n:"Applied Materials"},
+          {t:"ADI",  n:"Analog Devices"},
+          {t:"MCHP", n:"Microchip"},
+          {t:"PYPL", n:"PayPal"}
         ]
       }
     ];
 
     // -------------------------------------------------------
-    // Non-overlapping circle packing (deterministic)
+    // packing helpers
     // -------------------------------------------------------
     function scaleSizes(values, minR, maxR) {
       const v = values.slice().filter(Number.isFinite);
@@ -282,7 +403,7 @@
       function collides(x,y,r) {
         for (const p of placed) {
           const dx = x - p.x, dy = y - p.y;
-          const rr = r + p.r + 6; // padding
+          const rr = r + p.r + 8; // padding
           if (dx*dx + dy*dy < rr*rr) return true;
         }
         return false;
@@ -295,9 +416,9 @@
         let a = 0;
         let ok = false;
 
-        for (let k=0; k<8000; k++) {
+        for (let k=0; k<9000; k++) {
           a += 0.33;
-          const rad = 2.3 * a;
+          const rad = 2.25 * a;
           const x = rad * Math.cos(a);
           const y = rad * Math.sin(a);
           if (!collides(x,y,r)) {
@@ -306,7 +427,7 @@
             break;
           }
         }
-        if (!ok) placed.push({x: 250 + it.i*12, y: 0, r, i: it.i});
+        if (!ok) placed.push({x: 260 + it.i*14, y: 0, r, i: it.i});
       }
 
       const out = Array(radii.length);
@@ -314,7 +435,7 @@
       return out;
     }
 
-    function normalize(points, targetX=120, targetY=85) {
+    function normalize(points, targetX=130, targetY=90) {
       let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
       for (const [x,y] of points) { minX=Math.min(minX,x); maxX=Math.max(maxX,x); minY=Math.min(minY,y); maxY=Math.max(maxY,y); }
       const w = Math.max(1e-9, maxX-minX), h = Math.max(1e-9, maxY-minY);
@@ -323,17 +444,19 @@
       return points.map(([x,y]) => [(x-cx)*s, (y-cy)*s]);
     }
 
+    const LABEL_BG = "rgba(255,255,255,.82)";
+    const LABEL_BORDER = "rgba(0,0,0,.14)";
+
     // -------------------------------------------------------
     // Render: sectors
     // -------------------------------------------------------
     function renderSectors() {
-      titleEl.textContent = "Sector bubblemap: click a sector";
+      titleEl.textContent = "Sector bubblemap — click a sector";
       backBtn.style.display = "none";
 
-      // sector weights = number of “large names”
       const weights = DATA.map(s => s.stocks.length);
-      const radii = scaleSizes(weights, 46, 108);
-      const pts = normalize(packCircles(radii), 125, 85);
+      const radii = scaleSizes(weights, 48, 110);
+      const pts = normalize(packCircles(radii), 140, 95);
 
       const seriesData = DATA.map((s,i) => ({
         name: s.name,
@@ -348,19 +471,19 @@
         animation: true,
         animationDuration: 850,
         animationEasing: "cubicOut",
-        xAxis: { show:false, min:-150, max:150 },
-        yAxis: { show:false, min:-110, max:110 },
+        xAxis: { show:false, min:-170, max:170 },
+        yAxis: { show:false, min:-125, max:125 },
         tooltip: {
           backgroundColor: "rgba(255,255,255,.95)",
           borderColor: "rgba(0,0,0,.10)",
           borderWidth: 1,
           formatter: (p) => {
             const s = DATA.find(x => x.name === p.name);
-            const top = (s?.stocks || []).slice(0,4).map(x => x.t).join(", ");
+            const top = (s?.stocks || []).slice(0,5).map(x => x.t).join(", ");
             return `
               <div style="font-family:Inter,system-ui; font-weight:900; margin-bottom:4px;">${p.name}</div>
               <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
-                Examples: <b>${top || ":"}</b><br/>Click to drill down
+                Examples: <b>${top || "—"}</b><br/>Click to drill down
               </div>
             `;
           }
@@ -369,15 +492,26 @@
           type: "scatter",
           data: seriesData,
           symbol: "circle",
-          emphasis: { scale: true, focus: "self", itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" } },
+          emphasis: {
+            scale: true,
+            focus: "self",
+            // NO halo/shadow that hides labels
+            itemStyle: { shadowBlur: 0 }
+          },
           label: {
             show: true,
             formatter: (p) => p.name,
             fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
             fontWeight: 900,
             fontSize: 12,
-            color: "rgba(20,20,20,.86)"
-          }
+            color: "rgba(20,20,20,.92)",
+            backgroundColor: LABEL_BG,
+            borderColor: LABEL_BORDER,
+            borderWidth: 1,
+            borderRadius: 8,
+            padding: [4, 6, 4, 6]
+          },
+          labelLayout: { hideOverlap: true }
         }]
       }, true);
     }
@@ -389,13 +523,12 @@
       const s = DATA.find(x => x.key === sectorKey);
       if (!s) return;
 
-      titleEl.textContent = `${s.name}: largest NASDAQ names`;
+      titleEl.textContent = `${s.name} — largest NASDAQ names`;
       backBtn.style.display = "inline-block";
 
-      // stock weights = rank index (bigger for earlier ones)
-      const weights = s.stocks.map((_,i)=> (s.stocks.length - i));
-      const radii = scaleSizes(weights, 22, 70);
-      const pts = normalize(packCircles(radii), 125, 85);
+      const weights = s.stocks.map((_,i)=> (s.stocks.length - i)); // bigger = earlier
+      const radii = scaleSizes(weights, 18, 62);
+      const pts = normalize(packCircles(radii), 150, 105);
 
       const seriesData = s.stocks.map((x,i) => ({
         name: x.t,
@@ -410,8 +543,8 @@
         animation: true,
         animationDuration: 700,
         animationEasing: "cubicOut",
-        xAxis: { show:false, min:-150, max:150 },
-        yAxis: { show:false, min:-110, max:110 },
+        xAxis: { show:false, min:-190, max:190 },
+        yAxis: { show:false, min:-140, max:140 },
         tooltip: {
           backgroundColor: "rgba(255,255,255,.95)",
           borderColor: "rgba(0,0,0,.10)",
@@ -430,22 +563,30 @@
           type: "scatter",
           data: seriesData,
           symbol: "circle",
-          emphasis: { scale: true, focus: "self", itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" } },
+          emphasis: {
+            scale: true,
+            focus: "self",
+            itemStyle: { shadowBlur: 0 }
+          },
           label: {
             show: true,
             formatter: (p) => p.name,
             fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
             fontWeight: 900,
             fontSize: 12,
-            color: "rgba(20,20,20,.90)"
-          }
+            color: "rgba(20,20,20,.95)",
+            backgroundColor: LABEL_BG,
+            borderColor: LABEL_BORDER,
+            borderWidth: 1,
+            borderRadius: 8,
+            padding: [4, 6, 4, 6]
+          },
+          labelLayout: { hideOverlap: true }
         }]
       }, true);
     }
 
-    // -------------------------------------------------------
-    // Interactions (click drilldown + back)
-    // -------------------------------------------------------
+    // interactions
     backBtn.addEventListener("click", () => renderSectors());
 
     chart.off("click");
@@ -454,7 +595,6 @@
       if (k) renderStocks(k);
     });
 
-    // boot
     renderSectors();
   })();
   </script>
