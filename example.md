@@ -335,6 +335,15 @@ during that outbreak.
       We will reuse the algorithm, but this time, over the different sectors of the market.
       </p>
 
+      <div class="plot-container" style="margin:2rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:620px; border:none;">
+        </iframe>
+      </div>
+
+
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/internet/sector/ppi_3d_analysis.html' | relative_url }}"
