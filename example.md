@@ -484,7 +484,7 @@ Each crisis is therefore summarized by:
 The crisis signatures highlight clear structural differences between major market shocks.
 
 The **dot-com bubble** emerges as the most synchronized episode. Its dominant PCA mode
-explains a larger fraction of the variance than in the other crises, indicating that
+explains a larger fraction of the variance than in the other crises (roughly 57% of the variance is explained by this dominant mode), indicating that
 market behavior collapsed onto a **single prevailing stress mechanism**.
 This mode is driven by a sharp rise in sick assets and longer recovery times, while
 the fraction of healthy assets contributes in the opposite direction. In this sense,
