@@ -1,339 +1,214 @@
----
-layout: null
----
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sector Bubblemap</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;      /* no scrollbar */
-      background: transparent;
-    }
-    #chart {
-      width: 100%;
-      height: 100vh;         /* fill iframe height */
-    }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sector Bubblemap</title>
 
-    /* minimal back button */
-    #backBtn {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 20;
-      display: none;
-      border: 1px solid rgba(0,0,0,.16);
-      background: rgba(255,255,255,.92);
-      border-radius: 10px;
-      padding: 8px 10px;
-      cursor: pointer;
-      font: 800 13px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color: rgba(0,0,0,.85);
-      user-select: none;
-    }
-    #backBtn:hover { background: rgba(255,255,255,1); }
-  </style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+<style>
+:root{
+  --bg:#0b0d12;
+  --fg:#e8e8e8;
+  --muted:#9aa0a6;
+  --panel:#12151c;
+}
+
+html,body{
+  margin:0;
+  height:100%;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+#wrap{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+#top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 14px;
+  font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+#back{
+  background:none;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--fg);
+  padding:6px 10px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:12px;
+  opacity:.5;
+}
+#back.enabled{opacity:1}
+
+svg{
+  flex:1;
+  width:100%;
+  height:100%;
+}
+
+text{
+  fill:var(--fg);
+  pointer-events:none;
+  text-anchor:middle;
+  dominant-baseline:middle;
+  font-size:11px;
+}
+</style>
 </head>
 
 <body>
-  <button id="backBtn" type="button">← Back</button>
-  <div id="chart"></div>
+<div id="wrap">
+  <div id="top">
+    <div id="title">Sector overview</div>
+    <button id="back">← Back</button>
+  </div>
+  <svg id="svg"></svg>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-  <script>
-  (function () {
-    const el = document.getElementById("chart");
-    const backBtn = document.getElementById("backBtn");
-    const chart = echarts.init(el, null, { renderer: "canvas" });
-    window.addEventListener("resize", () => {
-      chart.resize();
-      // re-render current view so layout stays centered on resize
-      if (state.view === "sectors") renderSectors();
-      else renderStocks(state.sectorKey);
-    });
+<script>
+/* ============================================================
+   DATA — sectors + popular tickers (static, no CSV)
+   ============================================================ */
 
-    // -------------------------------------------------------
-    // DATA (same structure you used)
-    // -------------------------------------------------------
-    const DATA = [
-      { key:"basic_materials", name:"Basic Materials", color:"#6b5b95",
-        stocks:[
-          {t:"ALB",n:"Albemarle"},{t:"CCJ",n:"Cameco"},{t:"IFF",n:"IFF"},{t:"CLF",n:"Cleveland-Cliffs"},
-          {t:"GOLD",n:"Barrick Gold"},{t:"NEM",n:"Newmont"},{t:"FCX",n:"Freeport-McMoRan"},{t:"RIO",n:"Rio Tinto"},
-          {t:"BHP",n:"BHP"},{t:"VALE",n:"Vale"},{t:"APD",n:"Air Products"},{t:"LIN",n:"Linde"},
-          {t:"ECL",n:"Ecolab"},{t:"SHW",n:"Sherwin-Williams"},{t:"DOW",n:"Dow"},{t:"DD",n:"DuPont"},
-          {t:"NUE",n:"Nucor"},{t:"STLD",n:"Steel Dynamics"}
-        ]},
-      { key:"consumer_discretionary", name:"Consumer Discretionary", color:"#ff6f61",
-        stocks:[
-          {t:"AMZN",n:"Amazon"},{t:"TSLA",n:"Tesla"},{t:"BKNG",n:"Booking Holdings"},{t:"MELI",n:"MercadoLibre"},
-          {t:"NFLX",n:"Netflix"},{t:"EBAY",n:"eBay"},{t:"ROST",n:"Ross Stores"},{t:"ORLY",n:"O’Reilly Automotive"},
-          {t:"ABNB",n:"Airbnb"},{t:"UBER",n:"Uber"},{t:"LYFT",n:"Lyft"},{t:"PDD",n:"PDD"},
-          {t:"JD",n:"JD.com"},{t:"LULU",n:"Lululemon"},{t:"MAR",n:"Marriott"},{t:"EXPE",n:"Expedia"},
-          {t:"NKE",n:"Nike"},{t:"ETSY",n:"Etsy"}
-        ]},
-      { key:"consumer_staples", name:"Consumer Staples", color:"#88b04b",
-        stocks:[
-          {t:"COST",n:"Costco"},{t:"PEP",n:"PepsiCo"},{t:"MDLZ",n:"Mondelez"},{t:"KDP",n:"Keurig Dr Pepper"},
-          {t:"SBUX",n:"Starbucks"},{t:"MNST",n:"Monster Beverage"},{t:"KR",n:"Kroger"},{t:"WBA",n:"Walgreens Boots Alliance"},
-          {t:"CHDN",n:"Churchill Downs"},{t:"CPB",n:"Campbell Soup"},{t:"CAG",n:"Conagra Brands"},{t:"SJM",n:"J.M. Smucker"},
-          {t:"HSY",n:"Hershey"},{t:"TSN",n:"Tyson Foods"},{t:"KHC",n:"Kraft Heinz"},{t:"CLX",n:"Clorox"},
-          {t:"STZ",n:"Constellation Brands"},{t:"BG",n:"Bunge"}
-        ]},
-      { key:"energy", name:"Energy", color:"#f4b183",
-        stocks:[
-          {t:"CEG",n:"Constellation Energy"},{t:"FANG",n:"Diamondback Energy"},{t:"BKR",n:"Baker Hughes"},{t:"CHRD",n:"Chord Energy"},
-          {t:"CIVI",n:"Civitas Resources"},{t:"EOG",n:"EOG Resources"},{t:"OXY",n:"Occidental Petroleum"},{t:"COP",n:"ConocoPhillips"},
-          {t:"XOM",n:"Exxon Mobil"},{t:"CVX",n:"Chevron"},{t:"SLB",n:"Schlumberger"},{t:"HAL",n:"Halliburton"},
-          {t:"MPC",n:"Marathon Petroleum"},{t:"VLO",n:"Valero"},{t:"PSX",n:"Phillips 66"},{t:"DVN",n:"Devon Energy"},
-          {t:"PXD",n:"Pioneer Natural Resources"},{t:"KMI",n:"Kinder Morgan"}
-        ]},
-      { key:"finance", name:"Finance", color:"#92a8d1",
-        stocks:[
-          {t:"CME",n:"CME Group"},{t:"COIN",n:"Coinbase"},{t:"IBKR",n:"Interactive Brokers"},{t:"HOOD",n:"Robinhood"},
-          {t:"NDAQ",n:"Nasdaq, Inc."},{t:"PYPL",n:"PayPal"},{t:"TROW",n:"T. Rowe Price"},{t:"AFRM",n:"Affirm"},
-          {t:"SCHW",n:"Charles Schwab"},{t:"BLK",n:"BlackRock"},{t:"AXP",n:"American Express"},{t:"MS",n:"Morgan Stanley"},
-          {t:"GS",n:"Goldman Sachs"},{t:"JPM",n:"JPMorgan Chase"},{t:"BAC",n:"Bank of America"},{t:"C",n:"Citigroup"},
-          {t:"SPGI",n:"S&P Global"},{t:"MCO",n:"Moody’s"}
-        ]},
-      { key:"health_care", name:"Health Care", color:"#45b8ac",
-        stocks:[
-          {t:"AMGN",n:"Amgen"},{t:"GILD",n:"Gilead Sciences"},{t:"REGN",n:"Regeneron"},{t:"VRTX",n:"Vertex"},
-          {t:"ISRG",n:"Intuitive Surgical"},{t:"ILMN",n:"Illumina"},{t:"BIIB",n:"Biogen"},{t:"MRNA",n:"Moderna"},
-          {t:"DXCM",n:"Dexcom"},{t:"IDXX",n:"IDEXX Laboratories"},{t:"SGEN",n:"Seagen"},{t:"INCY",n:"Incyte"},
-          {t:"ALGN",n:"Align Technology"},{t:"HOLX",n:"Hologic"},{t:"BMRN",n:"BioMarin"},{t:"EXAS",n:"Exact Sciences"},
-          {t:"VEEV",n:"Veeva Systems"},{t:"UTHR",n:"United Therapeutics"}
-        ]},
-      { key:"industrials", name:"Industrials", color:"#955251",
-        stocks:[
-          {t:"HON",n:"Honeywell"},{t:"LHX",n:"L3Harris"},{t:"CSX",n:"CSX"},{t:"FDX",n:"FedEx"},
-          {t:"FAST",n:"Fastenal"},{t:"ODFL",n:"Old Dominion Freight Line"},{t:"PAYX",n:"Paychex"},{t:"UAL",n:"United Airlines"},
-          {t:"RTX",n:"RTX"},{t:"BA",n:"Boeing"},{t:"CAT",n:"Caterpillar"},{t:"DE",n:"Deere"},
-          {t:"GD",n:"General Dynamics"},{t:"NOC",n:"Northrop Grumman"},{t:"ETN",n:"Eaton"},{t:"EMR",n:"Emerson"},
-          {t:"UPS",n:"UPS"},{t:"CPRT",n:"Copart"}
-        ]},
-      { key:"real_estate", name:"Real Estate", color:"#dd4124",
-        stocks:[
-          {t:"AMT",n:"American Tower"},{t:"EQIX",n:"Equinix"},{t:"DLR",n:"Digital Realty"},{t:"VICI",n:"VICI Properties"},
-          {t:"SUI",n:"Sun Communities"},{t:"WY",n:"Weyerhaeuser"},{t:"EXR",n:"Extra Space Storage"},{t:"IRM",n:"Iron Mountain"},
-          {t:"PLD",n:"Prologis"},{t:"PSA",n:"Public Storage"},{t:"O",n:"Realty Income"},{t:"SPG",n:"Simon Property"},
-          {t:"AVB",n:"AvalonBay"},{t:"EQR",n:"Equity Residential"},{t:"ARE",n:"Alexandria Real Estate"},{t:"WELL",n:"Welltower"},
-          {t:"VTR",n:"Ventas"},{t:"KIM",n:"Kimco Realty"}
-        ]},
-      { key:"technology", name:"Technology", color:"#009b77",
-        stocks:[
-          {t:"MSFT",n:"Microsoft"},{t:"AAPL",n:"Apple"},{t:"NVDA",n:"NVIDIA"},{t:"AVGO",n:"Broadcom"},
-          {t:"ADBE",n:"Adobe"},{t:"CSCO",n:"Cisco"},{t:"INTC",n:"Intel"},{t:"AMD",n:"AMD"},
-          {t:"ORCL",n:"Oracle"},{t:"CRM",n:"Salesforce"},{t:"NOW",n:"ServiceNow"},{t:"SNPS",n:"Synopsys"},
-          {t:"CDNS",n:"Cadence"},{t:"ANET",n:"Arista Networks"},{t:"MU",n:"Micron"},
-          {t:"LRCX",n:"Lam Research"},{t:"KLAC",n:"KLA"},{t:"ADSK",n:"Autodesk"}
-        ]},
-      { key:"telecommunications", name:"Telecom", color:"#5b5ea6",
-        stocks:[
-          {t:"TMUS",n:"T-Mobile US"},{t:"CMCSA",n:"Comcast"},{t:"CHTR",n:"Charter Communications"},{t:"IDCC",n:"InterDigital"},
-          {t:"AMX",n:"América Móvil"},{t:"VZ",n:"Verizon"},{t:"T",n:"AT&T"},{t:"TEF",n:"Telefónica"},
-          {t:"TU",n:"Telus"},{t:"BCE",n:"BCE"},{t:"VOD",n:"Vodafone"},{t:"TLK",n:"Telkom Indonesia"},
-          {t:"NTES",n:"NetEase (comms-adj)"},{t:"SATS",n:"EchoStar"},{t:"LUMN",n:"Lumen"},
-          {t:"VIAV",n:"Viavi"},{t:"COMM",n:"CommScope"},{t:"CALX",n:"Calix"}
-        ]},
-      { key:"utilities", name:"Utilities", color:"#9b2335",
-        stocks:[
-          {t:"AEP",n:"American Electric Power"},{t:"EXC",n:"Exelon"},{t:"XEL",n:"Xcel Energy"},{t:"PCG",n:"PG&E"},
-          {t:"WEC",n:"WEC Energy"},{t:"ES",n:"Eversource"},{t:"NI",n:"NiSource"},{t:"CMS",n:"CMS Energy"},
-          {t:"DUK",n:"Duke Energy"},{t:"SO",n:"Southern Company"},{t:"D",n:"Dominion Energy"},{t:"ED",n:"Con Edison"},
-          {t:"PEG",n:"Public Service Enterprise Group"},{t:"EIX",n:"Edison International"},{t:"SRE",n:"Sempra"},
-          {t:"PPL",n:"PPL"},{t:"FE",n:"FirstEnergy"},{t:"ETR",n:"Entergy"}
-        ]},
-      { key:"miscellaneous", name:"Misc.", color:"#b565a7",
-        stocks:[
-          {t:"GOOG",n:"Alphabet (Class C)"},{t:"META",n:"Meta Platforms"},{t:"INTU",n:"Intuit"},{t:"PANW",n:"Palo Alto Networks"},
-          {t:"CRWD",n:"CrowdStrike"},{t:"FTNT",n:"Fortinet"},{t:"SNOW",n:"Snowflake"},{t:"PLTR",n:"Palantir"},
-          {t:"SHOP",n:"Shopify"},{t:"ASML",n:"ASML"},{t:"TSM",n:"TSMC"},{t:"QCOM",n:"Qualcomm"},
-          {t:"TXN",n:"Texas Instruments"},{t:"INTC",n:"Intel"},{t:"AMAT",n:"Applied Materials"},{t:"ADI",n:"Analog Devices"},
-          {t:"MCHP",n:"Microchip"},{t:"PYPL",n:"PayPal"}
-        ]}
-    ];
+const SECTORS = [
+  { name:"Basic Materials", color:"#8dd3c7", tickers:["LIN","SHW","APD","ECL","FCX","NEM","DOW","DD","PPG","IFF","VMC","MLM","ALB","CF","MOS","NUE","STLD","X","RIO","BHP"] },
+  { name:"Consumer Discretionary", color:"#fb8072", tickers:["AMZN","TSLA","HD","MCD","NKE","LOW","BKNG","SBUX","GM","F","ROST","TJX","CMG","MAR","HLT","EBAY","YUM","LULU","AZO","ORLY"] },
+  { name:"Consumer Staples", color:"#80b1d3", tickers:["WMT","PG","COST","KO","PEP","MDLZ","CL","MO","PM","KMB","GIS","KHC","SYY","KR","HSY","EL","CPB","STZ","TAP","WBA"] },
+  { name:"Energy", color:"#fdb462", tickers:["XOM","CVX","SHEL","BP","COP","EOG","SLB","HAL","PSX","VLO","MPC","OXY","KMI","WMB","BKR","DVN","FANG","APA","HES","EQT"] },
+  { name:"Finance", color:"#b3de69", tickers:["JPM","BAC","WFC","GS","MS","C","AXP","V","MA","BRK.B","SCHW","BLK","SPGI","ICE","AIG","PNC","USB","TFC","COF","BK"] },
+  { name:"Health Care", color:"#fccde5", tickers:["UNH","JNJ","LLY","PFE","MRK","ABBV","TMO","ABT","DHR","AMGN","GILD","BMY","VRTX","ISRG","REGN","MDT","CI","CVS","ELV","HUM"] },
+  { name:"Industrials", color:"#d9d9d9", tickers:["BA","CAT","GE","RTX","LMT","DE","MMM","HON","UPS","FDX","NOC","ETN","EMR","CSX","NSC","WM","ROP","ITW","PCAR","FAST"] },
+  { name:"Miscellaneous", color:"#bc80bd", tickers:["META","GOOG","NFLX","UBER","SPOT","SNAP","TWLO","ROKU","ZM","PINS","DOCU","SQ","SHOP","DASH","PLTR","RBLX","COIN","LYFT","AFRM","HOOD"] },
+  { name:"Real Estate", color:"#ccebc5", tickers:["AMT","PLD","CCI","EQIX","SPG","PSA","O","DLR","VTR","WELL","AVB","EQR","ARE","IRM","ESS","MAA","UDR","BXP","KIM","REG"] },
+  { name:"Technology", color:"#ffed6f", tickers:["AAPL","MSFT","NVDA","GOOG","META","AVGO","ORCL","CRM","ADBE","AMD","INTC","QCOM","TXN","CSCO","AMAT","LRCX","KLAC","SNPS","INTU","NOW"] },
+  { name:"Telecommunications", color:"#bebada", tickers:["VZ","T","TMUS","AMX","CHTR","CMCSA","BTI","VOD","TEF","ORAN","TEL","SKM","NTT","KT","LUMN","USM","TELIA","TIM","SJM","MTN"] },
+  { name:"Utilities", color:"#ffffb3", tickers:["NEE","DUK","SO","AEP","EXC","SRE","D","XEL","PEG","ED","EIX","PCG","WEC","ES","CMS","PPL","DTE","NRG","AES","IDA"] }
+];
 
-    // -------------------------------------------------------
-    // STATE
-    // -------------------------------------------------------
-    const state = { view: "sectors", sectorKey: null };
+/* ============================================================
+   PACK LAYOUT + STATE
+   ============================================================ */
 
-    // -------------------------------------------------------
-    // Layout helpers: EVEN spacing (hex / honeycomb grid)
-    // -------------------------------------------------------
-    function hexGrid(n, spacingX=52, spacingY=46) {
-      // build a centered hex-ish grid, then take n points
-      const pts = [];
-      const cols = Math.ceil(Math.sqrt(n * 1.15));
-      const rows = Math.ceil(n / cols) + 1;
+const svg = d3.select("#svg");
+const g = svg.append("g");
 
-      const x0 = -(cols - 1) * spacingX / 2;
-      const y0 = -(rows - 1) * spacingY / 2;
+const backBtn = document.getElementById("back");
+const titleEl = document.getElementById("title");
 
-      let k = 0;
-      for (let r = 0; r < rows && k < n; r++) {
-        for (let c = 0; c < cols && k < n; c++) {
-          const x = x0 + c * spacingX + (r % 2 ? spacingX / 2 : 0);
-          const y = y0 + r * spacingY;
-          pts.push([x, y]);
-          k++;
-        }
-      }
-      return pts;
-    }
+let width, height, current="sectors";
 
-    function scaleRange(vals, a, b) {
-      const lo = Math.min(...vals), hi = Math.max(...vals);
-      return vals.map(v => {
-        if (hi === lo) return (a+b)/2;
-        const t = (v - lo) / (hi - lo);
-        return a + (b - a) * Math.pow(t, 0.65);
-      });
-    }
+function resize(){
+  const r = svg.node().getBoundingClientRect();
+  width = r.width;
+  height = r.height;
+}
+resize();
+window.addEventListener("resize", () => { resize(); render(); });
 
-    // -------------------------------------------------------
-    // Styling: readable text WITHOUT label boxes
-    // -------------------------------------------------------
-    function labelStyle(fontSize=12) {
-      return {
-        show: true,
-        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial",
-        fontWeight: 900,
-        fontSize,
-        color: "#111",
-        textBorderColor: "rgba(255,255,255,.95)",  // outline for readability
-        textBorderWidth: 4,
-        textShadowBlur: 0
-      };
-    }
+const pack = d3.pack().padding(8);
 
-    function baseOption() {
-      return {
-        backgroundColor: "transparent",
-        animation: true,
-        animationDuration: 650,
-        animationEasing: "cubicOut",
-        xAxis: { show:false, min:-180, max:180 },
-        yAxis: { show:false, min:-140, max:140 },
-        tooltip: { show: false }
-      };
-    }
+/* ============================================================
+   RENDER FUNCTIONS
+   ============================================================ */
 
-    // -------------------------------------------------------
-    // Render sectors
-    // -------------------------------------------------------
-    function renderSectors() {
-      state.view = "sectors";
-      state.sectorKey = null;
-      backBtn.style.display = "none";
+function renderSectors(){
+  titleEl.textContent = "Sector overview";
+  backBtn.classList.remove("enabled");
 
-      const n = DATA.length;
-      const pts = hexGrid(n, 64, 54);
-      const weights = DATA.map(s => s.stocks.length);
-      const sizes = scaleRange(weights, 64, 112);
+  const root = d3.hierarchy({children:SECTORS.map(d=>({name:d.name,value:1,color:d.color,data:d}))})
+    .sum(d=>d.value);
 
-      const seriesData = DATA.map((s,i) => ({
-        name: s.name,
-        value: [pts[i][0], pts[i][1], weights[i]],
-        symbolSize: sizes[i],
-        sectorKey: s.key,
-        itemStyle: {
-          color: s.color,
-          opacity: 1,
-          borderWidth: 1.2,
-          borderColor: "rgba(0,0,0,.18)",
-          shadowBlur: 0
-        }
-      }));
+  pack.size([width,height])(root);
 
-      chart.setOption({
-        ...baseOption(),
-        series: [{
-          type: "scatter",
-          symbol: "circle",
-          data: seriesData,
-          label: labelStyle(12),
-          labelLayout: { hideOverlap: true },
-          emphasis: {
-            scale: true,
-            focus: "self",
-            itemStyle: { borderWidth: 2, borderColor: "rgba(0,0,0,.28)", shadowBlur: 0 }
-          }
-        }]
-      }, true);
-    }
+  const nodes = g.selectAll("g").data(root.leaves(), d=>d.data.name);
 
-    // -------------------------------------------------------
-    // Render stocks in a sector (even spacing, denser grid)
-    // -------------------------------------------------------
-    function renderStocks(sectorKey) {
-      const s = DATA.find(x => x.key === sectorKey);
-      if (!s) return;
+  nodes.exit().transition().duration(300).style("opacity",0).remove();
 
-      state.view = "stocks";
-      state.sectorKey = sectorKey;
-      backBtn.style.display = "block";
+  const enter = nodes.enter().append("g")
+    .style("cursor","pointer")
+    .on("click",(e,d)=>renderTickers(d.data.data));
 
-      const n = s.stocks.length;
-      const pts = hexGrid(n, 42, 36);
+  enter.append("circle");
+  enter.append("text");
 
-      // make top names bigger (simple ranking)
-      const weights = s.stocks.map((_,i) => (n - i));
-      const sizes = scaleRange(weights, 22, 58);
+  const all = enter.merge(nodes);
 
-      const seriesData = s.stocks.map((x,i) => ({
-        name: x.t,
-        value: [pts[i][0], pts[i][1], weights[i]],
-        symbolSize: sizes[i],
-        itemStyle: {
-          color: s.color,
-          opacity: 1,
-          borderWidth: 1.1,
-          borderColor: "rgba(0,0,0,.18)",
-          shadowBlur: 0
-        }
-      }));
+  all.transition().duration(600)
+    .attr("transform",d=>`translate(${d.x},${d.y})`);
 
-      chart.setOption({
-        ...baseOption(),
-        xAxis: { show:false, min:-220, max:220 },
-        yAxis: { show:false, min:-170, max:170 },
-        series: [{
-          type: "scatter",
-          symbol: "circle",
-          data: seriesData,
-          label: labelStyle(11),
-          labelLayout: { hideOverlap: true },
-          emphasis: {
-            scale: true,
-            focus: "self",
-            itemStyle: { borderWidth: 2, borderColor: "rgba(0,0,0,.28)", shadowBlur: 0 }
-          }
-        }]
-      }, true);
-    }
+  all.select("circle")
+    .transition().duration(600)
+    .attr("r",d=>d.r)
+    .attr("fill",d=>d.data.color)
+    .attr("opacity",0.85);
 
-    // -------------------------------------------------------
-    // Interactions
-    // -------------------------------------------------------
-    backBtn.addEventListener("click", renderSectors);
+  all.select("text")
+    .text(d=>d.data.name)
+    .style("font-size",d=>Math.min(14,d.r/3)+"px");
+}
 
-    chart.off("click");
-    chart.on("click", (params) => {
-      if (state.view !== "sectors") return;
-      const k = params?.data?.sectorKey;
-      if (k) renderStocks(k);
-    });
+function renderTickers(sector){
+  current="tickers";
+  titleEl.textContent = sector.name;
+  backBtn.classList.add("enabled");
 
-    // initial
+  const root = d3.hierarchy({
+    children: sector.tickers.map(t=>({name:t,value:1}))
+  }).sum(d=>d.value);
+
+  pack.size([width,height])(root);
+
+  const nodes = g.selectAll("g").data(root.leaves(), d=>d.data.name);
+
+  nodes.exit().transition().duration(300).style("opacity",0).remove();
+
+  const enter = nodes.enter().append("g");
+  enter.append("circle");
+  enter.append("text");
+
+  const all = enter.merge(nodes);
+
+  all.transition().duration(600)
+    .attr("transform",d=>`translate(${d.x},${d.y})`);
+
+  all.select("circle")
+    .transition().duration(600)
+    .attr("r",d=>d.r)
+    .attr("fill",sector.color)
+    .attr("opacity",0.9);
+
+  all.select("text")
+    .text(d=>d.data.name)
+    .style("font-size",d=>Math.min(12,d.r/2)+"px");
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+
+backBtn.addEventListener("click",()=>{
+  if(current==="tickers"){
+    current="sectors";
     renderSectors();
-  })();
-  </script>
+  }
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+renderSectors();
+</script>
 </body>
 </html>
