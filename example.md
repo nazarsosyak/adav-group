@@ -1173,24 +1173,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<aside id="ticker-helper" class="ticker-helper" aria-label="Ticker helper">
-  <div class="th-head">
-    <div class="th-title">Ticker helper</div>
-    <button id="th-close" class="th-close" type="button" aria-label="Close">✕</button>
+<aside id="ticker-dictionary" class="ticker-dict">
+  <div class="td-head">
+    <div class="td-title">Ticker dictionary</div>
+    <div class="td-sub">Click a ticker to see what the company does.</div>
   </div>
 
-  <div class="th-body">
-    <div class="th-empty">
-      Click a ticker to see what the company does.
-    </div>
+  <input
+    id="td-search"
+    class="td-search"
+    type="text"
+    placeholder="Search ticker (e.g. MSFT)"
+    aria-label="Search ticker"
+  />
 
-    <div class="th-card" hidden>
-      <div class="th-ticker" id="th-ticker">—</div>
-      <div class="th-desc" id="th-desc">—</div>
-      <div class="th-links" id="th-links"></div>
-    </div>
+  <div id="td-list" class="td-list"></div>
+
+  <div id="td-card" class="td-card" hidden>
+    <div class="td-ticker" id="td-ticker">—</div>
+    <div class="td-desc" id="td-desc">—</div>
+    <div class="td-links" id="td-links"></div>
   </div>
 </aside>
+
 
 <button id="th-open" class="th-open" type="button" aria-label="Open ticker helper">
   ?
@@ -1199,105 +1204,103 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Minimal built-in descriptions
+  /* ======================================
+     TICKER DATA — EXACT ANALYSIS UNIVERSE
+     ====================================== */
+
   const TICKER_INFO = {
-  AAPL: "Apple designs consumer electronics and software, including the iPhone, Mac, iPad, and a growing ecosystem of digital services.",
-  MSFT: "Microsoft develops operating systems, enterprise software, and cloud services, with major products including Windows, Office, and Azure.",
-  AMZN: "Amazon operates a global e-commerce platform and Amazon Web Services (AWS), a leading provider of cloud infrastructure.",
-  GOOG: "Alphabet, through Google, operates internet services including Search, YouTube, Android, and cloud computing products.",
-  JPM: "JPMorgan Chase is a global financial institution offering investment banking, commercial banking, and asset management services.",
-  GS: "Goldman Sachs is an investment bank specializing in advisory services, trading, and asset management.",
-  XOM: "Exxon Mobil is a multinational energy company engaged in oil and gas exploration, production, refining, and chemicals.",
-  CVX: "Chevron is an integrated energy company involved in oil, gas, and energy-related operations worldwide.",
-  BA: "Boeing designs and manufactures commercial airplanes, defense systems, and aerospace technology.",
-  CAT: "Caterpillar manufactures heavy machinery and equipment used in construction, mining, and industrial applications.",
-  WMT: "Walmart operates a global chain of retail stores and e-commerce platforms focused on consumer goods and groceries.",
-  META: "Meta Platforms develops social media and digital communication products, including Facebook, Instagram, and WhatsApp.",
-  TSLA: "Tesla designs electric vehicles, battery systems, and energy storage solutions.",
-  NVDA: "NVIDIA develops graphics processing units and computing platforms used in gaming, data centers, and artificial intelligence.",
-  NFLX: "Netflix is a streaming entertainment company producing and distributing films and television content worldwide.",
-  ADBE: "Adobe develops software for digital media creation, design, and document management.",
-  CRM: "Salesforce provides cloud-based customer relationship management (CRM) software for businesses.",
-  INTC: "Intel designs and manufactures semiconductor chips, primarily CPUs for personal computers and servers.",
-  AMD: "AMD designs semiconductor processors and graphics chips used in computers, gaming, and data centers.",
-  CSCO: "Cisco Systems develops networking hardware, software, and cybersecurity solutions.",
-  AVGO: "Broadcom designs semiconductor and infrastructure software solutions for networking, broadband, and data centers.",
-  QCOM: "Qualcomm develops wireless communication technologies and semiconductor chips for mobile devices.",
-  TXN: "Texas Instruments designs analog and embedded semiconductor chips used across industrial and consumer applications.",
-  AMAT: "Applied Materials supplies equipment and software used in semiconductor manufacturing.",
-  MU: "Micron Technology manufactures memory and storage products such as DRAM and NAND flash.",
-  LRCX: "Lam Research produces equipment used in the fabrication of semiconductor devices.",
-  KLAC: "KLA develops process control and inspection systems for semiconductor manufacturing.",
-  PYPL: "PayPal operates digital payment platforms enabling online and mobile financial transactions.",
-  BKNG: "Booking Holdings operates online travel platforms including Booking.com and Priceline.",
-  PEP: "PepsiCo produces beverages and food products, including soft drinks and snack brands.",
-  COST: "Costco operates membership-based warehouse retail stores offering consumer goods and groceries.",
-  SBUX: "Starbucks operates a global chain of coffeehouses and beverage retail stores.",
-  ADI: "Analog Devices designs analog and mixed-signal semiconductor products for industrial and digital applications.",
-  MCHP: "Microchip Technology produces microcontrollers and embedded control solutions.",
-  MDLZ: "Mondelez International produces packaged food and snack products sold globally.",
-  GILD: "Gilead Sciences develops pharmaceutical products focused on antiviral and oncology treatments.",
-  VRTX: "Vertex Pharmaceuticals specializes in developing treatments for serious genetic diseases.",
-  REGN: "Regeneron Pharmaceuticals develops biotechnology-based medicines, particularly in immunology and oncology.",
-  AMGN: "Amgen is a biotechnology company focused on developing therapies for serious illnesses.",
-  BIIB: "Biogen develops therapies for neurological and neurodegenerative diseases.",
-  ISRG: "Intuitive Surgical develops robotic-assisted surgical systems used in minimally invasive procedures.",
-  ILMN: "Illumina develops genetic sequencing and analysis technologies used in research and medicine.",
-  PANW: "Palo Alto Networks provides cybersecurity solutions for enterprise networks and cloud systems.",
-  CRWD: "CrowdStrike develops cloud-based cybersecurity solutions focused on endpoint protection.",
-  FTNT: "Fortinet provides network security products including firewalls and threat protection systems.",
-  ADSK: "Autodesk develops software for design, engineering, and construction industries.",
-  SNPS: "Synopsys provides software tools used in semiconductor design and electronic automation.",
-  INTU: "Intuit develops financial software including accounting, tax preparation, and personal finance tools.",
-  ORLY: "O'Reilly Automotive operates retail stores supplying automotive replacement parts and accessories.",
-  ROST: "Ross Stores operates off-price retail stores offering discounted apparel and home goods."
-};
+    AAPL:"Apple designs consumer electronics and software, including the iPhone, Mac, iPad, and digital services.",
+    MSFT:"Microsoft develops operating systems, enterprise software, and cloud services such as Windows, Office, and Azure.",
+    AMZN:"Amazon operates a global e-commerce platform and Amazon Web Services (AWS).",
+    GOOG:"Alphabet, through Google, provides internet services including Search, YouTube, Android, and cloud computing.",
+    JPM:"JPMorgan Chase is a global financial institution offering banking and asset management services.",
+    GS:"Goldman Sachs is an investment bank focused on advisory, trading, and asset management.",
+    XOM:"Exxon Mobil is an integrated oil and gas company active in exploration, refining, and chemicals.",
+    CVX:"Chevron is a multinational energy company engaged in oil and gas production.",
+    BA:"Boeing designs and manufactures commercial airplanes and defense systems.",
+    CAT:"Caterpillar produces heavy machinery for construction, mining, and industrial use.",
+    WMT:"Walmart operates global retail stores and e-commerce platforms.",
+    META:"Meta Platforms develops social media products including Facebook, Instagram, and WhatsApp.",
+    TSLA:"Tesla designs electric vehicles, battery systems, and energy storage solutions.",
+    NVDA:"NVIDIA develops graphics processing units and AI computing platforms.",
+    NFLX:"Netflix is a streaming entertainment company producing and distributing video content.",
+    ADBE:"Adobe develops software for digital media creation and document management.",
+    CRM:"Salesforce provides cloud-based customer relationship management software.",
+    INTC:"Intel designs and manufactures semiconductor processors for PCs and servers.",
+    AMD:"AMD designs processors and graphics chips used in computing and gaming.",
+    CSCO:"Cisco develops networking hardware, software, and cybersecurity solutions.",
+    AVGO:"Broadcom designs semiconductor and infrastructure software solutions.",
+    QCOM:"Qualcomm develops wireless communication chips and communication technologies.",
+    TXN:"Texas Instruments designs analog and embedded semiconductor products.",
+    AMAT:"Applied Materials supplies equipment used in semiconductor manufacturing.",
+    MU:"Micron Technology produces memory and storage products.",
+    LRCX:"Lam Research develops equipment for semiconductor fabrication.",
+    KLAC:"KLA produces inspection and process control systems for chip manufacturing.",
+    PYPL:"PayPal operates digital payment platforms for online transactions.",
+    BKNG:"Booking Holdings operates online travel and accommodation platforms.",
+    PEP:"PepsiCo produces beverages and snack food products.",
+    COST:"Costco operates membership-based warehouse retail stores.",
+    SBUX:"Starbucks operates a global chain of coffeehouses.",
+    ADI:"Analog Devices designs analog and mixed-signal semiconductor products.",
+    MCHP:"Microchip Technology produces microcontrollers and embedded control products.",
+    MDLZ:"Mondelez International produces packaged snack and food products.",
+    GILD:"Gilead Sciences develops antiviral and oncology pharmaceutical products.",
+    VRTX:"Vertex Pharmaceuticals develops treatments for genetic diseases.",
+    REGN:"Regeneron Pharmaceuticals develops biotechnology-based medicines.",
+    AMGN:"Amgen develops therapies for serious diseases.",
+    BIIB:"Biogen develops treatments for neurological disorders.",
+    ISRG:"Intuitive Surgical develops robotic-assisted surgical systems.",
+    ILMN:"Illumina develops genetic sequencing technologies.",
+    PANW:"Palo Alto Networks provides cybersecurity solutions.",
+    CRWD:"CrowdStrike develops cloud-based endpoint cybersecurity solutions.",
+    FTNT:"Fortinet provides network security products.",
+    ADSK:"Autodesk develops design and engineering software.",
+    SNPS:"Synopsys provides electronic design automation software.",
+    INTU:"Intuit develops financial and accounting software.",
+    ORLY:"O’Reilly Automotive operates retail stores for automotive parts.",
+    ROST:"Ross Stores operates off-price retail apparel and home goods stores."
+  };
 
-  const sidebar = document.getElementById("ticker-helper");
-  const openBtn  = document.getElementById("th-open");
-  const closeBtn = document.getElementById("th-close");
-  const card     = sidebar?.querySelector(".th-card");
-  const empty    = sidebar?.querySelector(".th-empty");
-  const tEl      = document.getElementById("th-ticker");
-  const dEl      = document.getElementById("th-desc");
-  const linksEl  = document.getElementById("th-links");
+  /* ======================================
+     BUILD UI
+     ====================================== */
 
-  function setOpen(isOpen){
-    if (!sidebar) return;
-    sidebar.style.display = isOpen ? "block" : "none";
-    if (openBtn) openBtn.style.display = isOpen ? "none" : "block";
+  const listEl = document.getElementById("td-list");
+  const cardEl = document.getElementById("td-card");
+  const tEl = document.getElementById("td-ticker");
+  const dEl = document.getElementById("td-desc");
+  const linksEl = document.getElementById("td-links");
+  const searchEl = document.getElementById("td-search");
+
+  const tickers = Object.keys(TICKER_INFO).sort();
+
+  function renderList(filter=""){
+    const q = filter.toUpperCase();
+    listEl.innerHTML = "";
+
+    tickers
+      .filter(t => !q || t.includes(q))
+      .forEach(t => {
+        const chip = document.createElement("div");
+        chip.className = "td-chip";
+        chip.textContent = t;
+        chip.onclick = () => show(t);
+        listEl.appendChild(chip);
+      });
   }
 
-  if (closeBtn) closeBtn.addEventListener("click", () => setOpen(false));
-  if (openBtn)  openBtn.addEventListener("click",  () => setOpen(true));
-
-  // Global function: call this from anywhere (cluster widget, etc.)
-  window.showTickerInfo = function(ticker){
-    if (!sidebar || !tEl || !dEl || !linksEl || !card || !empty) return;
-
-    const T = String(ticker || "").toUpperCase().trim();
-    const desc = TICKER_INFO[T] || "No description available yet for this ticker. (Add it to the TICKER_INFO map.)";
-
-    tEl.textContent = T;
-    dEl.textContent = desc;
-
-    // Optional: quick links (safe + simple)
-    const wiki = `https://en.wikipedia.org/wiki/${encodeURIComponent(T)}`;
-    const google = `https://www.google.com/search?q=${encodeURIComponent(T + " company")}`;
-
+  function show(ticker){
+    tEl.textContent = ticker;
+    dEl.textContent = TICKER_INFO[ticker];
     linksEl.innerHTML =
-      `<a href="${google}" target="_blank" rel="noopener">Quick search</a>` +
-      `<a href="${wiki}" target="_blank" rel="noopener">Wikipedia (ticker)</a>`;
+      `<a href="https://www.google.com/search?q=${ticker}+company" target="_blank">Search</a>`;
+    cardEl.hidden = false;
+  }
 
-    empty.hidden = true;
-    card.hidden = false;
-
-    // Ensure visible
-    setOpen(true);
-  };
+  searchEl.addEventListener("input", () => renderList(searchEl.value));
+  renderList();
 
 });
 </script>
-
 
 
