@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sector Bubblemap</title>
+  <style>
+    html, body { height: 100%; margin: 0; background: transparent; }
+    #wrap { height: 100%; width: 100%; position: relative; }
+    #chart { height: 560px; width: 100%; }
+
+    /* subtle “glass” frame that still works on any theme bg */
+    .glass {
+      position:absolute; inset: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.10);
+      pointer-events:none;
+    }
+
+    #topbar {
+      position:absolute; top: 18px; left: 22px; right: 22px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 10px;
+      pointer-events:none;
+    }
+    #title {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .2px;
+      color: rgba(20,20,20,.85);
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(0,0,0,.06);
+      pointer-events:none;
+    }
+
+    #backBtn {
+      pointer-events:auto;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 650;
+      font-size: 13px;
+      cursor: pointer;
+      color: rgba(20,20,20,.85);
+      transition: transform .15s ease, background .2s ease;
+      display:none;
+    }
+    #backBtn:hover { transform: translateY(-1px); background: rgba(255,255,255,.85); }
+    #hint {
+      pointer-events:none;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 12px;
+      color: rgba(20,20,20,.65);
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.05);
+      display:block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div class="glass"></div>
+
+    <div id="topbar">
+      <div id="title">Sector bubblemap — click a sector to reveal its giants</div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div id="hint">Drilldown · animated</div>
+        <button id="backBtn" type="button">← Back to sectors</button>
+      </div>
+    </div>
+
+    <div id="chart"></div>
+  </div>
+
+  <!-- ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+  <script>
+  (function () {
+    // =========================
+    // CONFIG — EDIT PATHS HERE
+    // =========================
+    // Put your CSVs under: assets/data/sectors/
+    // and keep filenames exactly like in your screenshot.
+    const SECTOR_FILES = [
+      { key: "basic_materials",         name: "Basic Materials",          file: "{{ '/assets/data/basic_materials.csv' | relative_url }}",         color: "#6b5b95" },
+      { key: "consumer_discretionary",  name: "Consumer Discretionary",   file: "{{ '/assets/data/consumer_discretionary.csv' | relative_url }}",  color: "#ff6f61" },
+      { key: "consumer_staples",        name: "Consumer Staples",         file: "{{ '/assets/data/consumer_staples.csv' | relative_url }}",        color: "#88b04b" },
+      { key: "energy",                  name: "Energy",                   file: "{{ '/assets/data/energy.csv' | relative_url }}",                  color: "#f7cac9" },
+      { key: "finance",                 name: "Finance",                  file: "{{ '/assets/data/finance.csv' | relative_url }}",                 color: "#92a8d1" },
+      { key: "health_care",             name: "Health Care",              file: "{{ '/assets/data/health_care.csv' | relative_url }}",             color: "#45b8ac" },
+      { key: "industrials",             name: "Industrials",              file: "{{ '/assets/data/industrials.csv' | relative_url }}",             color: "#955251" },
+      { key: "miscellaneous",           name: "Misc.",                    file: "{{ '/assets/data/miscellaneous.csv' | relative_url }}",           color: "#b565a7" },
+      { key: "real_estate",             name: "Real Estate",              file: "{{ '/assets/data/real_estate.csv' | relative_url }}",             color: "#dd4124" },
+      { key: "technology",              name: "Technology",               file: "{{ '/assets/data/technology.csv' | relative_url }}",              color: "#009b77" },
+      { key: "telecommunications",      name: "Telecom",                  file: "{{ '/assets/data/telecommunications.csv' | relative_url }}",      color: "#5b5ea6" },
+      { key: "utilities",               name: "Utilities",                file: "{{ '/assets/data/utilities.csv' | relative_url }}",               color: "#9b2335" },
+    ];
+
+    // how many stocks to show inside a sector
+    const TOP_N = 12;
+
+    // =========================
+    // HELPERS
+    // =========================
+    const el = document.getElementById("chart");
+    const backBtn = document.getElementById("backBtn");
+    const titleEl = document.getElementById("title");
+
+    const chart = echarts.init(el, null, { renderer: "canvas" });
+
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      if (!lines.length) return [];
+      const header = lines[0].split(",").map(s => s.trim());
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const raw = lines[i];
+        if (!raw) continue;
+        const cols = raw.split(",");
+        const obj = {};
+        for (let j = 0; j < header.length; j++) obj[header[j]] = (cols[j] ?? "").trim();
+        rows.push(obj);
+      }
+      return rows;
+    }
+
+    function toNum(x) {
+      const v = (x ?? "").toString().replace(/[$,]/g, "");
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    // try common column names (we don’t know your schema for “largest”)
+    function scoreRow(r) {
+      const keysMC = ["marketCap","MarketCap","market_cap","mktcap","MktCap","cap","Cap"];
+      const keysW  = ["weight","Weight"];
+      const keysP  = ["close","Close","adj_close","Adj Close","AdjClose"];
+      const keysV  = ["volume","Volume"];
+
+      for (const k of keysMC) { const n = toNum(r[k]); if (Number.isFinite(n)) return n; }
+      for (const k of keysW)  { const n = toNum(r[k]); if (Number.isFinite(n)) return n; }
+
+      // fallback: proxy size = mean-ish price * volume if present
+      let p = NaN, v = NaN;
+      for (const k of keysP) { const n = toNum(r[k]); if (Number.isFinite(n)) { p = n; break; } }
+      for (const k of keysV) { const n = toNum(r[k]); if (Number.isFinite(n)) { v = n; break; } }
+      if (Number.isFinite(p) && Number.isFinite(v)) return p * v;
+
+      return NaN;
+    }
+
+    function pickTicker(r) {
+      return r.ticker || r.Ticker || r.symbol || r.Symbol || r.SYMBOL || r.pname || r.Name || r.name || "UNKNOWN";
+    }
+
+    function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+
+    function scaleSizes(vals, minS, maxS) {
+      const finite = vals.filter(v => Number.isFinite(v));
+      const lo = Math.min(...finite);
+      const hi = Math.max(...finite);
+      return vals.map(v => {
+        if (!Number.isFinite(v) || hi === lo) return (minS + maxS) / 2;
+        const t = (v - lo) / (hi - lo);
+        // gentle non-linear scaling so big caps pop, but small still visible
+        const u = Math.pow(t, 0.55);
+        return minS + u * (maxS - minS);
+      });
+    }
+
+    function radialLayout(n, R) {
+      // stable “bubble-map” placement
+      const pts = [];
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2;
+        const r = R * (0.55 + 0.35 * Math.sin(i * 1.7));
+        pts.push([r * Math.cos(a), r * Math.sin(a)]);
+      }
+      return pts;
+    }
+
+    // =========================
+    // LOAD DATA
+    // =========================
+    async function loadAll() {
+      const sectorData = [];
+      for (const s of SECTOR_FILES) {
+        const txt = await fetch(s.file).then(r => r.text());
+        const rows = parseCSV(txt);
+
+        const scored = rows
+          .map(r => ({ r, ticker: pickTicker(r), score: scoreRow(r) }))
+          .filter(x => x.ticker && x.ticker !== "UNKNOWN")
+          .sort((a,b) => (b.score ?? -Infinity) - (a.score ?? -Infinity));
+
+        const top = scored.slice(0, TOP_N);
+
+        // sector “size” = sum of top scores (robust, works even if only proxy sizes exist)
+        const sectorSize = top.reduce((acc, x) => acc + (Number.isFinite(x.score) ? x.score : 0), 0);
+
+        sectorData.push({
+          ...s,
+          size: sectorSize,
+          top: top.map(x => ({ ticker: x.ticker, score: x.score }))
+        });
+      }
+      return sectorData;
+    }
+
+    // =========================
+    // RENDER: SECTORS VIEW
+    // =========================
+    function renderSectors(sectors) {
+      backBtn.style.display = "none";
+      titleEl.textContent = "Sector bubblemap — click a sector to reveal its giants";
+
+      const sizes = sectors.map(s => s.size);
+      const sym = scaleSizes(sizes, 48, 115);
+
+      const pts = radialLayout(sectors.length, 55);
+
+      const data = sectors.map((s, i) => ({
+        name: s.name,
+        value: [pts[i][0], pts[i][1], s.size],
+        symbolSize: sym[i],
+        itemStyle: { color: s.color },
+        sectorKey: s.key
+      }));
+
+      chart.setOption({
+        backgroundColor: "transparent",
+        animation: true,
+        animationDuration: 900,
+        animationEasing: "cubicOut",
+        grid: { left: 10, right: 10, top: 10, bottom: 10 },
+        xAxis: { show: false, min: -90, max: 90 },
+        yAxis: { show: false, min: -70, max: 70 },
+        tooltip: {
+          backgroundColor: "rgba(255,255,255,.92)",
+          borderColor: "rgba(0,0,0,.10)",
+          borderWidth: 1,
+          textStyle: { color: "rgba(20,20,20,.9)" },
+          formatter: (p) => {
+            const s = sectors.find(x => x.name === p.name);
+            if (!s) return p.name;
+            const top3 = s.top.slice(0,3).map(x => x.ticker).join(", ");
+            return `
+              <div style="font-family:Inter,system-ui; font-weight:700; margin-bottom:4px;">${s.name}</div>
+              <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
+                Top: <b>${top3 || "—"}</b><br/>
+                Click to drill down
+              </div>
+            `;
+          }
+        },
+        series: [{
+          type: "scatter",
+          data,
+          symbol: "circle",
+          emphasis: {
+            scale: true,
+            focus: "self",
+            itemStyle: { shadowBlur: 20, shadowColor: "rgba(0,0,0,.18)" }
+          },
+          label: {
+            show: true,
+            formatter: (p) => p.name,
+            fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+            fontWeight: 750,
+            fontSize: 12,
+            color: "rgba(20,20,20,.85)"
+          }
+        }]
+      }, true);
+    }
+
+    // =========================
+    // RENDER: STOCKS VIEW
+    // =========================
+    function renderStocks(sectors, sectorKey) {
+      const s = sectors.find(x => x.key === sectorKey);
+      if (!s) return;
+
+      backBtn.style.display = "inline-block";
+      titleEl.textContent = `${s.name} — largest stocks in this sector`;
+
+      const vals = s.top.map(x => x.score);
+      const sym = scaleSizes(vals, 26, 78);
+
+      // inner “bubble cluster”
+      const pts = radialLayout(s.top.length, 45);
+
+      const data = s.top.map((x, i) => ({
+        name: x.ticker,
+        value: [pts[i][0], pts[i][1], x.score],
+        symbolSize: sym[i],
+        itemStyle: { color: s.color }
+      }));
+
+      chart.setOption({
+        xAxis: { min: -70, max: 70 },
+        yAxis: { min: -60, max: 60 },
+        tooltip: {
+          formatter: (p) => {
+            const score = p.value?.[2];
+            const pretty = Number.isFinite(score) ? score.toLocaleString() : "—";
+            return `
+              <div style="font-family:Inter,system-ui; font-weight:800">${p.name}</div>
+              <div style="font-family:Inter,system-ui; font-size:12px; color:rgba(20,20,20,.75)">
+                “Size” proxy: <b>${pretty}</b>
+              </div>
+            `;
+          }
+        },
+        graphic: [{
+          type: "text",
+          left: "center",
+          top: "middle",
+          style: {
+            text: s.name,
+            font: "800 22px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial",
+            fill: "rgba(20,20,20,.16)"
+          },
+          silent: true
+        }],
+        series: [{
+          type: "scatter",
+          data,
+          symbol: "circle",
+          emphasis: {
+            scale: true,
+            focus: "self",
+            label: { show: true }
+          },
+          label: {
+            show: true,
+            formatter: (p) => p.name,
+            fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+            fontWeight: 750,
+            fontSize: 12,
+            color: "rgba(20,20,20,.90)"
+          },
+          itemStyle: {
+            opacity: 0.92,
+            shadowBlur: 18,
+            shadowColor: "rgba(0,0,0,.10)"
+          },
+          animationDuration: 650,
+          animationEasing: "cubicOut"
+        }]
+      }, true);
+    }
+
+    // =========================
+    // INIT + INTERACTIONS
+    // =========================
+    let CACHE = null;
+
+    backBtn.addEventListener("click", () => {
+      if (CACHE) renderSectors(CACHE);
+    });
+
+    chart.on("click", (params) => {
+      const sectorKey = params?.data?.sectorKey;
+      if (sectorKey && CACHE) renderStocks(CACHE, sectorKey);
+    });
+
+    window.addEventListener("resize", () => chart.resize());
+
+    // boot
+    loadAll().then(sectors => {
+      CACHE = sectors;
+      renderSectors(sectors);
+    }).catch(err => {
+      console.error(err);
+      el.innerHTML = "<div style='padding:18px;font-family:Inter,system-ui;'>Failed to load sector CSVs. Check paths in sector_bubblemap.html.</div>";
+    });
+
+  })();
+  </script>
+</body>
+</html>
