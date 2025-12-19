@@ -233,6 +233,15 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/plots/immune_phenotypes_3d_dotcom.html' | relative_url }}"
+          loading="lazy"
+          title="Immune phenotypes — Dot-com">
+        </iframe>
+      </div>
+
       <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="dotcom"></div>
 
@@ -320,6 +329,15 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/plots/immune_phenotypes_3d_subprime.html' | relative_url }}"
+          loading="lazy"
+          title="Immune phenotypes — Subprime">
+        </iframe>
+      </div>
+
       
       <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="subprime"></div>
@@ -434,6 +452,15 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <div class="plot-frame plot-frame--first">
+        <iframe
+          src="{{ '/assets/plots/immune_phenotypes_3d_covid.html' | relative_url }}"
+          loading="lazy"
+          title="Immune phenotypes — COVID">
+        </iframe>
+      </div>
+
+      
       <h2 class="text-accent">Cluster membership</h2>
       <div class="cluster-widget" data-period="covid"></div>
 
@@ -851,17 +878,17 @@ document.addEventListener("DOMContentLoaded", () => {
     el.innerHTML = `
       <div class="cw-top">
         <div>
-          <div class="cw-title">Interactive directory — ${meta.label}</div>
+          <div class="cw-title">Interactive directory - ${meta.label}</div>
           <div class="cw-sub">Filter by cluster, or search a ticker. Click a ticker to highlight it.</div>
         </div>
 
         <div class="cw-controls">
           <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
           <button class="cw-btn is-active" data-filter="all" type="button">All</button>
-          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
-          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
-          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
-          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
+          <button class="cw-btn" data-filter="0" type="button">Cluster 1</button>
+          <button class="cw-btn" data-filter="1" type="button">Cluster 2</button>
+          <button class="cw-btn" data-filter="2" type="button">Cluster 3</button>
+          <button class="cw-btn" data-filter="3" type="button">Cluster 4</button>
         </div>
       </div>
 
