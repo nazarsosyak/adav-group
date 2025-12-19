@@ -20,7 +20,7 @@ We therefore begin with the only element the market cannot conceal:
   </iframe>
 
   <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-    <strong>Figure 1 — Market return segmentation over time.</strong><br>
+    <strong>Figure 1: Market return segmentation over time.</strong><br>
     Weekly mean market returns with detected regime segments shown as background shading.
     Each colored region corresponds to a period of statistically similar market behavior (dynamic programming constrained to 50 segments).
   </p>
@@ -40,7 +40,7 @@ We segmented the market timeline into consecutive regimes using **dynamic progra
 The segmentation groups periods with **similar average market returns**, allowing us
 to detect **structural changes in market behavior** without relying on predefined crisis dates.
 
-**Table 1 — Major crisis periods identified by market segmentation.**
+**Table 1: Major crisis periods identified by market segmentation.**
 
 | Crisis episode            | Start date | End date   | Duration (weeks) | Cumulative market return | Interpretation |
 |---------------------------|------------|------------|------------------|--------------------------|----------------|
@@ -170,7 +170,7 @@ during that outbreak.
     </div>
 
     <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-      <strong>Figure 2 — Mean daily market returns over the dot-com burst period.</strong><br>
+      <strong>Figure 2: Mean daily market returns over the dot-com burst period.</strong><br>
     </p>
 
     <p>
@@ -206,12 +206,39 @@ during that outbreak.
       <p>
         Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
       </p>
+
+      <p>
+        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
+        It is interesting to understand the
+        relative roles played by all assets during the crisis.
+      </p>
+      
+      <p>
+        The 3D plot below places every stock in the market inside a common
+        <strong>contagion space</strong>.
+        Each point represents an entity, positioned according to three dimensions:
+        how early it exhibits stress, how central it is within the market network,
+        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+      </p>
+      
+      <p>
+        Furthermore, the <strong>Pandemic Potential Index</strong> is represented. This is visually intuitive regarding the role of each stock in this outbreak.
+      </p>
+
       <div class="plot-frame plot-frame--first">
           <iframe
             src="{{ '/assets/plots/ppi_3d_internet.html' | relative_url }}"
             loading="lazy"
             title="Dot-com 3D plot"></iframe>
         </div>
+
+      <p>
+        To move from this static snapshot to a dynamic view,
+        we now follow how the outbreak unfolds over time.
+        The timeline below tracks the daily evolution of asset states,
+        showing when entities become infected, recover, or remain resilient. The slider bar can be used to scroll over the timeline.
+      </p>
+
 
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
@@ -220,8 +247,11 @@ during that outbreak.
       </div>
 
       <p>
-        Network reconstruction reveals super-spreaders that amplify contagion through correlation.
+        Finally, we reconstruct the underlying interaction network.
+        This network reveals the channels through which stress propagates,
+        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
       </p>
+
 
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
@@ -374,6 +404,20 @@ during that outbreak.
       <p>
         Patient zero has been identified as entity <span class="text-accent"><strong>GS</strong></span> (use helper dictionary on the right of your screen for more information on the company).
       </p>
+
+      <p>
+        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
+        It is interesting to understand the
+        relative roles played by all assets during the crisis.
+      </p>
+      
+      <p>
+        The 3D plot below places every stock in the market inside a common
+        <strong>contagion space</strong>.
+        Each point represents an entity, positioned according to three dimensions:
+        how early it exhibits stress, how central it is within the market network,
+        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+      </p>
       
       <div class="plot-frame plot-frame--first">
           <iframe
@@ -381,6 +425,13 @@ during that outbreak.
             loading="lazy"
             title="Subprime 3D plot"></iframe>
         </div>
+
+      <p>
+        To move from this static snapshot to a dynamic view,
+        we now follow how the outbreak unfolds over time.
+        The timeline below tracks the daily evolution of asset states,
+        showing when entities become infected, recover, or remain resilient. The slider bar can be used to scroll over the timeline.
+      </p>
         
 
       <div class="img-slider"
@@ -390,7 +441,9 @@ during that outbreak.
       </div>
 
       <p>
-        The network exposes institutions acting as systemic amplifiers.
+        Finally, we reconstruct the underlying interaction network.
+        This network reveals the channels through which stress propagates,
+        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
       </p>
 
       <div class="img-slider"
@@ -540,6 +593,20 @@ during that outbreak.
       <p>
       Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span> (use helper dictionary on the right of your screen for more information on the company).
       </p>
+      
+      <p>
+        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
+        It is interesting to understand the
+        relative roles played by all assets during the crisis.
+      </p>
+      
+      <p>
+        The 3D plot below places every stock in the market inside a common
+        <strong>contagion space</strong>.
+        Each point represents an entity, positioned according to three dimensions:
+        how early it exhibits stress, how central it is within the market network,
+        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+      </p>
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/ppi_3d_covid.html' | relative_url }}"
@@ -547,6 +614,12 @@ during that outbreak.
           title="COVID 3D plot"></iframe>
       </div>
 
+      <p>
+        To move from this static snapshot to a dynamic view,
+        we now follow how the outbreak unfolds over time.
+        The timeline below tracks the daily evolution of asset states,
+        showing when entities become infected, recover, or remain resilient. The slider bar can be used to scroll over the timeline.
+      </p>
      
 
       <div class="img-slider"
@@ -556,7 +629,9 @@ during that outbreak.
       </div>
 
       <p>
-        The network confirms market-wide immune system failure.
+        Finally, we reconstruct the underlying interaction network.
+        This network reveals the channels through which stress propagates,
+        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
       </p>
 
       <div class="img-slider"
