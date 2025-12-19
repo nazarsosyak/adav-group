@@ -233,6 +233,9 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <h2 class="text-accent">Cluster membership</h2>
+      <div class="cluster-widget" data-period="dotcom"></div>
+
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
@@ -317,11 +320,10 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-      <p>
-      By tracking how many sectors become infected and how strongly they interact,
-      we assess whether the outbreak remains confined to a subset of sectors
-      or evolves into a system-wide event.
-      </p>
+      
+      <h2 class="text-accent">Cluster membership</h2>
+      <div class="cluster-widget" data-period="subprime"></div>
+      
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
@@ -347,6 +349,7 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
       
       <p class="figure-caption">
         <strong>Figure X — Sectoral infection intensity during the outbreak.</strong><br>
@@ -431,6 +434,12 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <h2 class="text-accent">Cluster membership</h2>
+      <div class="cluster-widget" data-period="covid"></div>
+
+      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+
+
     </div>
   </section>
 
@@ -786,5 +795,158 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // -------------------------
+  // DATA (your cluster memberships)
+  // -------------------------
+  const CLUSTERS = {
+    dotcom: {
+      label: "Dot-com (2000)",
+      groups: {
+        0: ["AAPL","AMAT","AMZN","BKNG","KLAC","MCHP","MU","TXN"],
+        1: ["ADBE","ADI","GILD","GS","ILMN","NVDA","PEP","QCOM","REGN"],
+        2: ["BA","BIIB","CAT","CSCO","MSFT","ORLY","ROST","SNPS"],
+        3: ["ADSK","AMD","AMGN","COST","INTC","INTU","ISRG","JPM","LRCX","VRTX"],
+      }
+    },
+    subprime: {
+      label: "Subprime (2008)",
+      groups: {
+        0: ["COST","GILD","GOOG","MCHP","MDLZ","ORLY","PEP","QCOM","SNPS","VRTX"],
+        1: ["ADBE","AMZN","BIIB","BKNG","CSCO","ILMN","ISRG","MU","NFLX","ROST","TXN"],
+        2: ["AAPL","ADI","AMAT","AMGN","BA","CVX","INTC","INTU","WMT","XOM"],
+        3: ["ADSK","AMD","CAT","CRM","GS","JPM","KLAC","LRCX","MSFT","NVDA","REGN","SBUX"],
+      }
+    },
+    covid: {
+      label: "COVID (2020)",
+      groups: {
+        0: ["AMZN","CAT","CRWD","NFLX","ORLY","PEP","SNPS","VRTX"],
+        1: ["AAPL","ADBE","AMGN","BIIB","COST","CRM","FTNT","GILD","GOOG","INTC","INTU","MDLZ","MSFT","QCOM","REGN","WMT"],
+        2: ["ADSK","AMAT","AMD","BA","BKNG","CSCO","ILMN","ISRG","LRCX","MCHP","MU","NVDA","PYPL","TXN"],
+        3: ["ADI","AVGO","CVX","GS","JPM","KLAC","PANW","ROST","SBUX","TSLA","XOM"],
+      }
+    }
+  };
+
+  function flatten(groups) {
+    const out = [];
+    for (const [cl, arr] of Object.entries(groups)) {
+      arr.forEach(t => out.push({ ticker: t, cluster: +cl }));
+    }
+    return out.sort((a,b) => a.ticker.localeCompare(b.ticker));
+  }
+
+  function buildWidget(el) {
+    const key = el.getAttribute("data-period");
+    const meta = CLUSTERS[key];
+    if (!meta) return;
+
+    const all = flatten(meta.groups);
+
+    // DOM
+    el.innerHTML = `
+      <div class="cw-top">
+        <div>
+          <div class="cw-title">Interactive directory — ${meta.label}</div>
+          <div class="cw-sub">Filter by cluster, or search a ticker. Click a ticker to highlight it.</div>
+        </div>
+
+        <div class="cw-controls">
+          <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
+          <button class="cw-btn is-active" data-filter="all" type="button">All</button>
+          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
+          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
+          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
+          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
+        </div>
+      </div>
+
+      <div class="cw-grid" aria-live="polite"></div>
+
+      <div class="cw-footer">
+        <div class="cw-kv">
+          <span>Selected:</span>
+          <span class="cw-pill" data-selected>None</span>
+        </div>
+        <div class="cw-kv">
+          <span>Visible:</span>
+          <span class="cw-pill" data-count>0</span>
+        </div>
+      </div>
+    `;
+
+    const grid = el.querySelector(".cw-grid");
+    const search = el.querySelector(".cw-search");
+    const btns = Array.from(el.querySelectorAll(".cw-btn"));
+    const selectedPill = el.querySelector("[data-selected]");
+    const countPill = el.querySelector("[data-count]");
+
+    let activeFilter = "all";
+    let activeQuery = "";
+    let selectedTicker = null;
+
+    function render() {
+      const q = activeQuery.trim().toUpperCase();
+
+      const visible = all.filter(d => {
+        const okFilter = (activeFilter === "all") || (String(d.cluster) === activeFilter);
+        const okQuery = !q || d.ticker.includes(q);
+        return okFilter && okQuery;
+      });
+
+      grid.innerHTML = "";
+      visible.forEach(d => {
+        const chip = document.createElement("div");
+        chip.className = "cw-chip";
+        chip.textContent = d.ticker;
+        chip.setAttribute("data-cl", String(d.cluster));
+        chip.setAttribute("role", "button");
+        chip.setAttribute("tabindex", "0");
+        if (selectedTicker === d.ticker) chip.classList.add("is-hit");
+
+        const pick = () => {
+          selectedTicker = d.ticker;
+          selectedPill.textContent = `${d.ticker} — Cluster ${d.cluster}`;
+          render(); // re-render to update highlight
+        };
+
+        chip.addEventListener("click", pick);
+        chip.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); }
+        });
+
+        grid.appendChild(chip);
+      });
+
+      countPill.textContent = String(visible.length);
+      if (!selectedTicker) selectedPill.textContent = "None";
+    }
+
+    btns.forEach(b => {
+      b.addEventListener("click", () => {
+        btns.forEach(x => x.classList.toggle("is-active", x === b));
+        activeFilter = b.getAttribute("data-filter") || "all";
+        render();
+      });
+    });
+
+    search.addEventListener("input", () => {
+      activeQuery = search.value || "";
+      render();
+    });
+
+    render();
+  }
+
+  // Build all widgets on page
+  document.querySelectorAll(".cluster-widget").forEach(buildWidget);
+
+});
+</script>
+
 
 
