@@ -331,7 +331,7 @@ during that outbreak.
 
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
-      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
+      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
       </p>
 
@@ -546,7 +546,7 @@ during that outbreak.
       
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
-      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
+      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
       </p>
 
