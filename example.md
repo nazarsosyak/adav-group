@@ -58,7 +58,9 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 Once a crisis period has been identified, we isolate it from the full market timeline
 and analyze it. 
 
-Before analysis, lets be clear on how the algorithm functions:
+### The Main Immunology Pipeline
+
+Before analysis, it is important to be clear on how the algorithm functions:
 
 To grasp the algorithm's logic, three key dimensions must be introduced first.
 These dimensions are jointly used to evaluate the state and systemic relevance
