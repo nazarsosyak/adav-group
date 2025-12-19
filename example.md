@@ -412,7 +412,7 @@ during that outbreak.
     </div>
 
     <p> 
-      Here the market records negative daily returns on <strong>80% of trading days</strong>, with a cumulative loss of <strong>−19.49%</strong> over this time period.<br><br>
+      Here the market records negative daily returns on <strong>80% of trading days</strong>, with a cumulative loss of <strong>−22.02%</strong> over this time period.<br><br>
     </p>
     <p>
       Press <span class="text-accent"><strong>RED BUTTON</strong></span> below and see what happens.
@@ -631,6 +631,10 @@ during that outbreak.
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2020.html' | relative_url }}"></iframe>
     </div>
+
+    <p> 
+      In this scenario, the market records negative daily returns on roughly <strong>53% of trading days</strong>, with a cumulative loss of <strong>−22.90%</strong>, meaning the negative days carry a much stronger weight than the positive return days. The analysis using our pipeline will give proper insight into the COVID-19 Crisis.<br><br>
+    </p>
 
     <p>
       You can press the <span class="text-accent"><strong>RED BUTTON</strong></span> below to proceed with the analysis.
