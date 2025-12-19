@@ -236,11 +236,31 @@ during that outbreak.
 
       <h2 class="text-accent">Cluster membership</h2>
 
-      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
-        <strong>How to read clusters on the 3D plot:</strong>
-        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
-        Use the mapping below to match the buttons to what you see in the graph.
+      <p>
+        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
+        They emerge directly from how individual stocks behave during the outbreak window.
       </p>
+      
+      <p>
+        Each stock is represented as a point in a three-dimensional space defined by
+        (i) the <strong>fraction of days spent sick</strong>,
+        (ii) the <strong>average time needed to recover</strong> after a stress event,
+        and (iii) the <strong>fraction of days spent in a healthy state</strong>.
+        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+      </p>
+      
+      <p>
+        The clustering algorithm groups stocks solely based on this behavioral similarity.
+        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
+        What unites them is not what they do, but <strong>how they react to market stress</strong>.
+      </p>
+      
+      <p>
+        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
+        Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
+        propagates and dissipates during the crisis.
+      </p>
+
       
       <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
         <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
@@ -386,10 +406,29 @@ during that outbreak.
 
       <h2 class="text-accent">Cluster membership</h2>
 
-      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
-        <strong>How to read clusters on the 3D plot:</strong>
-        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
-        Use the mapping below to match the buttons to what you see in the graph.
+      <p>
+        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
+        They emerge directly from how individual stocks behave during the outbreak window.
+      </p>
+      
+      <p>
+        Each stock is represented as a point in a three-dimensional space defined by
+        (i) the <strong>fraction of days spent sick</strong>,
+        (ii) the <strong>average time needed to recover</strong> after a stress event,
+        and (iii) the <strong>fraction of days spent in a healthy state</strong>.
+        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+      </p>
+      
+      <p>
+        The clustering algorithm groups stocks solely based on this behavioral similarity.
+        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
+        What unites them is not what they do, but <strong>how they react to market stress</strong>.
+      </p>
+      
+      <p>
+        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
+        Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
+        propagates and dissipates during the crisis.
       </p>
       
       <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
@@ -484,10 +523,6 @@ during that outbreak.
     </div>
 
     <p>
-      Wow a lot of negative returns here ok. Let's examine further.
-    </p>
-
-    <p>
       You can press the <span class="text-accent"><strong>RED BUTTON</strong></span> below to proceed with the analysis.
     </p>
 
@@ -537,10 +572,29 @@ during that outbreak.
 
       <h2 class="text-accent">Cluster membership</h2>
 
-      <p style="margin: .6rem 0 .4rem; font-size: .95rem; color: rgba(0,0,0,.70);">
-        <strong>How to read clusters on the 3D plot:</strong>
-        each group of points is tagged by its “main” color, but you’ll often see a couple of points that look closer to another color group.
-        Use the mapping below to match the buttons to what you see in the graph.
+      <p>
+        The clusters shown in the 3D plot are <strong>not predefined categories</strong> such as sectors or industries.
+        They emerge directly from how individual stocks behave during the outbreak window.
+      </p>
+      
+      <p>
+        Each stock is represented as a point in a three-dimensional space defined by
+        (i) the <strong>fraction of days spent sick</strong>,
+        (ii) the <strong>average time needed to recover</strong> after a stress event,
+        and (iii) the <strong>fraction of days spent in a healthy state</strong>.
+        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+      </p>
+      
+      <p>
+        The clustering algorithm groups stocks solely based on this behavioral similarity.
+        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
+        What unites them is not what they do, but <strong>how they react to market stress</strong>.
+      </p>
+      
+      <p>
+        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
+        Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
+        propagates and dissipates during the crisis.
       </p>
       
       <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
