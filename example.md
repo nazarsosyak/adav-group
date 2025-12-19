@@ -166,20 +166,29 @@ during that outbreak.
       <img src="{{ '/assets/images/internetintro.png' | relative_url }}" alt="Dot-com Bubble intro">
     </div>
 
+    <p>
+      At the turn of the millennium, markets were drunk on promises.
+      Anything with a website and a “.com” suffix
+      was treated as the future of civilization. Valuations detached from fundamentals,
+      and skepticism quietly exited the room.
+      Then reality pushed back when the internet bubble burst.
+      
+      </p>
+      
+      <p>
+      The plot below shows the mean daily market return during the identified outbreak window.
+      </p>
+
+
 
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2000.html' | relative_url }}"></iframe>
     </div>
 
-    <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-      <strong>Figure 2: Mean daily market returns over the dot-com burst period.</strong><br>
-    </p>
-
     <p>
-      During this period, the market records negative daily returns on nearly 77% of trading days.
-      Frequency alone, however, cannot explain a cumulative loss of −19.49%.<br><br>
+      During this period, the market records negative daily returns on nearly <strong>77% of trading days</strong>, cumulating to a <strong>−19.49%</strong> loss over the entire window.<br><br>
       
-      To grasp what's happening here we shall analyze the internal structure of the market and track
+      To grasp what's really happening here we shall analyze the internal structure of the market and track
       how stress appears, spreads, and concentrates at the entity level.
     </p>
 
@@ -383,17 +392,30 @@ during that outbreak.
       <img src="{{ '/assets/images/subprimeintro.png' | relative_url }}" alt="Subprime Crisis intro">
     </div>
 
+    <p>
+      In October 2008, the financial system stopped trusting itself.
+      Years of hidden leverage, opaque balance sheets
+      and mispriced risk surfaced almost simultaneously.
+      What had been framed as a localized housing issue
+      suddenly revealed deep fractures at the core of global finance.
+      This outbreak is widely regarded as one of the most severe market upsets in modern history.
+      </p>
+      
+      <p>
+      From the daily market returns below, large negative swings are compressed into a short time span,
+      punctuated by sharp but short-lasting rebounds.
+      Unlike the dot-com episode, here losses arrive in strong bursts.
+      </p>
+
+
     <div class="plot-frame">
       <iframe src="{{ '/assets/plots/daily_mean_return_2008.html' | relative_url }}"></iframe>
     </div>
 
+    <p> 
+      Here the market records negative daily returns on <strong>80% of trading days</strong>, with a cumulative loss of <strong>−19.49%</strong> over this time period.<br><br>
     <p>
-      Losses accumulate quickly over only a few days.<br><br>
-      This usually suggests rapid transmission. Whatever let's let the algorithm do its job.<br>
-    </p>
-
-    <p>
-      Press <span class="text-accent"><strong>RED BUTTON</strong></span> below, let's see what happens.
+      Press <span class="text-accent"><strong>RED BUTTON</strong></span> below and see what happens.
     </p>
 
     <button class="run-analysis-btn img-button"
@@ -585,6 +607,25 @@ during that outbreak.
     <div class="panel-intro">
       <img src="{{ '/assets/images/covidintro.png' | relative_url }}" alt="COVID-19 intro">
     </div>
+
+    <p>
+      The COVID-19 crisis did not originate inside the market as economic activity was frozen by policy decisions,
+      supply chains fractured overnight
+      and uncertainty replaced all prior narratives. Public places were shutdown, international trade was disrupted and 
+      </p>
+      
+      <p>
+      The return series below captures this instability.
+      Violent oscillations dominate the window:
+      deep drawdowns followed by sharp rebounds,
+      often within days of each other.
+      These swings reflect a market struggling to price
+      an evolving situation in real time,
+      as information, fear, and intervention collide.
+      Rather than settling into a single direction,
+      the system oscillates under stress.
+      </p>
+
 
     
     <div class="plot-frame">
