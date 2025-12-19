@@ -47,4 +47,36 @@ window.addEventListener("load", () => {
   Plotly.Plots.resize(gd);
 });
 </script>
+<script>
+window.addEventListener("load", () => {
+  const gd = document.querySelector(".plotly-graph-div");
+  if (!gd || !window.Plotly) return;
+
+  // 1) Remove legend
+  Plotly.relayout(gd, { showlegend: false });
+
+  // 2) Drop existing mesh3d hulls (optional but recommended to avoid duplicates)
+  const baseTraces = (gd.data || []).filter(tr => tr.type !== "mesh3d");
+
+  // 3) For every scatter3d cluster, add a Mesh3d hull using alphahull=0
+  const hulls = baseTraces
+    .filter(tr => tr.type === "scatter3d" && (tr.mode || "").includes("markers"))
+    .map(tr => ({
+      type: "mesh3d",
+      x: tr.x,
+      y: tr.y,
+      z: tr.z,
+      alphahull: 0,          
+      opacity: 0.12,
+      hoverinfo: "skip",
+      showscale: false
+    }));
+
+  // 4) Re-render cleanly
+  Plotly.react(gd, [...baseTraces, ...hulls], gd.layout).then(() => {
+    Plotly.Plots.resize(gd);
+  });
+});
+</script>
+
 
