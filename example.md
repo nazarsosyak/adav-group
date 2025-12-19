@@ -203,9 +203,9 @@ during that outbreak.
 
     <div id="dotcom-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <p>
+      <p><h3>
         Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
+      </p></h3>
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -332,11 +332,25 @@ during that outbreak.
         </iframe>
       </div>
 
+      <p>
+        The timeline below tracks how sector-level health evolves over time.
+        It shows when stress concentrates within specific sectors
+        and whether contagion remains localized or spills over
+        into the rest of the economy.
+      </p>
+
       <div class="img-slider"
            data-folder="{{ '/assets/internet/sector' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        We then reconstruct the network of inter-sector interactions.
+        This network reveals how stress is transmitted across sectors,
+        identifying which sectors act as conduits that amplify
+        or dampen systemic risk.
+      </p>
       
       <div class="img-slider"
            data-folder="{{ '/assets/internet/sector' | relative_url }}"
@@ -345,10 +359,6 @@ during that outbreak.
       </div>
 
       
-      <p class="figure-caption">
-        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
-        The figure shows the aggregated level of infection across sectors,
-        highlighting which sectors experience the most severe stress.
       </p>
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies.
@@ -401,9 +411,9 @@ during that outbreak.
 
     <div id="subprime-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <p>
+      <p><h3>
         Patient zero has been identified as entity <span class="text-accent"><strong>GS</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
+      </p></h3>
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -524,11 +534,25 @@ during that outbreak.
         </iframe>
       </div>
 
+      <p>
+        The timeline below tracks how sector-level health evolves over time.
+        It shows when stress concentrates within specific sectors
+        and whether contagion remains localized or spills over
+        into the rest of the economy.
+      </p>
+
       <div class="img-slider"
            data-folder="{{ '/assets/subprime/sector' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        We then reconstruct the network of inter-sector interactions.
+        This network reveals how stress is transmitted across sectors,
+        identifying which sectors act as conduits that amplify
+        or dampen systemic risk.
+      </p>
       
       <div class="img-slider"
            data-folder="{{ '/assets/subprime/sector' | relative_url }}"
@@ -537,11 +561,7 @@ during that outbreak.
       </div>
 
       
-      <p class="figure-caption">
-        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
-        The figure shows the aggregated level of infection across sectors,
-        highlighting which sectors experience the most severe stress.
-      </p>
+      <p>
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies.
       Outbreaks that rapidly spread across multiple highly connected sectors
@@ -590,9 +610,9 @@ during that outbreak.
 
     <div id="covid-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <p>
+      <p><h3>
       Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
+      </p></h3>
       
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -700,6 +720,31 @@ during that outbreak.
       <div class="cluster-widget" data-period="covid"></div>
 
       <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+      <p>
+        Up to this point, the analysis has focused on individual assets.
+        However it is bold to assume that only one entity is responsible for a market shutdown as these epidemics often propagate through <strong>entire sectors</strong>.
+      </p>
+      
+      <p>
+        In this section, we shift the level of observation from assets to sectors.
+        Each sector is treated as an aggregated entity whose health reflects
+        the combined behavior of its constituent stocks during the outbreak window.
+      </p>
+      
+      <p>
+        The 3D plot below positions sectors in a contagion space analogous to the one
+        used for individual assets.
+        It captures how early sectoral stress emerges, how central each sector is
+        within the market structure, and how strongly stress propagates from one
+        sector to another.
+      </p>
+      
+      <p>
+        This change in scale allows us to distinguish between crises driven by
+        a small number of influential sectors and those that spread broadly across
+        the economic landscape.
+      </p>
+
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/covid/sector/ppi_3d_analysis.html' | relative_url }}"
@@ -708,24 +753,34 @@ during that outbreak.
         </iframe>
       </div>
 
+      <p>
+        The timeline below tracks how sector-level health evolves over time.
+        It shows when stress concentrates within specific sectors
+        and whether contagion remains localized or spills over
+        into the rest of the economy.
+      </p>
+
+
       <div class="img-slider"
            data-folder="{{ '/assets/covid/sector' | relative_url }}"
            data-prefix="timeline_"
            data-pad="4">
       </div>
+
+      <p>
+        We then reconstruct the network of inter-sector interactions.
+        This network reveals how stress is transmitted across sectors,
+        identifying which sectors act as conduits that amplify
+        or dampen systemic risk.
+      </p>
+
       
       <div class="img-slider"
            data-folder="{{ '/assets/covid/sector' | relative_url }}"
            data-prefix="network_"
            data-pad="4">
       </div>
-
-      
-      <p class="figure-caption">
-        <strong>Figure X: Sectoral infection intensity during the outbreak.</strong><br>
-        The figure shows the aggregated level of infection across sectors,
-        highlighting which sectors experience the most severe stress.
-      </p>
+      <p>
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies.
       Outbreaks that rapidly spread across multiple highly connected sectors
