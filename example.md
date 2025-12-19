@@ -211,11 +211,7 @@ during that outbreak.
         </div>
         
       <p>
-        Two interactive plots for the network have been generated below. Patient zero has been identified as entity <span class="text-accent">ROST</span>:
-      </p>
-
-      <p>
-        <strong><span class="text-accent">Ross Stores is an american company specializing in hard-discount hypermarkets.</span></strong>
+        Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
       </p>
 
       <div class="img-slider"
@@ -377,6 +373,10 @@ during that outbreak.
 
     <div id="subprime-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
+      <p>
+        Patient zero has been identified as entity <span class="text-accent"><strong>GS</strong></span> (use helper dictionary on the right of your screen for more information on the company).
+      </p>
+      
       <div class="plot-frame plot-frame--first">
           <iframe
             src="{{ '/assets/plots/ppi_2008.html' | relative_url }}"
@@ -384,9 +384,6 @@ during that outbreak.
             title="Subprime 3D plot"></iframe>
         </div>
         
-      <p>
-        Losses propagate through tightly coupled financial institutions.
-      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/subprime' | relative_url }}"
@@ -543,6 +540,9 @@ during that outbreak.
 
     <div id="covid-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
+      <p>
+      Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span> (use helper dictionary on the right of your screen for more information on the company).
+      </p>
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/ppi_3d_covid.html' | relative_url }}"
@@ -550,9 +550,7 @@ during that outbreak.
           title="COVID 3D plot"></iframe>
       </div>
 
-      <p>
-        The timeline shows synchronized global drawdowns.
-      </p>
+     
 
       <div class="img-slider"
            data-folder="{{ '/assets/covid' | relative_url }}"
@@ -740,7 +738,6 @@ Overall, these signatures show that crises with similar aggregate losses can dif
 substantially in their internal dynamics. PCA reveals that each episode is governed
 by a distinct latent stress structure, shaping how quickly, how broadly, and how
 uniformly financial contagion spreads through the market.
-
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
