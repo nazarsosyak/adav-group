@@ -203,16 +203,15 @@ during that outbreak.
 
     <div id="dotcom-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
+      <p>
+        Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
+      </p>
       <div class="plot-frame plot-frame--first">
           <iframe
             src="{{ '/assets/plots/ppi_3d_internet.html' | relative_url }}"
             loading="lazy"
             title="Dot-com 3D plot"></iframe>
         </div>
-        
-      <p>
-        Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
 
       <div class="img-slider"
            data-folder="{{ '/assets/internet' | relative_url }}"
