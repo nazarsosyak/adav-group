@@ -203,9 +203,9 @@ during that outbreak.
 
     <div id="dotcom-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <h3>
+      <p>
         Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </h3>
+      </p>
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -318,7 +318,7 @@ during that outbreak.
 
       <div class="cluster-widget" data-period="dotcom"></div>
 
-      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+      <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
@@ -411,9 +411,9 @@ during that outbreak.
 
     <div id="subprime-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <h3>
+      <p>
         Patient zero has been identified as entity <span class="text-accent"><strong>GS</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </h3>
+      </p>
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -520,7 +520,7 @@ during that outbreak.
 
       <div class="cluster-widget" data-period="subprime"></div>
       
-      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+      <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
@@ -610,9 +610,9 @@ during that outbreak.
 
     <div id="covid-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <h3>
+      <p>
       Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </h3>
+      </p>
       
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -719,7 +719,7 @@ during that outbreak.
 
       <div class="cluster-widget" data-period="covid"></div>
 
-      <p><span class="text-accent"><strong><h2>Part III: Sectoral Analysis</h2></strong></span></p>
+      <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
       <p>
         Up to this point, the analysis has focused on individual assets.
         However it is bold to assume that only one entity is responsible for a market shutdown as these epidemics often propagate through <strong>entire sectors</strong>.
