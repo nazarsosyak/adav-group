@@ -236,7 +236,7 @@ during that outbreak.
       
       <div class="plot-frame plot-frame--first">
         <iframe
-          src="{{ '/assets/plots/immune_phenotypes_3d_dotcom.html' | relative_url }}"
+          src="{{ '/assets/plots/immune_phenotypes_3d_dot-com.html' | relative_url }}"
           loading="lazy"
           title="Immune phenotypes — Dot-com">
         </iframe>
@@ -885,10 +885,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="cw-controls">
           <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
           <button class="cw-btn is-active" data-filter="all" type="button">All</button>
-          <button class="cw-btn" data-filter="0" type="button">Cluster 1</button>
-          <button class="cw-btn" data-filter="1" type="button">Cluster 2</button>
-          <button class="cw-btn" data-filter="2" type="button">Cluster 3</button>
-          <button class="cw-btn" data-filter="3" type="button">Cluster 4</button>
+          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
+          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
+          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
+          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
         </div>
       </div>
 
