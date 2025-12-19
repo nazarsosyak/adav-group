@@ -335,6 +335,20 @@ during that outbreak.
       We will reuse the algorithm, but this time, over the different sectors of the market.
       </p>
 
+      <div class="plot-container" style="text-align:center; margin: 1.6rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:600px; border:none;">
+        </iframe>
+      
+        <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
+          <strong>Figure: Sector bubblemap.</strong><br>
+          Click a sector to reveal the largest stocks inside it.
+        </p>
+      </div>
+
+
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/internet/sector/ppi_3d_analysis.html' | relative_url }}"
@@ -548,6 +562,19 @@ during that outbreak.
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do:<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market.
       </p>
+
+      <div class="plot-container" style="text-align:center; margin: 1.6rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:600px; border:none;">
+        </iframe>
+      
+        <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
+          <strong>Figure: Sector bubblemap.</strong><br>
+          Click a sector to reveal the largest stocks inside it.
+        </p>
+      </div>
 
       <div class="plot-frame plot-frame--first">
         <iframe
@@ -766,6 +793,19 @@ during that outbreak.
         Up to this point, the analysis has focused on individual assets.
         However it is bold to assume that only one entity is responsible for a market shutdown as these epidemics often propagate through <strong>entire sectors</strong>.
       </p>
+
+      <div class="plot-container" style="text-align:center; margin: 1.6rem 0;">
+        <iframe
+          src="{{ '/assets/plots/sector_bubblemap.html' | relative_url }}"
+          loading="lazy"
+          style="width:100%; height:600px; border:none;">
+        </iframe>
+      
+        <p class="plot-caption" style="margin-top: .75rem; font-size: .95rem; color: #555;">
+          <strong>Figure: Sector bubblemap.</strong><br>
+          Click a sector to reveal the largest stocks inside it.
+        </p>
+      </div>
       
       <p>
         In this section, we shift the level of observation from assets to sectors.
