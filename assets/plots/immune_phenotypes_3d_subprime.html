@@ -21,37 +21,28 @@
 window.addEventListener("load", () => {
   const gd = document.querySelector(".plotly-graph-div");
   if (!gd || !window.Plotly) return;
-
-  function forceColorbar() {
-    // 1) Make room on the right
-    Plotly.relayout(gd, { margin: { l: 0, r: 200, t: 60, b: 40 } });
-
-    // 2) Force colorbar on any trace that has marker.color
-    const n = (gd.data || []).length;
-    for (let i = 0; i < n; i++) {
-      const tr = gd.data[i];
-      const hasMarkerColors = tr && tr.marker && tr.marker.color != null;
-
-      if (!hasMarkerColors) continue;
-
-      Plotly.restyle(gd, {
-        "marker.showscale": true,
-        "marker.colorbar": {
-          title: { text: "PPI", side: "right" },
-          x: 1.0,
-          xanchor: "left",
-          len: 0.75,
-          thickness: 18
-        }
-      }, [i]);
-    }
-
-    Plotly.Plots.resize(gd);
-  }
-
-  forceColorbar();
-  setTimeout(forceColorbar, 200);
-  setTimeout(forceColorbar, 800);
-  window.addEventListener("resize", forceColorbar);
+  Plotly.relayout(gd, { showlegend: false });
 });
 </script>
+<script>
+window.addEventListener("load", () => {
+  const gd = document.querySelector(".plotly-graph-div");
+  if (!gd || !window.Plotly) return;
+
+  Plotly.relayout(gd, {
+    showlegend: false,
+    margin: { l: 0, r: 0, t: 60, b: 0 },
+    scene: {
+      aspectmode: "cube",
+      camera: {
+        eye: { x: 1.25, y: 1.25, z: 1.1 },
+        center: { x: 0, y: 0, z: 0 }
+      }
+    }
+  });
+
+  Plotly.Plots.resize(gd);
+});
+</script>
+
+
