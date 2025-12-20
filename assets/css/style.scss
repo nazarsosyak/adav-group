@@ -806,3 +806,29 @@ body {
 @media (max-width: 1000px){
   .ticker-dict{ display:none; }
 }
+
+/* Close button */
+.td-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: rgba(0,0,0,.08);
+  border-radius: 10px;
+  padding: .35rem .55rem;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.td-close:hover{
+  background: rgba(0,0,0,.15);
+}
+
+/* Hidden state for helper */
+.ticker-dict.is-hidden{
+  transform: translateX(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
