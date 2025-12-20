@@ -222,8 +222,21 @@ during that outbreak.
       <p>
         Finally, we reconstruct the underlying interaction network.
         This network reveals the channels through which stress propagates,
-        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
+        highlighting super-spreaders that amplify contagion through correlation. 
       </p>
+
+      <p>
+      Arrows represent potential contagion or influence between nodes (correlation, mutual information and causality). 
+      Red arrows indicate active contagion when both the source and target nodes are in a sick state. 
+      Orange arrows originate from super-spreader nodes, highlighting entities with a disproportionate influence on contagion dynamics. 
+      Gray arrows represent connections involving at least one recovered node, reflecting reduced or inactive transmission pathways. 
+      Light gray arrows correspond to baseline connections with no specific contagion state.
+      </p>
+      
+      <p>
+      Each node is positioned according to four statistical moments of its daily return distribution: volatility, mean, skewness, and kurtosis, meaning that spatial proximity reflects similarity in return dynamics.
+      </p>
+    
 
 
       <div class="img-slider"
@@ -425,7 +438,19 @@ during that outbreak.
       <p>
         Finally, we reconstruct the underlying interaction network.
         This network reveals the channels through which stress propagates,
-        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
+        highlighting super-spreaders that amplify contagion through correlation. 
+      </p>
+
+      <p>
+      Arrows represent potential contagion or influence between nodes (correlation, mutual information and causality). 
+      Red arrows indicate active contagion when both the source and target nodes are in a sick state. 
+      Orange arrows originate from super-spreader nodes, highlighting entities with a disproportionate influence on contagion dynamics. 
+      Gray arrows represent connections involving at least one recovered node, reflecting reduced or inactive transmission pathways. 
+      Light gray arrows correspond to baseline connections with no specific contagion state.
+      </p>
+      
+      <p>
+      Each node is positioned according to four statistical moments of its daily return distribution: volatility, mean, skewness, and kurtosis, meaning that spatial proximity reflects similarity in return dynamics.
       </p>
 
       <div class="img-slider"
@@ -621,7 +646,19 @@ during that outbreak.
       <p>
         Finally, we reconstruct the underlying interaction network.
         This network reveals the channels through which stress propagates,
-        highlighting super-spreaders that amplify contagion through correlation. The arrows represent the transfer of information, combining causality and correlation between the nodes of the network. Here again the slider bar can be used in the same manner.
+        highlighting super-spreaders that amplify contagion through correlation. 
+      </p>
+
+      <p>
+      Arrows represent potential contagion or influence between nodes (correlation, mutual information and causality). 
+      Red arrows indicate active contagion when both the source and target nodes are in a sick state. 
+      Orange arrows originate from super-spreader nodes, highlighting entities with a disproportionate influence on contagion dynamics. 
+      Gray arrows represent connections involving at least one recovered node, reflecting reduced or inactive transmission pathways. 
+      Light gray arrows correspond to baseline connections with no specific contagion state.
+      </p>
+      
+      <p>
+      Each node is positioned according to four statistical moments of its daily return distribution: volatility, mean, skewness, and kurtosis, meaning that spatial proximity reflects similarity in return dynamics.
       </p>
 
       <div class="img-slider"
@@ -830,6 +867,8 @@ Another way to compare these three crises is to look at how different they can b
 </div>
 
 We can easily assess that overall, the <strong>Subprime Financial Crisis</strong> had the strongest impact market-wise, as basically all the indices are higher than any of the other two crises. On the other hand, the COVID-19 epidemic and the dot-com bubble burst have lower causality and contagion dynamics, respectively. A lower causality for the COVID-19 period hereby confirms the results obtained with PCA, as we previously found that this period did not have one distinct stress structure but the outbreak rather unfolded through multiple channels. There was not necessarily causality between different nodes or sectors of the network as they did not react to stress in the same way.
+
+## Conclusion
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
