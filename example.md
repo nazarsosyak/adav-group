@@ -258,29 +258,6 @@ during that outbreak.
         propagates and dissipates during the crisis.
       </p>
 
-      
-      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
-        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
-          <strong>Cluster 0</strong>: orange group (with blue points)
-        </span>
-      
-        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
-          <strong>Cluster 1</strong>: blue group (with orange points)
-        </span>
-      
-        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
-          <strong>Cluster 2</strong>: pink group (with green points)
-        </span>
-      
-        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
-          <strong>Cluster 3</strong>: green group (with purple points)
-        </span>
-      </div>
-      
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_dot-com.html' | relative_url }}"
@@ -491,28 +468,6 @@ during that outbreak.
         propagates and dissipates during the crisis.
       </p>
       
-      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
-        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
-          <strong>Cluster 0</strong>: orange group (with blue points)
-        </span>
-      
-        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
-          <strong>Cluster 1</strong>: blue group (with orange points)
-        </span>
-      
-        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
-          <strong>Cluster 2</strong>: pink group (with green points)
-        </span>
-      
-        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
-          <strong>Cluster 3</strong>: green group (with purple points)
-        </span>
-      </div>
-
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_subprime.html' | relative_url }}"
@@ -733,29 +688,6 @@ during that outbreak.
         Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
         propagates and dissipates during the crisis.
       </p>
-      
-      <div class="cluster-legend" style="display:flex; flex-wrap:wrap; gap:.55rem; margin:.35rem 0 1rem;">
-        <span class="cl-pill" data-cl="0" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:orange; display:inline-block;"></span>
-          <strong>Cluster 0</strong>: orange group (with blue points)
-        </span>
-      
-        <span class="cl-pill" data-cl="1" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#1f77b4; display:inline-block;"></span>
-          <strong>Cluster 1</strong>: blue group (with orange points)
-        </span>
-      
-        <span class="cl-pill" data-cl="2" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:hotpink; display:inline-block;"></span>
-          <strong>Cluster 2</strong>: pink group (with green points)
-        </span>
-      
-        <span class="cl-pill" data-cl="3" style="display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75);">
-          <span style="width:12px; height:12px; border-radius:50%; background:#2ca02c; display:inline-block;"></span>
-          <strong>Cluster 3</strong>: green group (with purple points)
-        </span>
-      </div>
-
       
       <div class="plot-frame plot-frame--first">
         <iframe
