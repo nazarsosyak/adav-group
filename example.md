@@ -67,7 +67,7 @@ For each case, we used **50 representative tickers** for the sake of visualizati
 In parallel, each entity is assigned a health state based on its return dynamics
 over the outbreak window.
 
-1. An entity is labeled **directly sick** if its daily return crosses the **−5% threshold**.
+1. An entity is labeled **directly sick** if its daily return crosses the **−5% threshold**. It stays sick until recovery condition is satisfied.
 2. Entities that maintain strong connections with sick nodes (through correlation or causal exposure) are classified as **sick by contagion**.
 3. Over time, entities may **recover** if their daily returns are positive for three consecutive days.
 4. Those that never meet the infection criteria remain **healthy**.
@@ -245,7 +245,7 @@ during that outbreak.
       
       <p>
         Each stock is represented as a point in a three-dimensional space defined by
-        (i) the <strong>fraction of days spent sick</strong>,
+        (i) the <strong>fraction of days where returns are lower than -5%</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
         Stocks that occupy nearby positions in this space exhibit similar recovery dynamics. The clustering algorithm groups stocks solely based on this behavioral similarity.
@@ -473,7 +473,7 @@ during that outbreak.
       
       <p>
         Each stock is represented as a point in a three-dimensional space defined by
-        (i) the <strong>fraction of days spent sick</strong>,
+        (i) the <strong>fraction of days where returns are lower than -5%</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
         Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
@@ -716,7 +716,7 @@ during that outbreak.
       
       <p>
         Each stock is represented as a point in a three-dimensional space defined by
-        (i) the <strong>fraction of days spent sick</strong>,
+        (i) the <strong>fraction of days where returns are lower than -5%</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
         Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
