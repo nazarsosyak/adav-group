@@ -232,11 +232,6 @@ during that outbreak.
            data-pad="4">
       </div>
 
-      <h3 class="text-accent">Discussion</h3>
-      <p>
-        BLABLABLA
-      </p>
-
       <h3 class="text-accent">Cluster membership</h3>
 
       <p>
@@ -328,11 +323,7 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-      <h3 class="text-accent">Discussion</h3>
-          <p>
-            BLABLABLA
-          </p>
-
+      
     </div>
   </section>
 
@@ -795,11 +786,11 @@ during that outbreak.
 Up to this point, each crisis has been examined in isolation through its
 own case file. We now take a step back and ask a broader question:
 
-> **Do different crises stress the market through the same underlying mechanisms, or through fundamentally different ones?**
+> **Do different crises stress the market through the same underlying mechanisms or through fundamentally different ones?**
 
 To answer this, we compress each crisis into a **latent market signature**
 using **Principal Component Analysis (PCA)** applied to the immune phenotype
-features introduced earlier.
+features introduced earlier (variance, health state, returns, etc.).
 
 Rather than focusing on individual assets, PCA extracts the **dominant
 collective mode** that explains how the market behaves *as a system* during
@@ -807,7 +798,8 @@ each outbreak.
 
 Each crisis is therefore summarized by:
 - its **dominant PCA mode (PC1)**, capturing the main direction of market stress,
-- the **fraction of variance explained** by that mode, measuring how synchronized
+- its **secondary PCA mode (PC2)**, capturing the main alternative stress pattern that PC1 does not explain,
+- the **fraction of variance explained** by each mode, measuring how synchronized
   the market becomes,
 - and the **feature loadings** defining the underlying crisis mechanism.
 
@@ -821,12 +813,11 @@ Each crisis is therefore summarized by:
 
 <div id="signature-plot" class="signature-plot"></div>
 
-<p class="signature-caption">
-  <strong>Figure X: Crisis signature comparison.</strong><br>
-  Each node represents a crisis period. The vertical position and size of a node
+<p>
+  Each bubble represents a crisis period. The vertical position and size of a bubble
   reflect the fraction of variance explained by the selected PCA component:
-  larger and higher nodes indicate more synchronized, low-dimensional market
-  behavior. Hovering over a node reveals the standardized feature loadings that
+  larger and higher bubbles indicate more synchronized, low-dimensional market
+  behavior. Hovering over a bubble will reveal the standardized feature loadings that
   define the corresponding crisis mechanism. Positive loadings indicate features
   that intensify the crisis mode, while negative loadings indicate stabilizing or
   opposing effects.
