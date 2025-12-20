@@ -60,7 +60,7 @@ a composite score that captures an entity’s ability to
 **initiate**, **amplify** or **propagate**
 financial stress within the market. This helps us find **super-spreaders** in the network.
 
-For each case, we used **50 representative tickers** for the sake of visualization. All the tickers are accessible through the **Ticker Dictonary** on the right of the page, providing insightful information about every single one of them.
+For each case, we used **50 representative tickers** for the sake of visualization. All the tickers are accessible through the **Ticker Dictionary** on the right of the page, providing insightful information about every single one of them.
 
 ### Infection state classification
     
