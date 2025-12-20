@@ -841,5 +841,69 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+/* helper panel (open by default) */
+.ticker-dict{
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 320px;
+  max-height: 78vh;
+  overflow: auto;
+  z-index: 9999;
+  transition: transform 260ms ease, opacity 200ms ease;
+}
+
+/* collapsed state: slide out but NOT display:none */
+.ticker-dict.is-collapsed{
+  transform: translate(110%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* the small reopen tab */
+.td-toggle{
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  font-weight: 800;
+  font-size: 18px;
+  background: var(--content-accent);
+  color: white;
+  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* when panel is open, hide the tab */
+.td-toggle.is-hidden{
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(10px, -50%);
+}
+
+/* X button inside panel */
+.td-close{
+  position: sticky;
+  top: 10px;
+  float: right;
+  margin: 10px 10px 0 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 34px;
+  background: rgba(0,0,0,.06);
+}
+.td-close:hover{ background: rgba(0,0,0,.10); }
+
 
 
