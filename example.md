@@ -214,9 +214,9 @@ during that outbreak.
 
     <div id="dotcom-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <p>
-        Patient zero has been identified as entity <span class="text-accent"><strong>BIIB</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
+      
+      <h3 class="text-accent">Patient zero has been identified as entity <strong>BIIB</strong> (use helper dictionary on the right of your screen for more information on the company).</h3>
+      
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
@@ -441,9 +441,9 @@ during that outbreak.
 
     <div id="subprime-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
-      <p>
-        Patient zero has been identified as entity <span class="text-accent"><strong>GS</strong></span> (use helper dictionary on the right of your screen for more information on the company).
-      </p>
+      <h3 class="text-accent">
+        Patient zero has been identified as entity <strong>GS</strong> (use helper dictionary on the right of your screen for more information on the company).
+      </h3>
 
       <p>
         Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
