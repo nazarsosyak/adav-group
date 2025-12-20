@@ -1258,6 +1258,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // -------------------------
+  // CLUSTER COLORS (match your legend)
+  // -------------------------
+  const CL_COLORS = {
+    0: "orange",
+    1: "#1f77b4",
+    2: "hotpink",
+    3: "#2ca02c"
+  };
+
   function flatten(groups) {
     const out = [];
     for (const [cl, arr] of Object.entries(groups)) {
@@ -1283,11 +1293,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="cw-controls">
           <input class="cw-search" type="text" placeholder="Search ticker (e.g., AAPL)" aria-label="Search ticker">
+
           <button class="cw-btn is-active" data-filter="all" type="button">All</button>
-          <button class="cw-btn" data-filter="0" type="button">Cluster 0</button>
-          <button class="cw-btn" data-filter="1" type="button">Cluster 1</button>
-          <button class="cw-btn" data-filter="2" type="button">Cluster 2</button>
-          <button class="cw-btn" data-filter="3" type="button">Cluster 3</button>
+
+          <button class="cw-btn" data-filter="0" type="button">
+            <span class="cw-dot" style="background:${CL_COLORS[0]}"></span>
+            Cluster 0
+          </button>
+
+          <button class="cw-btn" data-filter="1" type="button">
+            <span class="cw-dot" style="background:${CL_COLORS[1]}"></span>
+            Cluster 1
+          </button>
+
+          <button class="cw-btn" data-filter="2" type="button">
+            <span class="cw-dot" style="background:${CL_COLORS[2]}"></span>
+            Cluster 2
+          </button>
+
+          <button class="cw-btn" data-filter="3" type="button">
+            <span class="cw-dot" style="background:${CL_COLORS[3]}"></span>
+            Cluster 3
+          </button>
         </div>
       </div>
 
@@ -1367,6 +1394,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
 <aside id="ticker-dictionary" class="ticker-dict">
   <button id="td-close" class="td-close" type="button" aria-label="Hide ticker helper">×</button>
 
