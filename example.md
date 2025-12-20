@@ -858,7 +858,9 @@ Another way to compare these three crises is to look at how different they can b
   </iframe>
 </div>
 
-We can easily assess that overall, the <strong>Subprime Financial Crisis</strong> had the strongest impact market-wise, as basically all the indices are higher than any of the other two crises. On the other hand, the COVID-19 epidemic and the dot-com bubble burst have lower causality and contagion dynamics, respectively. A lower causality for the COVID-19 period hereby confirms the results obtained with PCA, as we previously found that this period did not have one distinct stress structure but the outbreak rather unfolded through multiple channels. There was not necessarily causality between different nodes or sectors of the network as they did not react to stress in the same way.
+We can easily assess that, overall, the Subprime Financial Crisis had the strongest market impact, as nearly all indicators dominate those of the other two crises (particularly contagion, negative weekly returns, and liquidity disruption). By contrast, the COVID-19 episode exhibits higher causality and volatility. This plot therefore provides a compact way to compare crisis severity. This means that higher values across multiple dimensions signal a more systemic market breakdown.
+
+Under this immunology-inspired lens, the Subprime Financial Crisis resembles a highly contagious outbreak, with stress spreading broadly across assets, severe liquidity impairment, and deep persistent losses. The COVID-19 shock instead appears as an acute episode, characterized by violent volatility and strong causal coupling but more limited propagation and faster stabilization. Finally, the Dot-com bubble, emerges as a slower and more contained process with weaker transmission and a milder systemic footprint.
 
 ## Conclusion
 
@@ -867,6 +869,8 @@ Based on the results found in the previous sections, we can confidently say that
 The patient zero analysis with the sectorial approach can yield coherent results but is highly dependent on the window that we decide to choose, as it is a temporal parameter. However, super-spreaders are more insightful as they reveal which nodes are key in crisis periods and tell us who really takes this financial disease to a higher level and cause a widespread outbreak.
 
 Comparing different crises, we found that each of them had an immunological signature and that they all spread through different contagion pathway mechanisms using PCA. Where some outbreaks were more synchronized and coordinated, other showed more chaos. Using the risk radar, factors such as liquidity exchange and volatility reveal other parameters that can be used to compare between cases.
+
+Overall, this project has limitations as to where and how it is applied. Nevertheless, it is still valuable as a conceptual and analytical bridge between network science and financial risk analysis. The framework is inherently sensitive to modeling choices such as thresholds, time windows and data resolution, which constrains its use as a predictive tool. However, these same constraints make it well suited for comparative and diagnostic purposes. By highlighting structural vulnerabilities and identifying nodes that disproportionately amplify stress, the approach opens perspectives for future extensions. 
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
