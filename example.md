@@ -931,6 +931,17 @@ substantially in their internal dynamics. PCA reveals that each episode is gover
 by a distinct latent stress structure, shaping how quickly, how broadly, and how
 uniformly financial contagion spreads through the market.
 
+## **Part V: Systemic Risk Radar**
+
+
+<div class="plot-frame plot-frame--first">
+  <iframe
+    src="{{ '/assets/plots/systemic_risk_radar.html' | relative_url }}"
+    loading="lazy"
+    title="Systemic Risk Radar for the three periods.">
+  </iframe>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
