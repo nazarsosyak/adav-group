@@ -18,29 +18,17 @@ We therefore begin with the only element the market cannot conceal:
     loading="lazy"
     style="width:100%; height:480px; border:none;">
   </iframe>
-
-  <p class="plot-caption" style="margin-top: 0.75rem; font-size: 0.95rem; color: #555;">
-    <strong>Figure 1: Market return segmentation over time.</strong><br>
-    Weekly mean market returns with detected regime segments shown as background shading.
-    Each colored region corresponds to a period of statistically similar market behavior (dynamic programming constrained to 50 segments).
-  </p>
 </div>
-This segmentation reveals several extended periods of abnormal market dynamics,
-characterized by persistently negative returns and increased volatility.
-Notably, the most severe segments coincide with well-known systemic crises,
-including the dot-com bubble burst, the 2008 financial crisis, and the COVID-19 shock.
 
-These periods serve as our **outbreak windows** in the subsequent analysis.
+In the figure above, the timeline was segmented with respect to periods that exhibit similar weekly returns using dynamic programming (50 segments). Notably, the most severe segments coincide with well-known systemic crises,
+including the **dot-com bubble burst**, the **2008 financial crisis**, and the **COVID-19 shock**.
+
+These periods serve as our **outbreak windows** in the following analysis.
 We will focus on these segments
 to study how financial contagion emerges, propagates, and eventually dissipates.
 
-### What we did
 
-We segmented the market timeline into consecutive regimes using **dynamic programming**.
-The segmentation groups periods with **similar average market returns**, allowing us
-to detect **structural changes in market behavior** without relying on predefined crisis dates.
-
-**Table 1: Major crisis periods identified by market segmentation.**
+**Major crisis periods identified by market segmentation.**
 
 | Crisis episode            | Start date | End date   | Duration (weeks) | Cumulative market return | Interpretation |
 |---------------------------|------------|------------|------------------|--------------------------|----------------|
