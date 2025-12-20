@@ -548,19 +548,11 @@ during that outbreak.
     <p>
       The COVID-19 crisis did not originate inside the market as economic activity was frozen by policy decisions,
       supply chains fractured overnight
-      and uncertainty replaced all prior narratives. Public places were shutdown, international trade was disrupted and 
+      and uncertainty replaced all prior narratives. Public places were shutdown, international trade was disrupted and toilet paper shortages could be witnessed all around the globe.
       </p>
       
       <p>
       The return series below captures this instability.
-      Violent oscillations dominate the window:
-      deep drawdowns followed by sharp rebounds,
-      often within days of each other.
-      These swings reflect a market struggling to price
-      an evolving situation in real time,
-      as information, fear, and intervention collide.
-      Rather than settling into a single direction,
-      the system oscillates under stress.
       </p>
 
 
@@ -594,22 +586,16 @@ during that outbreak.
 
     <div id="covid-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
+      <h3 class="text-accent">
+      Patient zero has been identified as entity <strong>GILD</strong>.
+      </h3>
+      
       <p>
-      Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span>.
+        Now that a patient zero has been identified, we might want to understand how the outbreak unfolded. It is interesting to understand the relative roles played by all assets during the crisis.
       </p>
       
       <p>
-        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
-        It is interesting to understand the
-        relative roles played by all assets during the crisis.
-      </p>
-      
-      <p>
-        The 3D plot below places every stock in the market inside a common
-        <strong>contagion space</strong>.
-        Each point represents an entity, positioned according to three dimensions:
-        how early it exhibits stress, how central it is within the market network,
-        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+        The 3D plot below places every stock in the market inside a common contagion space. Each point represents an entity, positioned according to three dimensions: reproduction index, centrality and temporal leadership (all normalized). These values are the mean values over the entire timeframe.
       </p>
       <div class="plot-frame plot-frame--first">
         <iframe
@@ -651,23 +637,11 @@ during that outbreak.
       </p>
       
       <p>
-        Each stock is represented as a point in a three-dimensional space defined by
-        (i) the <strong>fraction of days where returns are lower than -5%</strong>,
-        (ii) the <strong>average time needed to recover</strong> after a stress event,
-        and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
+        Each stock is represented as a point in a three-dimensional space defined by (i) the **fraction of days where returns are lower than -5%**, (ii) the **average time needed to recover** after suffering a -5% loss in a day, and (iii) the **fraction of days spent in a healthy state**. Stocks that occupy nearby positions in this space exhibit similar recovery dynamics. The clustering algorithm groups stocks solely based on this behavioral similarity.
       </p>
       
       <p>
-        The clustering algorithm groups stocks solely based on this behavioral similarity.
-        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
-        What unites them is not what they do, but <strong>how they react to market stress</strong>.
-      </p>
-      
-      <p>
-        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
-        Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
-        propagates and dissipates during the crisis.
+      The envelopes drawn around each group indicate the range of behaviors covered by a cluster. Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress propagates and dissipates during the crisis.
       </p>
       
       <div class="plot-frame plot-frame--first">
@@ -682,17 +656,17 @@ during that outbreak.
 
       
       Each cluster can be intepreted in the following manner:<br><br>
-        - Tickers belonging to <strong>cluster 0</strong> take longer to recover and are sick for a longer time period.<br>
-        - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast and are healthy more than they are sick.<br>
-        - Tickers belonging to <strong>cluster 2</strong> stay pretty much healthy most of the time, with a wide range of recovery times.<br>
-        - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.<br><br>
+        - Tickers belonging to <strong>cluster 0</strong> recover very quickly from being sick, and rarely get sick.<br>
+        - Tickers belonging to <strong>cluster 1</strong> have mixed attributes, but they are still very much impacted and don't recover fast.<br>
+        - Tickers belonging to <strong>cluster 2</strong> are the stocks that are most impacted by the outbreak.<br>
+        - Tickers belonging to <strong>cluster 3</strong> show fast recovery and better health conditions compared to the other clusters.<br><br>
 
       This classification helps us understand the role of each stock in the outbreak.
 
       <h2 class="text-accent"><strong>Part III: Sectorial Analysis</strong></h2>
       <p>
         Up to this point, the analysis has focused on individual assets.
-        However it is bold to assume that only one entity is responsible for a market shutdown as these epidemics often propagate through <strong>entire sectors</strong>.
+        However it is bold to assume that only one entity is responsible for a market shutdown as these epidemics often propagate through entire sectors.
       </p>
       
       <p>
@@ -709,9 +683,7 @@ during that outbreak.
         </iframe>
       </div>
 
-      <h3 class="text-accent">
-        The patient zero in this case is <strong>Consumer Staples</strong>.
-      </h3>
+  
       
       <p>
         The 3D plot below positions sectors in a contagion space analogous to the one
@@ -735,11 +707,12 @@ during that outbreak.
         </iframe>
       </div>
 
+      <h3 class="text-accent">
+        The patient zero in this case is <strong>Consumer Staples</strong>.
+      </h3>
+
       <p>
         The timeline below tracks how sector-level health evolves over time.
-        It shows when stress concentrates within specific sectors
-        and whether contagion remains localized or spills over
-        into the rest of the economy.
       </p>
 
 
@@ -1202,7 +1175,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="cw-top">
         <div>
           <div class="cw-title">Interactive directory - ${meta.label}</div>
-          <div class="cw-sub">Here you can check to which cluster every stock belongs, and reciprocally which stocks are contained in every cluster.</div>
+          <div class="cw-sub">Here you can check to which cluster every stock belongs, and reciprocally which stocks are contained in every cluster. <strong>The colors associated to the clusters below are the colors of the points inside the cluster</strong>.</div>
         </div>
 
         <div class="cw-controls">
