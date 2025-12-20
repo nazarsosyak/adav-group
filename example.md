@@ -281,7 +281,7 @@ during that outbreak.
         (i) the <strong>fraction of days spent sick</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
       </p>
       
       <p>
@@ -503,7 +503,7 @@ during that outbreak.
         (i) the <strong>fraction of days spent sick</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
       </p>
       
       <p>
@@ -733,7 +733,7 @@ during that outbreak.
         (i) the <strong>fraction of days spent sick</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress–recovery dynamics.
+        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
       </p>
       
       <p>
