@@ -323,6 +323,8 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
+      <h3 class="text-accent"><strong>Discussion</strong></h3>
       
     </div>
   </section>
@@ -539,6 +541,8 @@ during that outbreak.
       This sector-level perspective reveals that systemic risk is not solely driven
       by individual assets, but by the structure of inter-sector dependencies. 
       </p>
+
+      <h3 class="text-accent"><strong>Discussion</strong></h3>
       
 
     </div>
@@ -772,6 +776,8 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+
+      <h3 class="text-accent"><strong>Discussion</strong></h3>
       
 
 
