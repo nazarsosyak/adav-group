@@ -246,7 +246,7 @@ during that outbreak.
       <p>
         Each stock is represented as a point in a three-dimensional space defined by
         (i) the <strong>fraction of days where returns are lower than -5%</strong>,
-        (ii) the <strong>average time needed to recover</strong> after a stress event,
+        (ii) the <strong>average time needed to recover</strong> after suffering a -5% loss in a day,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
         Stocks that occupy nearby positions in this space exhibit similar recovery dynamics. The clustering algorithm groups stocks solely based on this behavioral similarity.
       </p>
@@ -292,10 +292,10 @@ during that outbreak.
       <div class="cluster-widget" data-period="dotcom"></div>
 
       Each cluster can be intepreted in the following manner:<br><br>
-        - Tickers belonging to <strong>cluster 0</strong> take longer to recover and are sick for a longer time period.<br>
-        - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast and are healthy more than they are sick.<br>
-        - Tickers belonging to <strong>cluster 2</strong> stay pretty much healthy most of the time, with a wide range of recovery times.<br>
-        - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.<br><br>
+        - Tickers belonging to <strong>cluster 0</strong> struggle to recover and are sick for a longer time period. They are in a critical state and suffer great losses.<br>
+        - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast from a shock in the market. <br>
+        - Tickers belonging to <strong>cluster 2</strong> stay pretty much healthy most of the time, with a wide range of recovery times. They are the most immune group out of all.<br>
+        - Tickers belonging to <strong>cluster 3</strong> also struggle to recover but are overall less impacted by strong changes.<br><br>
 
       This classification helps us understand the role of each stock in the outbreak.
 
@@ -314,7 +314,7 @@ during that outbreak.
       </div>
 
       <p>
-        Similarly as before, we display all sectors on a reproduction index-- temporal leadership--centrality map and the resulting PPI index. 
+        Similarly as before, we display all sectors on a reproduction index--temporal leadership--centrality map and the resulting PPI indices. 
       </p>
 
 
