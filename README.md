@@ -60,10 +60,12 @@ Our workflow mirrors a real outbreak response:
    - **super-spreaders** using causality and correlation analysis,
    - and dominant **propagation paths**.
 
+
 4. **Sector mapping**  
    We project contagion onto sectors to detect:
    - **critical sectors** that amplify contagion,
    - and **sector-to-sector transmission** patterns.
+  
    
 5. **Comparison between the three time periods**
    Finally, we look to distinguish the three crises using:
