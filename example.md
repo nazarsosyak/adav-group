@@ -862,7 +862,7 @@ We can easily assess that, overall, the Subprime Financial Crisis had the strong
 
 Under this immunology-inspired lens, the Subprime Financial Crisis resembles a highly contagious outbreak, with stress spreading broadly across assets, severe liquidity impairment, and deep persistent losses. The COVID-19 shock instead appears as an acute episode, characterized by violent volatility and strong causal coupling but more limited propagation and faster stabilization. Finally, the Dot-com bubble, emerges as a slower and more contained process with weaker transmission and a milder systemic footprint.
 
-## Conclusion
+## **Conclusion**
 
 Based on the results found in the previous sections, we can confidently say that using the immunology approach on a single entity is less relevant than looking at a broader perspective (e.g. sectorial), but it still reveals microscopic dynamics where the sectorial approach is more macroscopic. It is useful to understand the propagation mechanisms, the speed at which a disease propagates between nodes and how factors such as centrality, temporal leadership and contagion come in play. We can tell which stocks are more or less affected than others and thereby group them together.
 
