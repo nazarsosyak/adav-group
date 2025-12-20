@@ -60,6 +60,8 @@ a composite score that captures an entity’s ability to
 **initiate**, **amplify** or **propagate**
 financial stress within the market. This helps us find **super-spreaders** in the network.
 
+For each case, we used **50 representative tickers** for the sake of visualization. All the tickers are accessible through the **Ticker Dictonary** on the right of the page, providing insightful information about every single one of them.
+
 ### Infection state classification
     
 In parallel, each entity is assigned a health state based on its return dynamics
@@ -179,11 +181,11 @@ during that outbreak.
     <div id="dotcom-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
       
-      <h3 class="text-accent">Patient zero has been identified as entity <strong>BIIB</strong> (use helper dictionary on the right of your screen for more information on the company).</h3>
+      <h3 class="text-accent">Patient zero has been identified as entity <strong>BIIB</strong>.</h3>
       
 
       <p>
-        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
+        Now that a patient zero has been identified, we might want to understand how the outbreak unfolded.
         It is interesting to understand the
         relative roles played by all assets during the crisis.
       </p>
@@ -192,13 +194,9 @@ during that outbreak.
         The 3D plot below places every stock in the market inside a common
         <strong>contagion space</strong>.
         Each point represents an entity, positioned according to three dimensions:
-        how early it exhibits stress, how central it is within the market network,
-        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+        reproduction index, centrality and temporal leadership (all normalized). These values are the mean values over the entire timeframe.
       </p>
-      
-      <p>
-        Furthermore, the <strong>Pandemic Potential Index</strong> is represented. This is visually intuitive regarding the role of each stock in this outbreak.
-      </p>
+
 
       <div class="plot-frame plot-frame--first">
           <iframe
@@ -234,6 +232,11 @@ during that outbreak.
            data-pad="4">
       </div>
 
+      <h3 class="text-accent">Discussion</h3>
+      <p>
+        BLABLABLA
+      </p>
+
       <h2 class="text-accent">Cluster membership</h2>
 
       <p>
@@ -245,17 +248,12 @@ during that outbreak.
         (i) the <strong>fraction of days spent sick</strong>,
         (ii) the <strong>average time needed to recover</strong> after a stress event,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
+        Stocks that occupy nearby positions in this space exhibit similar recovery dynamics. The clustering algorithm groups stocks solely based on this behavioral similarity.
       </p>
+    
       
       <p>
-        The clustering algorithm groups stocks solely based on this behavioral similarity.
-        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
-        What unites them is not what they do, but <strong>how they react to market stress</strong>.
-      </p>
-      
-      <p>
-        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
+        The envelopes drawn around each group indicate the range of behaviors covered by a cluster.
         Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
         propagates and dissipates during the crisis.
       </p>
@@ -291,11 +289,19 @@ during that outbreak.
         </iframe>
       </div>
 
+      Each cluster can be intepreted in the following manner:
+        - Tickers belonging to <strong>cluster 0</strong> take longer to recover and are sick for a longer time period.
+        - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast and are healthy more than they are sick.
+        - Tickers belonging to <strong>cluster 2</strong> stay pretty much healthy most of the time, with a wide range of recovery times.
+        - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.
+
+      This classification helps us understand the role of each stock in the outbreak.
+
       <div class="cluster-widget" data-period="dotcom"></div>
 
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
-      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
+      <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to explore.<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
       </p>
 
@@ -307,6 +313,10 @@ during that outbreak.
         </iframe>
       </div>
 
+      <p>
+        Similarly as before, we display all sectors on a reproduction index-- temporal leadership--centrality map and the resulting PPI index. 
+      </p>
+
 
       <div class="plot-frame plot-frame--first">
         <iframe
@@ -317,10 +327,10 @@ during that outbreak.
       </div>
 
       <p>
+        For the case of the dot-com bubble burst, the sectorial <strong>patient zero</strong> is <strong><span class="text-accent">Utilities</span></strong>.
+      </p>
+      <p>
         The timeline below tracks how sector-level health evolves over time.
-        It shows when stress concentrates within specific sectors
-        and whether contagion remains localized or spills over
-        into the rest of the economy.
       </p>
 
       <div class="img-slider"
@@ -341,11 +351,6 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-      
-
-      <p>
-        For the case of the dot-com bubble burst, the sectorial <strong>patient zero</strong> is <span class="text-accent">Utilities</span>.
-      </p>
 
     </div>
   </section>
