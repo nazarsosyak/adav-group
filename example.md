@@ -289,6 +289,8 @@ during that outbreak.
         </iframe>
       </div>
 
+      <div class="cluster-widget" data-period="dotcom"></div>
+
       Each cluster can be intepreted in the following manner:<br>
         - Tickers belonging to <strong>cluster 0</strong> take longer to recover and are sick for a longer time period.<br>
         - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast and are healthy more than they are sick.<br>
@@ -296,8 +298,6 @@ during that outbreak.
         - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.<br><br>
 
       This classification helps us understand the role of each stock in the outbreak.
-
-      <div class="cluster-widget" data-period="dotcom"></div>
 
       <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
 
@@ -326,9 +326,9 @@ during that outbreak.
         </iframe>
       </div>
 
-      <p>
+      <h2>
         For the case of the dot-com bubble burst, the sectorial <strong>patient zero</strong> is <strong><span class="text-accent">Utilities</span></strong>.
-      </p>
+      </h2>
       <p>
         The timeline below tracks how sector-level health evolves over time.
       </p>
