@@ -443,23 +443,18 @@ during that outbreak.
       <p>
         Each stock is represented as a point in a three-dimensional space defined by
         (i) the <strong>fraction of days where returns are lower than -5%</strong>,
-        (ii) the <strong>average time needed to recover</strong> after a stress event,
+        (ii) the <strong>average time needed to recover</strong> after suffering a -5% loss in a day,
         and (iii) the <strong>fraction of days spent in a healthy state</strong>.
-        Stocks that occupy nearby positions in this space exhibit similar stress-recovery dynamics.
+        Stocks that occupy nearby positions in this space exhibit similar recovery dynamics. The clustering algorithm groups stocks solely based on this behavioral similarity.
       </p>
+    
       
       <p>
-        The clustering algorithm groups stocks solely based on this behavioral similarity.
-        As a result, stocks in the same cluster may belong to different sectors or have very different business models.
-        What unites them is not what they do, but <strong>how they react to market stress</strong>.
-      </p>
-      
-      <p>
-        The translucent envelopes drawn around each group indicate the range of behaviors covered by a cluster.
+        The envelopes drawn around each group indicate the range of behaviors covered by a cluster.
         Clusters that lie far apart in the plot correspond to fundamentally different ways in which market stress
         propagates and dissipates during the crisis.
       </p>
-      
+
       <div class="plot-frame plot-frame--first">
         <iframe
           src="{{ '/assets/plots/immune_phenotypes_3d_subprime.html' | relative_url }}"
@@ -472,9 +467,9 @@ during that outbreak.
 
       
       Each cluster can be intepreted in the following manner:<br><br>
-        - Tickers belonging to <strong>cluster 0</strong> take longer to recover and are sick for a longer time period.<br>
-        - Tickers belonging to <strong>cluster 1</strong> on the other hand recover fast and are healthy more than they are sick.<br>
-        - Tickers belonging to <strong>cluster 2</strong> stay pretty much healthy most of the time, with a wide range of recovery times.<br>
+        - Tickers belonging to <strong>cluster 0</strong> stay pretty much healthy most of the time, with a wide range of recovery times.<br>
+        - Tickers belonging to <strong>cluster 1</strong> are get sick almost all the time, but they manage to recover faster than the others.<br>
+        - Tickers belonging to <strong>cluster 2</strong> 
         - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.<br><br>
 
       This classification helps us understand the role of each stock in the outbreak.
@@ -1189,10 +1184,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // CLUSTER COLORS (match your legend)
   // -------------------------
   const CL_COLORS = {
-    0: "orange",
-    1: "#1f77b4",
-    2: "hotpink",
-    3: "#2ca02c"
+    0: "#1a3eab",
+    1: "#b85716",
+    2: "#44c77f",
+    3: "#8350a3"
   };
 
   function flatten(groups) {
