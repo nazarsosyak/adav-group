@@ -48,29 +48,17 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 Before analysis, it is important to be clear on how the algorithm functions:
 
 Three key dimensions must be introduced first.
-These dimensions are jointly used to evaluate the state and systemic relevance
-of each market entity.
+These dimensions are jointly used to evaluate the state and systemic relevance of each market entity.
 
-**1. Network centrality**
-We measure how embedded each asset is within the market network.
-Centrality reflects how strongly a node is connected to others through
-correlation, mutual information, and causal exposure.
-
-**2. Temporal leadership**
-Timing matters.
-Assets that exhibit abnormal stress **early** in the outbreak window
-carry more explanatory power than late movers.
-Early infection combined with strong connectivity raises suspicion
-regarding a possible triggering role (i.e. **patient zero**).
-
-**3. Reproduction number (R₀)**
-Inspired by epidemiological concepts, this metric quantifies the effective contagion pressure exerted by a **distressed node** on the rest of the network. Higher values indicate nodes with a greater capacity to transmit and amplify market stress through interconnected pathways. This helps us find **super-spreaders** in the network.
+1. **Network centrality:** We measure how embedded each asset is within the market network. Centrality reflects how strongly a node is connected to others through correlation, mutual information, and causal exposure.
+2. **Temporal leadership:** Timing matters. Assets that exhibit abnormal stress **early** in the outbreak window carry more explanatory power than late movers. Early infection combined with strong connectivity raises suspicion regarding a possible triggering role (i.e. **patient zero**).
+3. **Reproduction number (R₀):** Inspired by epidemiological concepts, this metric quantifies the effective contagion pressure exerted by a **distressed node** on the rest of the network. Higher values indicate nodes with a greater capacity to transmit and amplify market stress through interconnected pathways. 
 
 Together, these three dimensions define the
 **Pandemic Potential Index** (**PPI**),
 a composite score that captures an entity’s ability to
-**initiate**, **amplify**, or **propagate**
-financial stress within the market.
+**initiate**, **amplify** or **propagate**
+financial stress within the market. This helps us find **super-spreaders** in the network.
 
 ### Infection state classification
     
@@ -86,6 +74,8 @@ In each case file, we apply the same investigative procedure:
 we examine market behavior during the outbreak window,
 reconstruct the underlying interaction network,
 and identify key roles such as patient zero, super-spreaders, and high-risk entities.
+
+### Select a case file
 
 You may now select one of the following crisis episodes to open its corresponding case file.
 Each case file presents a focused and comparable analysis of market behavior
