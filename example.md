@@ -41,38 +41,30 @@ and justifying their use as outbreak windows in the subsequent contagion analysi
 
 ---
 
-## **Part II: Choose a case file**
-
-Once a crisis period has been identified, we isolate it from the full market timeline
-and analyze it. 
+## **Part II: Definition of contagion dynamics**
 
 ### The Main Immunology Pipeline
 
 Before analysis, it is important to be clear on how the algorithm functions:
 
-To grasp the algorithm's logic, three key dimensions must be introduced first.
+Three key dimensions must be introduced first.
 These dimensions are jointly used to evaluate the state and systemic relevance
 of each market entity.
 
 **1. Network centrality**
 We measure how embedded each asset is within the market network.
 Centrality reflects how strongly a node is connected to others through
-correlation, mutual information, or causal exposure.
-Highly central entities act as structural hubs: when they move, stress
-can propagate more easily through the system.
+correlation, mutual information, and causal exposure.
 
 **2. Temporal leadership**
 Timing matters.
 Assets that exhibit abnormal stress **early** in the outbreak window
 carry more explanatory power than late movers.
 Early infection combined with strong connectivity raises suspicion
-regarding a possible triggering role.
+regarding a possible triggering role (i.e. **patient zero**).
 
 **3. Reproduction number (R₀)**
-Borrowing from epidemiology, we estimate how many other entities
-an infected node tends to contaminate through its connections.
-A high R₀ signals a super-spreader: once infected,
-this entity disproportionately amplifies market stress.
+Inspired by epidemiological concepts, this metric quantifies the effective contagion pressure exerted by a **distressed node** on the rest of the network. Higher values indicate nodes with a greater capacity to transmit and amplify market stress through interconnected pathways. This helps us find **super-spreaders** in the network.
 
 Together, these three dimensions define the
 **Pandemic Potential Index** (**PPI**),
@@ -80,21 +72,15 @@ a composite score that captures an entity’s ability to
 **initiate**, **amplify**, or **propagate**
 financial stress within the market.
 
-**Infection state classification**
+### Infection state classification
     
 In parallel, each entity is assigned a health state based on its return dynamics
 over the outbreak window.
 
-An entity is labeled **sick** if its daily return crosses the **−5% over a day** threshold.
-Entities that maintain strong connections with sick nodes (through correlation
-or causal exposure) are classified as **at risk**.
-Over time, entities may **recover** if stress subsides,
-while those that never meet the infection criteria remain **healthy**.
-
-These definitions remain fixed across all case files,
-ensuring that differences between outbreaks arise from
-market structure and dynamics.
-
+1. An entity is labeled **directly sick** if its daily return crosses the **−5% threshold**.
+2. Entities that maintain strong connections with sick nodes (through correlation or causal exposure) are classified as **sick by contagion**.
+3. Over time, entities may **recover** if their daily returns are positive for three consecutive days.
+4. Those that never meet the infection criteria remain **healthy**.
 
 In each case file, we apply the same investigative procedure:
 we examine market behavior during the outbreak window,
