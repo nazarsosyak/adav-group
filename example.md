@@ -1368,6 +1368,10 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <aside id="ticker-dictionary" class="ticker-dict">
+  <button class="td-close" type="button" aria-label="Close ticker dictionary">
+    ×
+  </button>
+
   <div class="td-head">
     <div class="td-title">Ticker dictionary</div>
     <div class="td-sub">Click a ticker to see what the company does.</div>
@@ -1395,6 +1399,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ✕
   </button>
 </aside>
+<button id="td-toggle" class="td-toggle" type="button" aria-controls="ticker-dictionary" aria-expanded="true">
+  ?
+</button>
+
 
 
 <button id="th-open" class="th-open" type="button" aria-label="Open ticker helper">
@@ -1505,18 +1513,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const helper = document.getElementById("ticker-dictionary");
-  const closeBtn = document.getElementById("td-close");
-  const openBtn  = document.getElementById("th-open");
+  const panel = document.getElementById("ticker-dictionary");
+  const toggle = document.getElementById("td-toggle");
+  const closeBtn = panel ? panel.querySelector(".td-close") : null;
 
-  if (!helper || !closeBtn || !openBtn) return;
+  if (!panel || !toggle || !closeBtn) return;
 
-  closeBtn.addEventListener("click", () => {
-    helper.classList.add("is-hidden");
-  });
+  function openPanel(){
+    panel.classList.remove("is-collapsed");
+    toggle.classList.add("is-hidden");
+    toggle.setAttribute("aria-expanded","true");
+  }
 
-  openBtn.addEventListener("click", () => {
-    helper.classList.remove("is-hidden");
-  });
+  function closePanel(){
+    panel.classList.add("is-collapsed");
+    toggle.classList.remove("is-hidden");
+    toggle.setAttribute("aria-expanded","false");
+  }
+
+  closeBtn.addEventListener("click", closePanel);
+  toggle.addEventListener("click", openPanel);
+
+  // start open
+  openPanel();
 });
 </script>
+
