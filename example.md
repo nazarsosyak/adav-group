@@ -237,7 +237,7 @@ during that outbreak.
         BLABLABLA
       </p>
 
-      <h2 class="text-accent">Cluster membership</h2>
+      <h3 class="text-accent">Cluster membership</h3>
 
       <p>
         The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
@@ -465,7 +465,7 @@ during that outbreak.
            data-pad="4">
       </div>
 
-      <h2 class="text-accent">Cluster membership</h2>
+      <h3 class="text-accent">Cluster membership</h3>
 
       <p>
         The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
@@ -708,7 +708,7 @@ during that outbreak.
            data-pad="4">
       </div>
 
-      <h2 class="text-accent">Cluster membership</h2>
+      <h3 class="text-accent">Cluster membership</h3>
 
       <p>
         The clusters shown in the 3D plot below emerge directly from how individual stocks behave during the outbreak window.
