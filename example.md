@@ -1366,11 +1366,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-
 <aside id="ticker-dictionary" class="ticker-dict">
-  <button class="td-close" type="button" aria-label="Close ticker dictionary">
-    ×
-  </button>
+  <button id="td-close" class="td-close" type="button" aria-label="Hide ticker helper">×</button>
 
   <div class="td-head">
     <div class="td-title">Ticker dictionary</div>
@@ -1392,22 +1389,13 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="td-desc" id="td-desc">—</div>
     <div class="td-links" id="td-links"></div>
   </div>
-  <button id="td-close"
-          class="td-close"
-          type="button"
-          aria-label="Hide ticker helper">
-    ✕
-  </button>
 </aside>
-<button id="td-toggle" class="td-toggle" type="button" aria-controls="ticker-dictionary" aria-expanded="true">
+
+<button id="td-toggle" class="td-toggle" type="button"
+        aria-controls="ticker-dictionary" aria-expanded="true">
   ?
 </button>
 
-
-
-<button id="th-open" class="th-open" type="button" aria-label="Open ticker helper">
-  ?
-</button>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -1515,27 +1503,28 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const panel = document.getElementById("ticker-dictionary");
   const toggle = document.getElementById("td-toggle");
-  const closeBtn = panel ? panel.querySelector(".td-close") : null;
+  const closeBtn = document.getElementById("td-close");
 
   if (!panel || !toggle || !closeBtn) return;
 
   function openPanel(){
     panel.classList.remove("is-collapsed");
     toggle.classList.add("is-hidden");
-    toggle.setAttribute("aria-expanded","true");
+    toggle.setAttribute("aria-expanded", "true");
   }
 
   function closePanel(){
     panel.classList.add("is-collapsed");
     toggle.classList.remove("is-hidden");
-    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-expanded", "false");
   }
 
   closeBtn.addEventListener("click", closePanel);
   toggle.addEventListener("click", openPanel);
 
-  // start open
+  // start OPEN
   openPanel();
 });
 </script>
+
 
