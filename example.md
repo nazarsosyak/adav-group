@@ -387,9 +387,9 @@ during that outbreak.
       <h3 class="text-accent">
         Patient zero has been identified as entity <strong>GS</strong>.
       </h3>
-
+      
       <p>
-        Now that the problematic stock has been identified, we might want to understand how the outbreak unfolded.
+        Now that a patient zero has been identified, we might want to understand how the outbreak unfolded.
         It is interesting to understand the
         relative roles played by all assets during the crisis.
       </p>
@@ -398,8 +398,7 @@ during that outbreak.
         The 3D plot below places every stock in the market inside a common
         <strong>contagion space</strong>.
         Each point represents an entity, positioned according to three dimensions:
-        how early it exhibits stress, how central it is within the market network,
-        and how strongly it tends to transmit that stress to others. These values are the mean values over the entire timeframe.
+        reproduction index, centrality and temporal leadership (all normalized). These values are the mean values over the entire timeframe.
       </p>
       
       <div class="plot-frame plot-frame--first">
