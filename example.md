@@ -415,7 +415,7 @@ during that outbreak.
     <div id="subprime-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
       <h3 class="text-accent">
-        Patient zero has been identified as entity <strong>GS</strong> (use helper dictionary on the right of your screen for more information on the company).
+        Patient zero has been identified as entity <strong>GS</strong>.
       </h3>
 
       <p>
@@ -659,7 +659,7 @@ during that outbreak.
     <div id="covid-output" class="analysis-output is-locked">
       <hr class="analysis-separator">
       <p>
-      Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span> (use helper dictionary on the right of your screen for more information on the company).
+      Patient zero has been identified as entity <span class="text-accent"><strong>GILD</strong></span>.
       </p>
       
       <p>
