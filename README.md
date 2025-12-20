@@ -26,7 +26,7 @@ This investigation is guided the following research questions:
 > **What happens on a sectorial scale?**
 > What are the sectorial trends? Does this tell us more about the market's immune system?
 
-> **Does each outrbeak have their own immunological signature?**
+> **Does each outbreak have their own immunological signature?**
 > What characterizes a crisis? How can we tell two crises apart?
 
 
