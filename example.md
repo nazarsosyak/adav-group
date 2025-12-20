@@ -933,6 +933,8 @@ uniformly financial contagion spreads through the market.
 
 ## **Part V: Systemic Risk Radar**
 
+Another way to compare these three crises is to look at how different they can be in terms of liquidity exchanges, volatility, causality between the nodes, how large the mean contagion index is, and how much the market goes down. The plot below gives a clear picture of what is happening in these three time periods.
+
 
 <div class="plot-frame plot-frame--first">
   <iframe
@@ -942,6 +944,7 @@ uniformly financial contagion spreads through the market.
   </iframe>
 </div>
 
+We can easily assess that overall, the <strong>Subprime Financial Crisis</strong> had the strongest impact market-wise, as basically all the indices are higher than any of the other two crises. On the other hand, the COVID-19 epidemic and the dot-com bubble burst have lower causality and contagion dynamics, respectively. A lower causality for the COVID-19 period hereby confirms the results obtained with PCA, as we previously found that this period did not have one distinct stress structure but the outbreak rather unfolded through multiple channels. There was not necessarily causality between different nodes or sectors of the network as they did not react to stress in the same way.
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
