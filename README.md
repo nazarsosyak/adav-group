@@ -3,20 +3,13 @@
 **Ever wondered which stock took your wallet down the drain?**  
 **Looking for someone to blame for your life savings disappearing?**
 
-Markets rarely collapse in a single blow. They deteriorate through **chains of exposure**:
-correlations tighten, sector linkages transmit stress, and hidden dependencies turn local shocks
-into systemic events.
+For most, markets are black boxes in which you put your money and pray. But sometimes hope can turn into despair in the blink of an eye. This is why we are seeking to investigate the market under a different lens: what if the market were treated as a complex immune system, where stocks can get sick, transmit deseases and cause financial plagues.
 
 ---
 
 ### **The idea**
 
-Markets don’t collapse all at once. A crisis leaves traces.  
-They spread.
-
-A sudden price shock rarely stays local. It travels through correlations, sector linkages, and hidden dependencies, infecting stocks that were never directly exposed to the original event.
-
-This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network.
+This project treats financial markets as a **living system**, where shocks behave like pathogens and risk propagates through a complex network. The state of the system can be evaluated using core indices: correlation, causality between nodes, volatility, market returns, and many other. These measures allow us to obtain the "health state" of a stock, and the immune pressure on the market. The main idea is not to **predict**, but rather to try to understand the fundamentals of past financial outbreaks.
 
 ---
 
@@ -29,11 +22,12 @@ This investigation is guided the following research questions:
 
 > **Can we identify a patient zero?**
 > Is it possible to trace major market events back to an initial source, and distinguish between early carriers and super-spreaders?
-> **What are the dynamics of financial contagion?**
-> How fast does risk propagate, how concentrated is the spread, and when does it become systemic?
 
-> **Does the market have an immune system?**
-> How does the market absorb, dampen or amplify shocks, and under what conditions does this defense mechanism fail?
+> **What happens on a sectorial scale?**
+> What are the sectorial trends? Does this tell us more about the market's immune system?
+
+> **Does each outrbeak have their own immunological signature?**
+> What characterizes a crisis? How can we tell two crises apart?
 
 
 ---
@@ -42,12 +36,11 @@ This investigation is guided the following research questions:
 
 We treat each crisis episode as a **case file** and aim to:
 
-- identify the most probable **patient zero**,
+- identify **patient zero**,
 - detect **super-spreaders** and amplification hubs,
 - reconstruct the **propagation timeline** and dominant transmission paths,
-<!---
-- assess whether the outbreak remains **localized** or becomes **system-wide**.
--->
+- observe the market under a sectorial lens,
+- compare three scenarios: dot-com bubble burst in the beginning of year 2000, subprime crisis in 2008, and COVID-19 in 2020
 
 ---
 
@@ -63,19 +56,24 @@ Our workflow mirrors a real outbreak response:
 
 3. **Network reconstruction**  
    Inside the outbreak window, we build dynamic interaction networks to identify:
-   - the probable **patient zero**,
-   - **super-spreaders**,
+   - the **patient zero** using temporal leadership,
+   - **super-spreaders** using causality and correlation analysis,
    - and dominant **propagation paths**.
 
 4. **Sector mapping**  
-   Finally, we project contagion onto sectors to detect:
+   We project contagion onto sectors to detect:
    - **critical sectors** that amplify contagion,
-   - **sector-to-sector transmission** patterns,
-   - and whether the episode becomes **system-wide**.
+   - and **sector-to-sector transmission** patterns.
+   
+5. **Comparison between the three time periods**
+   Finally, we look to distinguish the three crises using:
+   - **Principal Component Analysis** to identify market signatures,
+   - and use liquidity traded, weekly returns, volatility and many more.
 
 ---
 
 **Welcome to the investigation.**  
 Start with **The Story** to follow the analysis from the first signal to the full outbreak reconstruction.
+
 <a class="btn-primary" href="{{ '/story/' | relative_url }}">Start the data story →</a>
 
