@@ -40,7 +40,7 @@ We treat each crisis episode as a **case file** and aim to:
 - detect **super-spreaders** and amplification hubs,
 - reconstruct the **propagation timeline** and dominant transmission paths,
 - observe the market under a sectorial lens,
-- compare three scenarios: dot-com bubble burst in the beginning of year 2000, subprime crisis in 2008, and COVID-19 in 2020
+- compare three scenarios: dot-com bubble burst in the beginning of year 2000, subprime crisis in 2008, and COVID-19 in 2020.
 
 ---
 
