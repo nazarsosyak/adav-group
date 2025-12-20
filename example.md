@@ -1503,3 +1503,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const helper = document.getElementById("ticker-dictionary");
+  const closeBtn = document.getElementById("td-close");
+  const openBtn  = document.getElementById("th-open");
+
+  if (!helper || !closeBtn || !openBtn) return;
+
+  closeBtn.addEventListener("click", () => {
+    helper.classList.add("is-hidden");
+  });
+
+  openBtn.addEventListener("click", () => {
+    helper.classList.remove("is-hidden");
+  });
+});
+</script>
