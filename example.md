@@ -299,7 +299,7 @@ during that outbreak.
 
       This classification helps us understand the role of each stock in the outbreak.
 
-      <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
+      <h2 class="text-accent"><strong>Part III: Sectorial Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to explore.<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
@@ -326,9 +326,9 @@ during that outbreak.
         </iframe>
       </div>
 
-      <h2>
-        For the case of the dot-com bubble burst, the sectorial <strong>patient zero</strong> is <strong><span class="text-accent">Utilities</span></strong>.
-      </h2>
+      <h3 class="text-accent">
+        For the case of the dot-com bubble burst, the sectorial patient zero is <strong>Utilities</strong>.
+      </h3>
       <p>
         The timeline below tracks how sector-level health evolves over time.
       </p>
@@ -351,6 +351,12 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
+      <h3 class="text-accent">Discussion</h3>
+          <p>
+            BLABLABLA
+          </p>
+
+      </p>
 
     </div>
   </section>
@@ -519,7 +525,7 @@ during that outbreak.
 
       <div class="cluster-widget" data-period="subprime"></div>
       
-      <h2 class="text-accent"><strong>Part III: Sectoral Analysis</strong></h2>
+      <h2 class="text-accent"><strong>Part III: Sectorial Analysis</strong></h2>
 
       <p>Maybe we have been looking at the problem from a wrong angle. What if the epidemic was actually caused by an entire sector of activity? This is what this section aims to do.<br><br>
       We will reuse the algorithm, but this time, over the different sectors of the market. Below is a non-exhaustive bubble map of each sector and the 20 largest stocks they contain.
@@ -532,7 +538,11 @@ during that outbreak.
           style="width:100%; height:620px; border:none;">
         </iframe>
       </div>
-
+      
+      <h3 class="text-accent">
+        The patient zero in this case is the <strong>Real Estate Sector</strong>, which totally makes sense in this context! This is a great sign.
+      </h3>
+      
       <p>
         We can use the same reasoning as for individual tickers but this time we apply it to our newly defined sectors.
       </p>
@@ -574,7 +584,7 @@ during that outbreak.
       
       <p>
       This sector-level perspective reveals that systemic risk is not solely driven
-      by individual assets, but by the structure of inter-sector dependencies. The <strong>patient zero</strong> in this case is the <span class="text-accent">Real Estate Sector</span>, which totally makes sense historically! This is a great sign.
+      by individual assets, but by the structure of inter-sector dependencies. 
       </p>
       
 
@@ -769,6 +779,10 @@ during that outbreak.
           style="width:100%; height:620px; border:none;">
         </iframe>
       </div>
+
+      <h3 class="text-accent">
+        The patient zero in this case is <strong>Consumer Staples</strong>.
+      </h3>
       
       <p>
         The 3D plot below positions sectors in a contagion space analogous to the one
@@ -819,9 +833,7 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-      <p>
-      In this specific case, the sectorial <strong>patient zero</strong> is <span class="text-accent">Consumer Staples</span>.
-      </p>
+      
 
 
     </div>
