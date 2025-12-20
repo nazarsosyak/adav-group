@@ -1388,6 +1388,12 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="td-desc" id="td-desc">—</div>
     <div class="td-links" id="td-links"></div>
   </div>
+  <button id="td-close"
+          class="td-close"
+          type="button"
+          aria-label="Hide ticker helper">
+    ✕
+  </button>
 </aside>
 
 
