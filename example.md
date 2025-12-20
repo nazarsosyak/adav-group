@@ -356,8 +356,6 @@ during that outbreak.
             BLABLABLA
           </p>
 
-      </p>
-
     </div>
   </section>
 
