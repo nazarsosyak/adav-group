@@ -877,88 +877,87 @@ We can easily assess that overall, the <strong>Subprime Financial Crisis</strong
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   IMAGE SLIDER BUILDER
+   ========================= */
 
-  /* =========================
-     IMAGE SLIDER BUILDER
-     ========================= */
+function padNum(n, pad) {
+  return String(n).padStart(pad, "0");
+}
 
-  function padNum(n, pad) {
-    return String(n).padStart(pad, "0");
+async function detectMaxFrame(folder, prefix, pad) {
+  const tryLoad = (src) =>
+    new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+
+  let i = 0;              // ✅ start at frame 0
+  const CAP = 500;
+
+  while (i <= CAP) {
+    const src = `${folder}/${prefix}${padNum(i, pad)}.png`;
+    const ok = await tryLoad(src);
+    if (!ok) return Math.max(0, i - 1);
+    i += 1;
+  }
+  return CAP;
+}
+
+async function initOneSlider(el) {
+  if (el.dataset.ready === "true") return;
+
+  const folder = el.getAttribute("data-folder");
+  const prefix = el.getAttribute("data-prefix") || "";
+  const pad = parseInt(el.getAttribute("data-pad") || "4", 10);
+
+  if (!folder) return;
+  el.dataset.ready = "true";
+
+  const top = document.createElement("div");
+  top.className = "img-slider-top";
+
+  const range = document.createElement("input");
+  range.type = "range";
+  range.min = "0";        // ✅ start at 0
+  range.value = "0";
+  range.className = "img-slider-range";
+
+  const label = document.createElement("div");
+  label.className = "img-slider-label";
+  label.textContent = "Frame 0";
+
+  top.appendChild(range);
+  top.appendChild(label);
+
+  const img = document.createElement("img");
+  img.className = "img-slider-img";
+
+  el.appendChild(top);
+  el.appendChild(img);
+
+  const maxFrame = await detectMaxFrame(folder, prefix, pad);
+  range.max = String(maxFrame);
+
+  function update() {
+    const i = parseInt(range.value, 10);
+    img.src = `${folder}/${prefix}${padNum(i, pad)}.png`;
+    label.textContent = `Frame ${i} / ${maxFrame}`;
   }
 
-  async function detectMaxFrame(folder, prefix, pad) {
-    const tryLoad = (src) =>
-      new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = src;
-      });
+  range.addEventListener("input", update);
+  update();               // ✅ loads frame 0
+}
 
-    let i = 1;
-    const CAP = 500;
-
-    while (i <= CAP) {
-      const src = `${folder}/${prefix}${padNum(i, pad)}.png`;
-      const ok = await tryLoad(src);
-      if (!ok) return Math.max(1, i - 1);
-      i += 1;
-    }
-    return CAP;
+async function initSliders(root = document) {
+  const sliders = Array.from(root.querySelectorAll(".img-slider"));
+  for (const el of sliders) {
+    // eslint-disable-next-line no-await-in-loop
+    await initOneSlider(el);
   }
-
-  async function initOneSlider(el) {
-    if (el.dataset.ready === "true") return;
-
-    const folder = el.getAttribute("data-folder");
-    const prefix = el.getAttribute("data-prefix") || "";
-    const pad = parseInt(el.getAttribute("data-pad") || "4", 10);
-
-    if (!folder) return;
-    el.dataset.ready = "true";
-
-    const top = document.createElement("div");
-    top.className = "img-slider-top";
-
-    const range = document.createElement("input");
-    range.type = "range";
-    range.min = "1";
-    range.value = "1";
-    range.className = "img-slider-range";
-
-    const label = document.createElement("div");
-    label.className = "img-slider-label";
-    label.textContent = "Frame 1";
-
-    top.appendChild(range);
-    top.appendChild(label);
-
-    const img = document.createElement("img");
-    img.className = "img-slider-img";
-
-    el.appendChild(top);
-    el.appendChild(img);
-
-    const maxFrame = await detectMaxFrame(folder, prefix, pad);
-    range.max = String(maxFrame);
-
-    function update() {
-      const i = parseInt(range.value, 10);
-      img.src = `${folder}/${prefix}${padNum(i, pad)}.png`;
-      label.textContent = `Frame ${i} / ${maxFrame}`;
-    }
-
-    range.addEventListener("input", update);
-    update();
-  }
-
-  async function initSliders(root = document) {
-    const sliders = Array.from(root.querySelectorAll(".img-slider"));
-    for (const el of sliders) {
-      // eslint-disable-next-line no-await-in-loop
-      await initOneSlider(el);
-    }
-  }
+}
 
   /* =========================
      PANEL SWITCHING + THEMING
