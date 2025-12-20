@@ -860,3 +860,17 @@ body {
   background: rgba(0,0,0,.10);
 }
 
+.cw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+}
+
+.cw-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,.15);
+}
+
