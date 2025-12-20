@@ -469,8 +469,8 @@ during that outbreak.
       Each cluster can be intepreted in the following manner:<br><br>
         - Tickers belonging to <strong>cluster 0</strong> stay pretty much healthy most of the time, with a wide range of recovery times.<br>
         - Tickers belonging to <strong>cluster 1</strong> are get sick almost all the time, but they manage to recover faster than the others.<br>
-        - Tickers belonging to <strong>cluster 2</strong> 
-        - Tickers belonging to <strong>cluster 3</strong> are in a state of contagion or recovry most of the time.<br><br>
+        - Tickers belonging to <strong>cluster 2</strong> struggle to recover but are less impacted by strong changes.
+        - Tickers belonging to <strong>cluster 3</strong> also struggle to recover but get sick more times in this time period.<br><br>
 
       This classification helps us understand the role of each stock in the outbreak.
       
@@ -488,9 +488,6 @@ during that outbreak.
         </iframe>
       </div>
       
-      <h3 class="text-accent">
-        The patient zero in this case is the <strong>Real Estate Sector</strong>, which totally makes sense in this context! This is a great sign.
-      </h3>
       
       <p>
         We can use the same reasoning as for individual tickers but this time we apply it to our newly defined sectors.
@@ -504,11 +501,12 @@ during that outbreak.
         </iframe>
       </div>
 
+      <h3 class="text-accent">
+        The patient zero in this case is the <strong>Real Estate Sector</strong>, which totally makes sense in this context! This is a great sign.
+      </h3>
+
       <p>
         The timeline below tracks how sector-level health evolves over time.
-        It shows when stress concentrates within specific sectors
-        and whether contagion remains localized or spills over
-        into the rest of the economy.
       </p>
 
       <div class="img-slider"
@@ -529,12 +527,6 @@ during that outbreak.
            data-prefix="network_"
            data-pad="4">
       </div>
-
-      
-      <p>
-      This sector-level perspective reveals that systemic risk is not solely driven
-      by individual assets, but by the structure of inter-sector dependencies. 
-      </p>
 
       <h3 class="text-accent"><strong>Discussion</strong></h3>
       
