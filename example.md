@@ -945,6 +945,7 @@ Another way to compare these three crises is to look at how different they can b
 </div>
 
 We can easily assess that overall, the <strong>Subprime Financial Crisis</strong> had the strongest impact market-wise, as basically all the indices are higher than any of the other two crises. On the other hand, the COVID-19 epidemic and the dot-com bubble burst have lower causality and contagion dynamics, respectively. A lower causality for the COVID-19 period hereby confirms the results obtained with PCA, as we previously found that this period did not have one distinct stress structure but the outbreak rather unfolded through multiple channels. There was not necessarily causality between different nodes or sectors of the network as they did not react to stress in the same way.
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
